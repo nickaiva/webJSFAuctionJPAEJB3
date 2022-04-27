@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1"
+                 binding="#{backingBeanScope.backing_changeLocale.d1}">
+      <af:form id="f1"
+               binding="#{backingBeanScope.backing_changeLocale.f1}">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout binding="#{backingBeanScope.backing_changeLocale.psl1}"
+                                   id="psl1" topHeight="106px">
+              <f:facet name="bottom"/>
+              <f:facet name="center"/>
+              <f:facet name="top">
+                <af:panelGroupLayout layout="scroll"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     binding="#{backingBeanScope.backing_changeLocale.pgl1}"
+                                     id="pgl1">
+                  <af:selectOneChoice valueChangeListener="#{backingBeanScope.backing_changeLocale.listChanged}"
+                                      label="#{userinterfaceBundle.selectALanguage}" id="soc1">
+                        <f:selectItems value="#{backingBeanScope.backing_changeLocale.suppLocales}"
+                                       id="si1"/>
+                          </af:selectOneChoice>
+                  <af:spacer width="10" height="10"
+                             binding="#{backingBeanScope.backing_changeLocale.s1}"
+                             id="s1"/>
+                  <af:panelBorderLayout binding="#{backingBeanScope.backing_changeLocale.pbl1}"
+                                        id="pbl1">
+                    <f:facet name="start"/>
+                    <f:facet name="bottom"/>
+                    <f:facet name="end"/>
+                    <f:facet name="top"/>
+                    <af:commandButton text="#{userinterfaceBundle.changeLocale}"
+                                      binding="#{backingBeanScope.backing_changeLocale.cb1}"
+                                      id="cb1"
+                                      action="#{backingBeanScope.backing_changeLocale.cb1_action}"/>
+                  </af:panelBorderLayout>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_changeLocale-->
+</jsp:root>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="updateItemPageDef"
+                Package="pages.seller">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables">
+            <variable Type="java.lang.String"
+                      Name="getItemGetItemsByName_itemName"
+                      IsQueriable="false"/>
+            <variable Type="java.lang.String"
+                      Name="getItemGetItemsByName_userId" IsQueriable="false"/>
+        </variableIterator>
+        <methodIterator Binds="getItemGetItemsByName.result"
+                        DataControl="PlaceItemLocal" RangeSize="25"
+                        BeanClass="actionbazaar.persistence.Item"
+                        id="getItemGetItemsByNameIterator"/>
+        <accessorIterator MasterBinding="getItemGetItemsByNameIterator"
+                          Binds="order" RangeSize="25"
+                          DataControl="PlaceItemLocal"
+                          BeanClass="actionbazaar.persistence.Order"
+                          id="orderIterator"/>
+    </executables>
+    <bindings>
+        <methodAction id="getItemGetItemsByName" RequiresUpdateModel="true"
+                      Action="invokeMethod" MethodName="getItemGetItemsByName"
+                      IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                      InstanceName="PlaceItemLocal.dataProvider"
+                      ReturnName="data.PlaceItemLocal.methodResults.getItemGetItemsByName_PlaceItemLocal_dataProvider_getItemGetItemsByName_result">
+            <NamedData NDName="itemName" NDType="java.lang.String"
+                       NDValue="${bindings.getItemGetItemsByName_itemName}"/>
+            <NamedData NDName="userId" NDType="java.lang.String"
+                       NDValue="${bindings.getItemGetItemsByName_userId}"/>
+        </methodAction>
+        <attributeValues IterBinding="variables" id="itemName">
+            <AttrNames>
+                <Item Value="getItemGetItemsByName_itemName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="variables" id="userId">
+            <AttrNames>
+                <Item Value="getItemGetItemsByName_userId"/>
+            </AttrNames>
+        </attributeValues>
+        <methodAction id="mergeItem" RequiresUpdateModel="true"
+                      Action="invokeMethod" MethodName="mergeItem"
+                      IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                      InstanceName="data.PlaceItemLocal.dataProvider"
+                      ReturnName="data.PlaceItemLocal.methodResults.mergeItem_PlaceItemLocal_dataProvider_mergeItem_result">
+            <NamedData NDName="item"
+                       NDValue="#{bindings.getItemGetItemsByNameIterator.currentRow.dataProvider}"
+                       NDType="actionbazaar.persistence.Item"/>
+        </methodAction>
+        <attributeValues IterBinding="getItemGetItemsByNameIterator"
+                         id="createdDate">
+            <AttrNames>
+                <Item Value="createdDate"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="getItemGetItemsByNameIterator"
+                         id="initialPrice">
+            <AttrNames>
+                <Item Value="initialPrice"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="getItemGetItemsByNameIterator"
+                         id="itemId">
+            <AttrNames>
+                <Item Value="itemId"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="getItemGetItemsByNameIterator"
+                         id="itemName1">
+            <AttrNames>
+                <Item Value="itemName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="getItemGetItemsByNameIterator"
+                         id="description">
+            <AttrNames>
+                <Item Value="description"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="orderIterator" id="orderId">
+            <AttrNames>
+                <Item Value="orderId"/>
+            </AttrNames>
+        </attributeValues>
+    </bindings>
+</pageDefinition>

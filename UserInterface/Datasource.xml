@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The script does not work correctly, sometimes no datasource is  created, some others BeanAlreadyExistsException raised!-->
+<project name="datasource" default="createDataSource">
+
+ <target name="createDataSource">  
+        <wlCreateDatasource datasource="ActionBazaarEJB3inActionDS"   
+                            jdbcurl="jdbc:oracle:thin:@localhost:1521:orcl"   
+                            user="ab"   
+                            password="ab"   
+                            target="AdminServer"  
+                            adminUser="weblogic"  
+                            adminPassword="weblogic1"  
+                            adminUrl="t3://localhost:7001"/>  
+      
+        <!--wlRemoveDatasource datasource="ActionBazaarEJB3inActionDS"   
+                            adminUser="weblogic"  
+                            adminPassword="weblogic1"  
+                            adminUrl="t3://localhost:7001"/-->  
+      </target>  
+      
+     <!--macrodef name="wlRemoveDatasource">  
+      <attribute name="datasource"/>  
+      <attribute name="adminUser"/>  
+      <attribute name="adminPassword"/>  
+      <attribute name="adminUrl"/>  
+      <sequential>  
+        <wlst failonerror="false" debug="false" arguments="@{datasource} @{adminUser} @{adminPassword} @{adminUrl}">  
+          <script>  
+         datasource=sys.argv[0]  
+         adminUser=sys.argv[1]  
+         adminPassword=sys.argv[2]  
+         adminUrl=sys.argv[3]  
+           
+         connect(adminUser,adminPassword,adminUrl)  
+         
+         edit()  
+         startEdit()  
+           
+         cd('/')  
+         cmo.destroyJDBCSystemResource(getMBean('/SystemResources/'+datasource))  
+      
+         save()  
+         activate()  
+         cd('/')  
+          </script>  
+        </wlst>  
+      </sequential>  
+     </macrodef-->  
+      
+     <macrodef name="wlCreateDatasource">  
+      <attribute name="datasource"/>  
+      <attribute name="jdbcurl"/>  
+      <attribute name="user"/>  
+      <attribute name="password"/>  
+      <attribute name="target"/>  
+      <attribute name="adminUser"/>  
+      <attribute name="adminPassword"/>  
+      <attribute name="adminUrl"/>  
+      <sequential>  
+        <wlst failonerror="false" debug="false" arguments="@{datasource} @{jdbcurl} @{user} @{password} @{target} @{adminUser} @{adminPassword} @{adminUrl}">  
+          <script>  
+         datasource=sys.argv[0]  
+         jdbcurl=sys.argv[1]  
+         user=sys.argv[2]   
+         password=sys.argv[3]  
+         target=sys.argv[4]  
+           
+         adminUser=sys.argv[5]  
+         adminPassword=sys.argv[6]  
+         adminUrl=sys.argv[7]  
+           
+         connect(adminUser,adminPassword,adminUrl)  
+           
+         edit()  
+         startEdit()  
+           
+         cd('/')  
+         cmo.createJDBCSystemResource(datasource)  
+           
+         cd('/JDBCSystemResources/'+datasource+'/JDBCResource/'+datasource)  
+         cmo.setName(datasource)  
+           
+         cd('/JDBCSystemResources/'+datasource+'/JDBCResource/'+datasource+'/JDBCDataSourceParams/'+datasource)  
+         set('JNDINames',jarray.array([String('jdbc/'+datasource)], String))  
+           
+         cd('/JDBCSystemResources/'+datasource+'/JDBCResource/'+datasource+'/JDBCDriverParams/'+datasource)  
+         cmo.setUrl(jdbcurl)  
+         cmo.setDriverName('oracle.jdbc.xa.client.OracleXADataSource')  
+         cmo.setPassword(password)  
+           
+         cd('/JDBCSystemResources/'+datasource+'/JDBCResource/'+datasource+'/JDBCConnectionPoolParams/'+datasource)  
+         cmo.setTestTableName('SQL SELECT 1 FROM DUAL\r\n\r\n\r\n\r\n')  
+           
+         cd('/JDBCSystemResources/'+datasource+'/JDBCResource/'+datasource+'/JDBCDriverParams/'+datasource+'/Properties/'+datasource)  
+         cmo.createProperty('user')  
+         cd('/JDBCSystemResources/'+datasource+'/JDBCResource/'+datasource+'/JDBCDriverParams/'+datasource+'/Properties/'+datasource+'/Properties/user')  
+         cmo.setValue(user)  
+           
+         cd('/JDBCSystemResources/'+datasource+'/JDBCResource/'+datasource+'/JDBCDataSourceParams/'+datasource)  
+         cmo.setGlobalTransactionsProtocol('TwoPhaseCommit')  
+           
+         cd('/SystemResources/'+datasource)  
+         set('Targets',jarray.array([ObjectName('com.bea:Name='+target+',Type=Server')], ObjectName))       
+      
+         save()  
+         activate()  
+         cd('/')  
+          </script>
+
+        </wlst>  
+      </sequential>  
+     </macrodef>
+ </project>  

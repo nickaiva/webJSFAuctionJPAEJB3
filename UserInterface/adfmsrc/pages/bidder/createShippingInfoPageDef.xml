@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createShippingInfoPageDef"
+                Package="pages.bidder">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.Long" Name="addShippingInfo_Return"
+                IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.addShippingInfo.result}"/>
+      <variable Type="java.lang.String" Name="addShippingInfo_streetName1"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addShippingInfo_streetName2"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addShippingInfo_zipCode"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addShippingInfo_city"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addShippingInfo_stateCode"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addShippingInfo_country"
+                IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="addShippingInfo" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addShippingInfo"
+                  IsViewObjectMethod="false"
+                  DataControl="PlaceShippingInfoLocal"
+                  InstanceName="PlaceShippingInfoLocal.dataProvider"
+                  ReturnName="data.PlaceShippingInfoLocal.methodResults.addShippingInfo_PlaceShippingInfoLocal_dataProvider_addShippingInfo_result">
+      <NamedData NDName="streetName1" NDType="java.lang.String"
+                 NDValue="${bindings.addShippingInfo_streetName1}"/>
+      <NamedData NDName="streetName2" NDType="java.lang.String"
+                 NDValue="${bindings.addShippingInfo_streetName2}"/>
+      <NamedData NDName="zipCode" NDType="java.lang.String"
+                 NDValue="${bindings.addShippingInfo_zipCode}"/>
+      <NamedData NDName="city" NDType="java.lang.String"
+                 NDValue="${bindings.addShippingInfo_city}"/>
+      <NamedData NDName="stateCode" NDType="java.lang.String"
+                 NDValue="${bindings.addShippingInfo_stateCode}"/>
+      <NamedData NDName="country" NDType="java.lang.String"
+                 NDValue="${bindings.addShippingInfo_country}"/>
+      <NamedData NDName="orderSet" NDType="java.util.Set"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="streetName1">
+      <AttrNames>
+        <Item Value="addShippingInfo_streetName1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="streetName2">
+      <AttrNames>
+        <Item Value="addShippingInfo_streetName2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="zipCode">
+      <AttrNames>
+        <Item Value="addShippingInfo_zipCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="city">
+      <AttrNames>
+        <Item Value="addShippingInfo_city"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="stateCode">
+      <AttrNames>
+        <Item Value="addShippingInfo_stateCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="country">
+      <AttrNames>
+        <Item Value="addShippingInfo_country"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="ContactInfo" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.ContactInfo" isJavaBased="true">
+  <Attribute Name="contactUserId" PrimaryKey="true" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="email" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="phone" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute id="address" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.Address"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <ConstructorMethod IsCollection="true"
+                     Type="actionbazaar.persistence.ContactInfo"
+                     BeanClass="actionbazaar.persistence.ContactInfo"
+                     id="ContactInfo">
+    <ParameterInfo id="contactUserId" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="phone" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="email" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="address" Type="actionbazaar.persistence.Address"
+                   isStructured="true"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true"
+                     Type="actionbazaar.persistence.ContactInfo"
+                     BeanClass="actionbazaar.persistence.ContactInfo"
+                     id="ContactInfo"/>
+</JavaBean>

@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="updateShippingInfo.jspx" id="d1">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                                 id="pt1">
+                    <f:facet name="content">
+                        <af:panelStretchLayout id="psl1" topHeight="121px"
+                                               startWidth="49px"
+                                               inlineStyle="width:812px;">
+                            <f:facet name="center">
+                                <af:panelFormLayout id="pfl2" rows="2"
+                                                    maxColumns="2"
+                                                    rendered="#{bindings.getShippingInfofindByShippingAddressStreetName1Iterator.estimatedRowCount > 0}">
+                                    <af:inputText value="#{bindings.shippingId.inputValue}"
+                                                  label="#{bindings.shippingId.hints.label}"
+                                                  required="#{bindings.shippingId.hints.mandatory}"
+                                                  columns="#{bindings.shippingId.hints.displayWidth}"
+                                                  maximumLength="#{bindings.shippingId.hints.precision}"
+                                                  shortDesc="#{bindings.shippingId.hints.tooltip}"
+                                                  id="it2" disabled="true">
+                                        <f:validator binding="#{bindings.shippingId.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.shippingId.format}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.streetName11.inputValue}"
+                                                  label="#{bindings.streetName11.hints.label}"
+                                                  required="#{bindings.streetName11.hints.mandatory}"
+                                                  columns="#{bindings.streetName11.hints.displayWidth}"
+                                                  maximumLength="#{bindings.streetName11.hints.precision}"
+                                                  shortDesc="#{bindings.streetName11.hints.tooltip}"
+                                                  id="it3">
+                                        <f:validator binding="#{bindings.streetName11.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.streetName2.inputValue}"
+                                                  label="#{bindings.streetName2.hints.label}"
+                                                  required="#{bindings.streetName2.hints.mandatory}"
+                                                  columns="#{bindings.streetName2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.streetName2.hints.precision}"
+                                                  shortDesc="#{bindings.streetName2.hints.tooltip}"
+                                                  id="it4">
+                                        <f:validator binding="#{bindings.streetName2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.zipCode.inputValue}"
+                                                  label="#{bindings.zipCode.hints.label}"
+                                                  required="#{bindings.zipCode.hints.mandatory}"
+                                                  columns="#{bindings.zipCode.hints.displayWidth}"
+                                                  maximumLength="#{bindings.zipCode.hints.precision}"
+                                                  shortDesc="#{bindings.zipCode.hints.tooltip}"
+                                                  id="it5">
+                                        <f:validator binding="#{bindings.zipCode.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.city.inputValue}"
+                                                  label="#{bindings.city.hints.label}"
+                                                  required="#{bindings.city.hints.mandatory}"
+                                                  columns="#{bindings.city.hints.displayWidth}"
+                                                  maximumLength="#{bindings.city.hints.precision}"
+                                                  shortDesc="#{bindings.city.hints.tooltip}"
+                                                  id="it6">
+                                        <f:validator binding="#{bindings.city.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.state.inputValue}"
+                                                  label="#{bindings.state.hints.label}"
+                                                  required="#{bindings.state.hints.mandatory}"
+                                                  columns="#{bindings.state.hints.displayWidth}"
+                                                  maximumLength="#{bindings.state.hints.precision}"
+                                                  shortDesc="#{bindings.state.hints.tooltip}"
+                                                  id="it7">
+                                        <f:validator binding="#{bindings.state.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.country.inputValue}"
+                                                  label="#{bindings.country.hints.label}"
+                                                  required="#{bindings.country.hints.mandatory}"
+                                                  columns="#{bindings.country.hints.displayWidth}"
+                                                  maximumLength="#{bindings.country.hints.precision}"
+                                                  shortDesc="#{bindings.country.hints.tooltip}"
+                                                  id="it8">
+                                        <f:validator binding="#{bindings.country.validator}"/>
+                                    </af:inputText>
+                                    <f:facet name="footer">
+                                        <af:group id="g2">
+                                            <af:panelBorderLayout id="pbl2"
+                                                                  inlineStyle="text-align:center;">
+                                                <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                id="rb1"/>
+                                                <af:commandButton actionListener="#{bindings.mergeShippingInfo.execute}"
+                                                                  text="#{userinterfaceBundle.mergeObject}"
+                                                                  disabled="#{!bindings.mergeShippingInfo.enabled}"
+                                                                  id="cb1"/>
+                                            </af:panelBorderLayout>
+                                        </af:group>
+                                    </f:facet>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="top">
+                                <af:panelGroupLayout id="pgl1"
+                                                     layout="vertical">
+                                    <af:outputFormatted value="#{userinterfaceBundle.queryCriterionInUppercase}"
+                                                        id="of1"/>
+                                    <af:spacer width="10" height="10" id="s1"/>
+                                    <af:panelFormLayout id="pfl1">
+                                        <af:inputText value="#{bindings.streetName1.inputValue}"
+                                                      label="#{bindings.streetName1.hints.label}"
+                                                      required="#{bindings.streetName1.hints.mandatory}"
+                                                      columns="#{bindings.streetName1.hints.displayWidth}"
+                                                      maximumLength="#{bindings.streetName1.hints.precision}"
+                                                      shortDesc="#{bindings.streetName1.hints.tooltip}"
+                                                      id="it1">
+                                            <f:validator binding="#{bindings.streetName1.validator}"/>
+                                        </af:inputText>
+                                        <af:panelBorderLayout id="pbl1">
+                                            <f:facet name="bottom"/>
+                                            <f:facet name="top"/>
+                                            <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                            id="rb2"/>
+                                            <af:commandButton actionListener="#{bindings.getShippingInfofindByShippingAddressStreetName1.execute}"
+                                                              text="#{userinterfaceBundle.performQuery}"
+                                                              disabled="#{!bindings.getShippingInfofindByShippingAddressStreetName1.enabled}"
+                                                              id="cb2"/>
+                                        </af:panelBorderLayout>
+                                    </af:panelFormLayout>
+                                    <af:separator id="s2"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
+  <persistence-unit name="Chapter16">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>java:/app/jdbc/jdbc/ActionBazaarEJB3inActionDS</jta-data-source>
+    <class>actionbazaar.persistence.Bid</class>
+    <class>actionbazaar.persistence.BillingInfo</class>
+    <class>actionbazaar.persistence.Category</class>
+    <class>actionbazaar.persistence.ContactInfo</class>
+    <class>actionbazaar.persistence.Item</class>
+    <class>actionbazaar.persistence.User</class>
+    <class>actionbazaar.persistence.Seller</class>
+    <class>actionbazaar.persistence.Bidder</class>
+    <properties>
+      <property name="eclipselink.target-server" value="WebLogic_10"/>
+      <property name="javax.persistence.jtaDataSource"
+                value="java:/app/jdbc/jdbc/ActionBazaarEJB3inActionDS"/>
+      <property name="eclipselink.ddl-generation.output-mode"
+                value="sql-script"/>
+      <property name="eclipselink.application-location"
+                value="C:/MyWork/11g/ejb3inaction/Chapter16/database/"/>
+    </properties>
+  </persistence-unit>
+</persistence>

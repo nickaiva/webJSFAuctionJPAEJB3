@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="queryBidsPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.sql.Date" Name="getBidGetBidsByDate_bidDate"
+                IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getBidGetBidsByDate.result"
+                    DataControl="PlaceBidLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.Bid"
+                    id="getBidGetBidsByDateIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getBidGetBidsByDate" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getBidGetBidsByDate"
+                  IsViewObjectMethod="false" DataControl="PlaceBidLocal"
+                  InstanceName="PlaceBidLocal.dataProvider"
+                  ReturnName="data.PlaceBidLocal.methodResults.getBidGetBidsByDate_PlaceBidLocal_dataProvider_getBidGetBidsByDate_result">
+      <NamedData NDName="bidDate" NDType="java.sql.Date"
+                 NDValue="${bindings.getBidGetBidsByDate_bidDate}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="bidDate">
+      <AttrNames>
+        <Item Value="getBidGetBidsByDate_bidDate"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="getBidGetBidsByDateIterator" id="Bid">
+      <nodeDefinition DefName="actionbazaar.persistence.Bid" Name="Bid0">
+        <AttrNames>
+          <Item Value="bidId"/>
+          <Item Value="bidDate"/>
+          <Item Value="bidPrice"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="item"/>
+          <Item Value="bidBidder"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.Item" Name="Bid1">
+        <AttrNames>
+          <Item Value="bidEndDate"/>
+          <Item Value="bidStartDate"/>
+          <Item Value="createdDate"/>
+          <Item Value="initialPrice"/>
+          <Item Value="itemId"/>
+          <Item Value="itemName"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.Bidder" Name="Bid2">
+        <AttrNames>
+          <Item Value="creditRating"/>
+          <Item Value="birthDate"/>
+          <Item Value="firstName"/>
+          <Item Value="lastName"/>
+          <Item Value="userBillingId"/>
+          <Item Value="userId"/>
+          <Item Value="userType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

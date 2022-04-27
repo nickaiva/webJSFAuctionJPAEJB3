@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle1"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEN_US']}"/>
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" binding="#{backingBeanScope.backing_createItem.d1}"
+                 title="Create item">
+      <af:messages id="m1" binding="#{backingBeanScope.backing_createItem.m1}"/>
+      <af:form id="f1" usesUpload="true" 
+               binding="#{backingBeanScope.backing_createItem.f1}">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         value="#{bindings.pageTemplateBinding}" id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout id="psl1"
+                                   binding="#{backingBeanScope.backing_createItem.psl1}"
+                                   inlineStyle="width:961px;">
+              <f:facet name="center">
+                <af:panelGroupLayout layout="scroll" id="pgl1"
+                                     binding="#{backingBeanScope.backing_createItem.pgl1}">
+                  <af:panelFormLayout id="pfl2"
+                                      binding="#{backingBeanScope.backing_createItem.pfl2}">
+                    <af:inputText value="#{bindings.itemName.inputValue}"
+                                  label="#{bindings.itemName.hints.label}"
+                                  required="#{bindings.itemName.hints.mandatory}"
+                                  columns="#{bindings.itemName.hints.displayWidth}"
+                                  maximumLength="#{bindings.itemName.hints.precision}"
+                                  shortDesc="#{bindings.itemName.hints.tooltip}"
+                                  id="it1"
+                                  binding="#{backingBeanScope.backing_createItem.it1}">
+                      <f:validator binding="#{bindings.itemName.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{securityContext.userName}"
+                                  label="#{bindings.SellerId.hints.label}"
+                                  required="#{bindings.SellerId.hints.mandatory}"
+                                  columns="#{bindings.SellerId.hints.displayWidth}"
+                                  maximumLength="#{bindings.SellerId.hints.precision}"
+                                  shortDesc="#{bindings.SellerId.hints.tooltip}"
+                                  id="it2" readOnly="true"
+                                  binding="#{backingBeanScope.backing_createItem.it2}">
+                      <f:validator binding="#{bindings.SellerId.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.initialPrice.inputValue}"
+                                  label="#{bindings.initialPrice.hints.label}"
+                                  required="#{bindings.initialPrice.hints.mandatory}"
+                                  columns="#{bindings.initialPrice.hints.displayWidth}"
+                                  maximumLength="#{bindings.initialPrice.hints.precision}"
+                                  shortDesc="#{bindings.initialPrice.hints.tooltip}"
+                                  id="it3"
+                                  binding="#{backingBeanScope.backing_createItem.it3}"
+                                  converter="javax.faces.Float">
+                      <f:validator binding="#{bindings.initialPrice.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.initialPrice.format}"/>
+                    </af:inputText>
+                    <af:outputFormatted value="#{userinterfaceBundle.NO_DECIMAL_DIGITS_PLEASE}" id="of2"
+                                        binding="#{backingBeanScope.backing_createItem.of2}"/>
+                    <af:inputText value="#{bindings.description.inputValue}"
+                                  label="#{bindings.description.hints.label}"
+                                  required="#{bindings.description.hints.mandatory}"
+                                  columns="#{bindings.description.hints.displayWidth}"
+                                  maximumLength="#{bindings.description.hints.precision}"
+                                  shortDesc="#{bindings.description.hints.tooltip}"
+                                  id="it4" rows="1"
+                                  binding="#{backingBeanScope.backing_createItem.it4}">
+                      <f:validator binding="#{bindings.description.validator}"/>
+                    </af:inputText>
+                    <af:outputFormatted value="#{userinterfaceBundle.sizelimit}" id="of1"
+                                        binding="#{backingBeanScope.backing_createItem.of1}"/>
+                    <af:inputFile label="#{userinterfaceBundle.selectAFile}" id="if1" 
+                                  binding="#{backingBeanScope.backing_createItem.if1}"
+                                  autoSubmit="false"
+                                  value="#{backingBeanScope.backing_createItem.file}"
+                                  valueChangeListener="#{backingBeanScope.backing_createItem.uploadFileValueChangeEvent}"/>
+                    <af:panelBorderLayout id="pbl1"
+                                          binding="#{backingBeanScope.backing_createItem.pbl1}">
+                      <f:facet name="start"/>
+                      <f:facet name="bottom"/>
+                      <f:facet name="end"/>
+                      <f:facet name="top"/>
+                      <af:resetButton text="#{userinterfaceBundle.reset}"
+                                      id="rb1"
+                                      binding="#{backingBeanScope.backing_createItem.rb1}"/>
+                      <af:commandButton
+                                        text="#{userinterfaceBundle.addObject}"
+                                        disabled="#{!bindings.placeItem.enabled}"
+                                        id="cb2"
+                                        binding="#{backingBeanScope.backing_createItem.cb2}"
+                                        action="#{backingBeanScope.backing_createItem.createItem_action}"/>
+                    </af:panelBorderLayout>
+                  </af:panelFormLayout>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+           </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_createItem-->
+</jsp:root>

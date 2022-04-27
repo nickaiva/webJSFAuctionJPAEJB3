@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="placeItemInCategoryPageDef"
+                Package="pages.seller">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.Long" Name="placeItemInCategories_ciCategoryId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.Long" Name="placeItemInCategories_ciItemId"
+                IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="root" RangeSize="25" DataControl="PlaceCategoryLocal"
+              id="PlaceCategoryLocalIterator"/>
+    <accessorIterator MasterBinding="PlaceCategoryLocalIterator"
+                      Binds="categoryFindAll" RangeSize="-1"
+                      DataControl="PlaceCategoryLocal"
+                      BeanClass="actionbazaar.persistence.Category"
+                      id="categoryFindAllIterator"/>
+    <methodIterator Binds="getItemGetItemsBySellerId.result"
+                    DataControl="PlaceItemsInCategoriesLocal" RangeSize="-1"
+                    BeanClass="actionbazaar.persistence.Item"
+                    id="getItemGetItemsBySellerIdIter"/>
+  </executables>
+  <bindings>
+    <methodAction id="placeItemInCategories" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="placeItemInCategories"
+                  IsViewObjectMethod="false"
+                  DataControl="PlaceItemsInCategoriesLocal"
+                  InstanceName="PlaceItemsInCategoriesLocal.dataProvider">
+      <NamedData NDName="ciCategoryId" NDType="java.lang.Long"
+                 NDValue="${bindings.placeItemInCategories_ciCategoryId}"/>
+      <NamedData NDName="ciItemId" NDType="java.lang.Long"
+                 NDValue="${bindings.placeItemInCategories_ciItemId}"/>
+    </methodAction>
+    <list IterBinding="variables" id="ciCategoryId" DTSupportsMRU="true"
+          StaticList="false" ListIter="categoryFindAllIterator">
+      <AttrNames>
+        <Item Value="placeItemInCategories_ciCategoryId"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="categoryId"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="categoryName"/>
+      </ListDisplayAttrNames>
+    </list>
+    <methodAction id="getItemGetItemsBySellerId" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getItemGetItemsBySellerId"
+                  IsViewObjectMethod="false"
+                  DataControl="PlaceItemsInCategoriesLocal"
+                  InstanceName="PlaceItemsInCategoriesLocal.dataProvider"
+                  ReturnName="data.PlaceItemsInCategoriesLocal.methodResults.getItemGetItemsBySellerId_PlaceItemsInCategoriesLocal_dataProvider_getItemGetItemsBySellerId_result">
+      <NamedData NDName="sellerId" NDValue="#{securityContext.userName}"
+                 NDType="java.lang.Object"/>
+    </methodAction>
+    <list IterBinding="variables" id="ciItemId" DTSupportsMRU="true"
+          StaticList="false" ListIter="getItemGetItemsBySellerIdIter">
+      <AttrNames>
+        <Item Value="placeItemInCategories_ciItemId"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="itemId"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="itemName"/>
+      </ListDisplayAttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

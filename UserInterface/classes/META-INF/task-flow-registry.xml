@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
+   <task-flow-descriptor path="META-INF/adfc-config.xml" id="" type="" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false"/>
+   <task-flow-descriptor path="WEB-INF/editItem-flow.xml" id="editItem-flow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false">
+      <input-parameter name="itemID"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/createUser.xml" id="createUser" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="true"/>
+   <task-flow-descriptor path="WEB-INF/editUser-flow.xml" id="editUser-flow" display-name="editUser" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false">
+      <input-parameter name="userID"/>
+   </task-flow-descriptor>
+</task-flow-registry>

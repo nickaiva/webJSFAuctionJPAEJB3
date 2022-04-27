@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createUserPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="addContactInfo_userId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addContactInfo_phone"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addContactInfo_email"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addContactInfo_streetname1"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addContactInfo_streetname2"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addContactInfo_zipCode"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addContactInfo_city"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addContactInfo_stateCode"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addContactInfo_country"
+                IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="addContactInfo" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addContactInfo"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider">
+      <NamedData NDName="userId" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_userId}"/>
+      <NamedData NDName="phone" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_phone}"/>
+      <NamedData NDName="email" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_email}"/>
+      <NamedData NDName="streetname1" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_streetname1}"/>
+      <NamedData NDName="streetname2" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_streetname2}"/>
+      <NamedData NDName="zipCode" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_zipCode}"/>
+      <NamedData NDName="city" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_city}"/>
+      <NamedData NDName="stateCode" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_stateCode}"/>
+      <NamedData NDName="country" NDType="java.lang.String"
+                 NDValue="${bindings.addContactInfo_country}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="userId">
+      <AttrNames>
+        <Item Value="addContactInfo_userId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="phone">
+      <AttrNames>
+        <Item Value="addContactInfo_phone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="email">
+      <AttrNames>
+        <Item Value="addContactInfo_email"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="streetname1">
+      <AttrNames>
+        <Item Value="addContactInfo_streetname1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="streetname2">
+      <AttrNames>
+        <Item Value="addContactInfo_streetname2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="zipCode">
+      <AttrNames>
+        <Item Value="addContactInfo_zipCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="city">
+      <AttrNames>
+        <Item Value="addContactInfo_city"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="stateCode">
+      <AttrNames>
+        <Item Value="addContactInfo_stateCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="country">
+      <AttrNames>
+        <Item Value="addContactInfo_country"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

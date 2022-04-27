@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.59.23"
+          id="CategoriesItems" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.CategoriesItems"
+          isJavaBased="true">
+  <Attribute Name="ciCategoryId" PrimaryKey="true" Type="java.lang.Long"/>
+  <Attribute Name="ciItemId" PrimaryKey="true" Type="java.lang.Long"/>
+  <ConstructorMethod IsCollection="true"
+                     Type="actionbazaar.persistence.CategoriesItems"
+                     BeanClass="actionbazaar.persistence.CategoriesItems"
+                     id="CategoriesItems">
+    <ParameterInfo id="ciCategoryId" Type="java.lang.Long"
+                   isStructured="false"/>
+    <ParameterInfo id="ciItemId" Type="java.lang.Long" isStructured="false"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true"
+                     Type="actionbazaar.persistence.CategoriesItems"
+                     BeanClass="actionbazaar.persistence.CategoriesItems"
+                     id="CategoriesItems"/>
+</JavaBean>

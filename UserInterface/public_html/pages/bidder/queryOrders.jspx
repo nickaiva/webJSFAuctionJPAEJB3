@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="#{attrs.pageTitle}" >
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         value="#{bindings.pageTemplateBinding}" id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout id="psl1"
+                                   inlineStyle="width:1316px; height:362px;"
+                                   topHeight="79px">
+              <f:facet name="center">
+                <af:table value="#{bindings.Order.collectionModel}" var="row"
+                          rows="#{bindings.Order.rangeSize}"
+                          emptyText="#{bindings.Order.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.Order.rangeSize}"
+                          rowBandingInterval="0" id="t1"
+                          rendered="#{bindings.getOrderFindByBidderIterator.estimatedRowCount > 0}"
+                          columnStretching="none">
+                  <af:column sortProperty="orderId" sortable="false"
+                             headerText="#{bindings.Order.hints.orderId.label}"
+                             id="c7" width="245">
+                    <af:outputText value="#{row.orderId}" id="ot8">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.Order.hints.orderId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="accountNo" sortable="false"
+                             headerText="#{bindings.Order.hints.billingInfo.accountNo.label}"
+                             id="c1" width="344">
+                    <af:outputText value="#{row.billingInfo.bindings.accountNo.inputValue}"
+                                   id="ot3"/>
+                  </af:column>
+                  <af:column sortProperty="cardType" sortable="false"
+                             headerText="#{bindings.Order.hints.billingInfo.cardType.label}"
+                             id="c5" width="335">
+                    <af:outputText value="#{row.billingInfo.bindings.cardType.inputValue}"
+                                   id="ot5"/>
+                  </af:column>
+                  <af:column sortProperty="expiryDate" sortable="false"
+                             headerText="#{bindings.Order.hints.billingInfo.expiryDate.label}"
+                             id="c3" width="345">
+                    <af:outputText value="#{row.billingInfo.bindings.expiryDate.inputValue}"
+                                   id="ot2"/>
+                  </af:column>
+                  <af:column sortProperty="shippingId" sortable="false"
+                             headerText="#{bindings.Order.hints.shippingInfo.shippingId.label}"
+                             id="c2" width="344">
+                    <af:outputText value="#{row.shippingInfo.bindings.shippingId.inputValue}"
+                                   id="ot4">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.Order.hints.shippingInfo.shippingId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="firstName" sortable="false"
+                             headerText="#{bindings.Order.hints.bidder.firstName.label}"
+                             id="c6" width="337">
+                    <af:outputText value="#{row.bidder.bindings.firstName.inputValue}"
+                                   id="ot6"/>
+                  </af:column>
+                  <af:column sortProperty="lastName" sortable="false"
+                             headerText="#{bindings.Order.hints.bidder.lastName.label}"
+                             id="c9" width="336">
+                    <af:outputText value="#{row.bidder.bindings.lastName.inputValue}"
+                                   id="ot7"/>
+                  </af:column>
+                  <af:column sortProperty="userBillingId" sortable="false"
+                             headerText="#{bindings.Order.hints.bidder.userBillingId.label}"
+                             id="c8" width="357">
+                    <af:outputText value="#{row.bidder.bindings.userBillingId.inputValue}"
+                                   id="ot9">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.Order.hints.bidder.userBillingId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="userId" sortable="false"
+                             headerText="#{bindings.Order.hints.bidder.userId.label}"
+                             id="c4" width="314">
+                    <af:outputText value="#{row.bidder.bindings.userId.inputValue}"
+                                   id="ot1"/>
+                  </af:column>
+                  <f:facet name="detailStamp">
+                    <af:commandButton actionListener="#{bindings.deleteOrder.execute}"
+                                      text="#{userinterfaceBundle.deleteOrder}"
+                                      disabled="#{!bindings.deleteOrder.enabled}"
+                                      id="cb2"
+                                      rendered="#{securityContext.userInRole['ADMINISTRATOR']}"/>
+                  </f:facet>
+                </af:table>
+              </f:facet>
+              <f:facet name="top">
+                <af:panelGroupLayout layout="scroll"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     id="pgl1">
+                  <af:panelFormLayout id="pfl1">
+                    <af:inputText value="#{bindings.bidderId.inputValue}"
+                                  label="#{bindings.bidderId.hints.label}"
+                                  required="#{bindings.bidderId.hints.mandatory}"
+                                  columns="#{bindings.bidderId.hints.displayWidth}"
+                                  maximumLength="#{bindings.bidderId.hints.precision}"
+                                  shortDesc="#{bindings.bidderId.hints.tooltip}"
+                                  id="it1">
+                      <f:validator binding="#{bindings.bidderId.validator}"/>
+                    </af:inputText>
+                    <af:commandButton actionListener="#{bindings.getOrderFindByBidder.execute}"
+                                      text="#{userinterfaceBundle.performQuery}"
+                                      disabled="#{!bindings.getOrderFindByBidder.enabled}"
+                                      id="cb1"/>
+                  </af:panelFormLayout>
+                  <af:separator id="s1"/>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

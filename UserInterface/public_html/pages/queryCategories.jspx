@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="queryCategories">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         value="#{bindings.pageTemplateBinding}" id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout id="psl1"
+                                   bottomHeight="50px" topHeight="97px"
+                                   inlineStyle="width:1300px; height:354px;">
+              <f:facet name="center">
+                <af:panelGroupLayout layout="scroll"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     id="pgl2"
+                                     rendered="#{bindings.getCategoryFindByCategoryNameIterator.estimatedRowCount >0 }">
+                  <af:table value="#{bindings.Category.collectionModel}"
+                            var="row" rows="#{bindings.Category.rangeSize}"
+                            emptyText="#{bindings.Category.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            fetchSize="#{bindings.Category.rangeSize}"
+                            rowBandingInterval="0"
+                            filterModel="#{bindings.CategoryQuery.queryDescriptor}"
+                            queryListener="#{bindings.CategoryQuery.processQuery}"
+                            filterVisible="false" varStatus="vs" id="t1"
+                            width="964" inlineStyle="height:215px;"
+                            columnStretching="column:c4">
+                    <af:column sortProperty="categoryId" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.Category.hints.categoryId.label}"
+                               id="c2">
+                      <af:outputText value="#{row.categoryId}" id="ot1">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.Category.hints.categoryId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="categoryName" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.Category.hints.categoryName.label}"
+                               id="c4">
+                      <af:outputText value="#{row.categoryName}" id="ot4"/>
+                    </af:column>
+                    <af:column sortProperty="createdBy" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.Category.hints.createdBy.label}"
+                               id="c5">
+                      <af:outputText value="#{row.createdBy}" id="ot5"/>
+                    </af:column>
+                    <af:column sortProperty="createDate" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.Category.hints.createDate.label}"
+                               id="c1">
+                      <af:outputText value="#{row.createDate}" id="ot3">
+                        <f:convertDateTime type="date" dateStyle="medium"
+                                           pattern="dd/MM/yyyy"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="parentId" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.Category.hints.parentId.label}"
+                               id="c3">
+                      <af:outputText value="#{row.parentId}" id="ot2">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.Category.hints.parentId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <f:facet name="detailStamp">
+                      <af:commandButton actionListener="#{bindings.deleteCategory.execute}"
+                                        text="deleteCategory"
+                                        id="cb2"/>
+                    </f:facet>
+                  </af:table>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="top">
+                <af:panelGroupLayout layout="scroll"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     id="pgl1">
+                  <af:outputFormatted value="#{userinterfaceBundle.queryCriterionInUppercase}"
+                                      id="of1"/>
+                  <af:spacer width="10" height="10" id="s1"/>
+                  <af:panelFormLayout id="pfl1">
+                    <af:inputText value="#{bindings.categoryName.inputValue}"
+                                  label="#{bindings.categoryName.hints.label}"
+                                  required="#{bindings.categoryName.hints.mandatory}"
+                                  columns="#{bindings.categoryName.hints.displayWidth}"
+                                  maximumLength="#{bindings.categoryName.hints.precision}"
+                                  shortDesc="#{bindings.categoryName.hints.tooltip}"
+                                  id="it1">
+                      <f:validator binding="#{bindings.categoryName.validator}"/>
+                    </af:inputText>
+                    <af:commandButton actionListener="#{bindings.getCategoryFindByCategoryName.execute}"
+                                      text="#{userinterfaceBundle.performQuery}"
+                                      disabled="#{!bindings.getCategoryFindByCategoryName.enabled}"
+                                      id="cb1"/>
+                  </af:panelFormLayout>
+                  <af:separator id="s2"/>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

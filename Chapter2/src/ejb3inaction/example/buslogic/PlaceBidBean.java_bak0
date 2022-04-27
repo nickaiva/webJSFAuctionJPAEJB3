@@ -1,0 +1,32 @@
+package ejb3inaction.example.buslogic;
+
+import ejb3inaction.example.persistence.Bid;
+
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+@Stateless(name = "PlaceBid", mappedName = "ejb3inaction-Chapter2-PlaceBid")
+@Local
+public class PlaceBidBean implements PlaceBid {
+  @PersistenceContext(unitName = "actionBazaar")
+    private EntityManager em;
+    public PlaceBidBean() {
+    }
+  public Bid addBid(Bid bid) {
+    System.out.println("Adding bid, bidder ID=" +
+                        bid.getBidBidder()
+                        + ", item ID=" + bid.getBidItemId() + ",bid amount="
+                        + bid.getBidPrice() + ".");
+    return save(bid);
+    }
+  private Bid save(Bid bid) {
+       
+        em.persist(bid);
+          System.out.println("Your bid your item id:" + bid.getBidItemId()
+                  + "was successful");
+          System.out.println("Your bid id is: " + bid.getBidId());
+          return bid;
+      }
+}

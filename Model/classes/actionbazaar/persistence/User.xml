@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="User" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.User" isJavaBased="true">
+  <Attribute Name="birthDate" Type="java.sql.Timestamp">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.User.birthDate_FMT_FORMATTER"/>
+        <FMT_FORMAT ResId="actionbazaar.persistence.User.birthDate_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="firstName" Type="java.lang.String" Precision="30">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="lastName" Type="java.lang.String" Precision="30">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="userBillingId" Type="java.lang.Long"/>
+  <Attribute Name="userId" PrimaryKey="true" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="userType" Type="java.lang.String"/>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.User"
+                     BeanClass="actionbazaar.persistence.User" id="User">
+    <ParameterInfo id="birthDate" Type="java.sql.Timestamp"
+                   isStructured="false"/>
+    <ParameterInfo id="commRate" Type="java.lang.Double" isStructured="false"/>
+    <ParameterInfo id="creditRating" Type="java.lang.Long"
+                   isStructured="false"/>
+    <ParameterInfo id="firstName" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="lastName" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="maxItems" Type="java.lang.Long" isStructured="false"/>
+    <ParameterInfo id="userBillingId" Type="java.lang.Long"
+                   isStructured="false"/>
+    <ParameterInfo id="userId" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="userType" Type="java.lang.String" isStructured="false"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.User"
+                     BeanClass="actionbazaar.persistence.User" id="User"/>
+  <ResourceBundle>
+    <PropertiesBundle xmlns="http://xmlns.oracle.com/adfm/resourcebundle"
+                      PropertiesFile="actionbazaar.ModelBundle"/>
+  </ResourceBundle>
+</JavaBean>

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataControlConfigs xmlns="http://xmlns.oracle.com/adfm/configuration"
+                    version="11.1.1.56.60" id="DataControls"
+                    Package="actionbazaar">
+  <!-- Delete in <ejb-definition> tag
+    DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+    in order to avoid NPE 
+    at oracle.adf.model.binding.DCIteratorBinding.getSortCriteria(DCIteratorBinding.java:3758)
+	at oracle.adf.model.binding.DCInvokeMethod.setAssociatedIteratorBinding(DCInvokeMethod.java:936)
+	at oracle.adf.model.binding.DCIteratorBinding.cacheRefOnOperation(DCIteratorBinding.java:5
+    -->
+  <!-- Add
+  jndi-name="ejb3inaction-Model-AddUser#actionbazaar.buslogic.AddUser"
+   in order to avoid:
+  Caused by: javax.naming.NameNotFoundException: While trying to look up comp/env/ejb/null in /app/webapp/ejb3inaction/1968406234.; remaining name 'comp/env/ejb/null'
+-->
+  <AdapterDataControl id="ManageContactInfoLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.ManageContactInfoLocal"
+                      BeanClass="actionbazaar.buslogic.ManageContactInfoLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.ContactInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Category"/>
+      <TypeInfo FullName="actionbazaar.persistence.User"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="ManageContactInfo"
+                      ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.ManageContactInfoLocal"
+                      ejb-interface-type="local"
+                      jndi-name="ejb3inaction-Model-ManageContactInfo#actionbazaar.buslogic.ManageContactInfo"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceCategoryLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceCategoryLocal"
+                      BeanClass="actionbazaar.buslogic.PlaceCategoryLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Category"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceCategory"
+                      ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceCategoryLocal"
+                      ejb-interface-type="local"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"
+                      jndi-name="ejb3inaction-Model-PlaceCategory#actionbazaar.buslogic.PlaceCategory"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="AddUserLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.AddUserLocal"
+                      BeanClass="actionbazaar.buslogic.AddUserLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.ContactInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Category"/>
+      <TypeInfo FullName="actionbazaar.persistence.User"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="AddUser" ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.AddUserLocal"
+                      ejb-interface-type="local"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      jndi-name="ejb3inaction-Model-AddUser#actionbazaar.buslogic.AddUser"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceBidLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceBidLocal"
+                      BeanClass="actionbazaar.buslogic.PlaceBidLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceBid" ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceBidLocal"
+                      ejb-interface-type="local"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"
+                      jndi-name="ejb3inaction-Model-PlaceBid#actionbazaar.buslogic.PlaceBid"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceBillingInfoLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceBillingInfoLocal"
+                      BeanClass="actionbazaar.buslogic.PlaceBillingInfoLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.ContactInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Category"/>
+      <TypeInfo FullName="actionbazaar.persistence.User"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceBillingInfo"
+                      ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceBillingInfoLocal"
+                      ejb-interface-type="local"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                       jndi-name="ejb3inaction-Model-PlaceBillingInfo#actionbazaar.buslogic.PlaceBillingInfo"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceOrderLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceOrderLocal"
+                      BeanClass="actionbazaar.buslogic.PlaceOrderLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceOrder" ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceOrderLocal"
+                      ejb-interface-type="local"
+                       jndi-name="ejb3inaction-Model-PlaceOrder#actionbazaar.buslogic.PlaceOrder"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceItemLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceItemLocal"
+                      BeanClass="actionbazaar.buslogic.PlaceItemLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.ContactInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Category"/>
+      <TypeInfo FullName="actionbazaar.persistence.User"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceItem" ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceItemLocal"
+                      ejb-interface-type="local"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceShippingInfoLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceShippingInfoLocal"
+                      BeanClass="actionbazaar.buslogic.PlaceShippingInfoLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceShippingInfo"
+                      ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceShippingInfoLocal"
+                      ejb-interface-type="local"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceItemsInCategoriesLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceItemsInCategoriesLocal"
+                      BeanClass="actionbazaar.buslogic.PlaceItemsInCategoriesLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Category"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.CategoriesItems"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceItemsInCategories"
+                      ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceItemsInCategoriesLocal"
+                      ejb-interface-type="local"
+                      jndi-name="ejb3inaction-Model-PlaceItemsInCategories#actionbazaar.buslogic.PlaceItemsInCategories"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceBillingInfo"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceBillingInfo"
+                      BeanClass="actionbazaar.buslogic.PlaceBillingInfo"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.ContactInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Category"/>
+      <TypeInfo FullName="actionbazaar.persistence.User"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceBillingInfo"
+                      ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceBillingInfo"
+                      ejb-interface-type="remote"
+                      jndi-name="ejb3inaction-Model-PlaceBillingInfo#actionbazaar.buslogic.PlaceBillingInfo"
+                      provider-url="t3://127.0.0.1:7101"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceShippingInfo"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceShippingInfo"
+                      BeanClass="actionbazaar.buslogic.PlaceShippingInfo"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.Address"/>
+      <TypeInfo FullName="actionbazaar.persistence.BillingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Seller"/>
+      <TypeInfo FullName="actionbazaar.persistence.Item"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bid"/>
+      <TypeInfo FullName="actionbazaar.persistence.Bidder"/>
+      <TypeInfo FullName="actionbazaar.persistence.Order"/>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceShippingInfo"
+                      ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceShippingInfo"
+                      ejb-interface-type="remote"
+                      jndi-name="ejb3inaction-Model-PlaceShippingInfo#actionbazaar.buslogic.PlaceShippingInfo"
+                      provider-url="t3://127.0.0.1:7101"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                     
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="PlaceImageLocal"
+                      FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="actionbazaar.buslogic.PlaceImageLocal"
+                      BeanClass="actionbazaar.buslogic.PlaceImageLocal"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="actionbazaar.persistence.ShippingInfo"/>
+      <TypeInfo FullName="actionbazaar.persistence.Image"/>
+    </CreatableTypes>
+    <Source>
+      <ejb-definition ejb-version="3.0" ejb-name="PlaceImage" ejb-type="Session"
+                      ejb-business-interface="actionbazaar.buslogic.PlaceImageLocal"
+                      ejb-interface-type="local"
+                      initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                      xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+    </Source>
+  </AdapterDataControl>
+</DataControlConfigs>

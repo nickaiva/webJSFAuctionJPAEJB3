@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.59.23"
+          id="PlaceOrderLocal" Package="actionbazaar.buslogic"
+          BeanClass="actionbazaar.buslogic.PlaceOrderLocal" isJavaBased="true">
+  <MethodAccessor IsCollection="false" Type="void" id="setBidder"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="bidderId" Type="java.lang.String" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="addItem"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="itemId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="setShippingInfo"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="shippingInfo"
+                   Type="actionbazaar.persistence.ShippingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="setBillingInfo"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="billingInfo" Type="actionbazaar.persistence.BillingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="java.lang.Long" id="confirmOrder"
+                  ReturnNodeName="Return"/>
+  <MethodAccessor IsCollection="false" Type="void" id="setShippingInfo"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="shippingId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="setBillingInfo"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="billingId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Order"
+                  BeanClass="actionbazaar.persistence.Order"
+                  id="getOrderFindByBidder" ReturnNodeName="Order"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidderId" Type="java.lang.String" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Order"
+                  BeanClass="actionbazaar.persistence.Order" id="mergeOrder"
+                  ReturnNodeName="Order">
+    <ParameterInfo id="order" Type="actionbazaar.persistence.Order"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="java.lang.Long" id="addOrder"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="bidderId" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="itemsId" Type="java.util.ArrayList"
+                   isStructured="false"/>
+    <ParameterInfo id="shippingId" Type="java.lang.Long" isStructured="false"/>
+    <ParameterInfo id="billingId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Order"
+                  BeanClass="actionbazaar.persistence.Order" id="persistOrder"
+                  ReturnNodeName="Order">
+    <ParameterInfo id="order" Type="actionbazaar.persistence.Order"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeOrder"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="order" Type="actionbazaar.persistence.Order"
+                   isStructured="true"/>
+  </MethodAccessor>
+</JavaBean>

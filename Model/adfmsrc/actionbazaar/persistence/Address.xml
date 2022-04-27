@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="Address" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.Address" isJavaBased="true">
+  <Attribute Name="streetName1" Type="java.lang.String" PrecisionRule="false" Scale="0" PrimaryKey="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="streetName2" Type="java.lang.String" PrimaryKey="true"
+             PrecisionRule="false" Scale="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="zipCode" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="city" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="state" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="country" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Address"
+                     BeanClass="actionbazaar.persistence.Address" id="Address">
+    <ParameterInfo id="streetName1" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="streetName2" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="city" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="zipCode" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="state" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="country" Type="java.lang.String" isStructured="false"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Address"
+                     BeanClass="actionbazaar.persistence.Address" id="Address"/>
+</JavaBean>

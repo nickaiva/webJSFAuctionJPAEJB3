@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.56.60" id="DataBindings" SeparateXMLFiles="false"
+             Package="actionbazaar.view" ClientType="Generic"
+             ErrorHandlerClass="actionbazaar.view.CustomDCErrorHandlerImpl">
+    <!-- -->
+    <pageMap>
+        <page path="/pages/seller/createItem.jspx"
+              usageId="actionbazaar_createItemPageDef"/>
+        <page path="/pages/bidder/queryBids.jspx"
+              usageId="actionbazaar_queryBidsPageDef"/>
+        <page path="/pages/bidder/createBid.jspx"
+              usageId="actionbazaar_createBidPageDef"/>
+        <page path="/pages/createUser.jspx"
+              usageId="actionbazaar_createUserPageDef1"/>
+        <page path="/pages/admin/createCategory.jspx"
+              usageId="actionbazaar_createCategoryPageDef"/>
+        <page path="/pages/bidder/createOrder.jspx"
+              usageId="actionbazaar_createOrderPageDef"/>
+        <page path="/pages/createBidder.jspx"
+              usageId="actionbazaar_createBidderPageDef"/>
+        <page path="/pages/createSeller.jspx"
+              usageId="actionbazaar_createSellerPageDef"/>
+        <page path="/pages/home.jspx" usageId="actionbazaar_homePageDef"/>
+        <page path="/pages/bidder/queryOrders.jspx"
+              usageId="actionbazaar_queryMyOrdersPageDef"/>
+        <page path="/pages/queryItems.jspx"
+              usageId="actionbazaar_queryItemsPageDef"/>
+        <page path="/pages/queryCategories.jspx"
+              usageId="actionbazaar_queryCategoriesPageDef"/>
+        <page path="/pages/admin/queryUsers.jspx"
+              usageId="actionbazaar_queryUsersPageDef"/>
+        <page path="/pages/bidder/withdrawBid.jspx"
+              usageId="actionbazaar_withdrawBidPageDef"/>
+        <page path="/pages/seller/updateItem.jspx"
+              usageId="actionbazaar_view_updateItemPageDef"/>
+        <page path="/pages/admin/updateCategory.jspx"
+              usageId="actionbazaar_view_updateCategoryPageDef"/>
+        <page path="/pages/seller/placeItemInCategory.jspx"
+              usageId="actionbazaar_view_placeItemInCategoryPageDef"/>
+        <page path="/pages/createBillingInfo.jspx"
+              usageId="actionbazaar_view_createBillingInfoPageDef"/>
+        <page path="/pages/bidder/createShippingInfo.jspx"
+              usageId="actionbazaar_view_createShippingInfoPageDef"/>
+        <page path="/pages/admin/changeBidderStatus.jspx"
+              usageId="actionbazaar_view_changeBidderStatusPageDef"/>
+        <page path="/pages/changeLocale.jspx"
+              usageId="actionbazaar_view_changeLocalePageDef"/>
+        <page path="/WEB-INF/editUser-flow.xml#editUser-flow@queryByUserID"
+              usageId="actionbazaar_view_editUser_flow_editUser_flow_queryByUserIDPageDef"/>
+        <page path="/pages/editUser.jspx"
+              usageId="actionbazaar_view_editUserPageDef"/>
+        <page path="/WEB-INF/editItem-flow.xml#editItem-flow@queryByItemID"
+              usageId="actionbazaar_view_editItem_flow_editItem_flow_queryByItemIDPageDef"/>
+        <page path="/pages/seller/editItem.jspx"
+              usageId="actionbazaar_view_editItemPageDef"/>
+        <page path="/pages/bidder/updateShippingInfo.jspx"
+              usageId="actionbazaar_view_updateShippingInfoPageDef"/>
+        <page path="/pages/viewImages.jspx"
+              usageId="actionbazaar_view_viewImagesPageDef"/>
+        <page path="/pages/bidder/browseItems.jspx"
+              usageId="actionbazaar_view_browseItemsPageDef"/>
+    </pageMap>
+    <pageDefinitionUsages>
+        <page id="actionbazaar_placeBidPageDef" path="pages.placeBidPageDef"/>
+        <page id="actionbazaar_templatePageDef"
+              path="templates.templatePageDef"/>
+        <page id="actionbazaar_createUserPageDef"
+              path="pages.user.createUserPageDef"/>
+        <page id="actionbazaar_templateABPageDef"
+              path="templates.templateABPageDef"/>
+        <page id="actionbazaar_createItemPageDef"
+              path="actionbazaar.view.pages.createItemPageDef"/>
+        <page id="actionbazaar_queryBidsPageDef"
+              path="actionbazaar.view.pages.queryBidsPageDef"/>
+        <page id="actionbazaar_createBidPageDef"
+              path="actionbazaar.view.pages.createBidPageDef"/>
+        <page id="actionbazaar_createUserPageDef1"
+              path="actionbazaar.view.pages.createUserPageDef"/>
+        <page id="actionbazaar_createCategoryPageDef"
+              path="actionbazaar.view.pages.createCategoryPageDef"/>
+        <page id="actionbazaar_createOrderPageDef"
+              path="actionbazaar.view.pages.createOrderPageDef"/>
+        <page id="actionbazaar_adfc_config___addContectInfoPageDef"
+              path="ctionbazaar.pageDefs.adfc_config___addContectInfoPageDef"/>
+        <page id="actionbazaar_createBidderPageDef"
+              path="actionbazaar.view.pages.createBidderPageDef"/>
+        <page id="actionbazaar_createSellerPageDef"
+              path="actionbazaar.view.pages.createSellerPageDef"/>
+        <page id="actionbazaar_homePageDef"
+              path="actionbazaar.view.pages.homePageDef"/>
+        <page id="actionbazaar_queryMyOrdersPageDef"
+              path="actionbazaar.view.pages.queryMyOrdersPageDef"/>
+        <page id="actionbazaar_queryItemsPageDef"
+              path="actionbazaar.view.pages.queryItemsPageDef"/>
+        <page id="actionbazaar_queryCategoriesPageDef"
+              path="actionbazaar.view.pages.queryCategoriesPageDef"/>
+        <page id="actionbazaar_queryUsersPageDef"
+              path="actionbazaar.view.pages.admin.queryUsersPageDef"/>
+        <page id="actionbazaar_withdrawBidPageDef"
+              path="actionbazaar.view.pages.bidder.withdrawBidPageDef"/>
+        <page id="actionbazaar_view_updateItemPageDef"
+              path="pages.seller.updateItemPageDef"/>
+        <page id="actionbazaar_view_updateCategoryPageDef"
+              path="pages.admin.updateCategoryPageDef"/>
+        <page id="actionbazaar_view_placeItemInCategoryPageDef"
+              path="pages.seller.placeItemInCategoryPageDef"/>
+        <page id="actionbazaar_view_createBillingInfoPageDef"
+              path="pages.createBillingInfoPageDef"/>
+        <page id="actionbazaar_view_createShippingInfoPageDef"
+              path="pages.bidder.createShippingInfoPageDef"/>
+        <page id="actionbazaar_view_changeBidderStatusPageDef"
+              path="pages.admin.changeBidderStatusPageDef"/>
+        <page id="actionbazaar_view_changeLocalePageDef"
+              path="pages.changeLocalePageDef"/>
+        <page id="actionbazaar_view_editUser_flow_editUser_flow_queryByUserIDPageDef"
+              path="actionbazaar.view.pageDefs.editUser_flow_editUser_flow_queryByUserIDPageDef"/>
+        <page id="actionbazaar_view_editUserPageDef"
+              path="pages.editUserPageDef"/>
+        <page id="actionbazaar_view_editItemByIDPageDef"
+              path="pages.seller.editItemByIDPageDef"/>
+        <page id="actionbazaar_view_editItem_flow_editItem_flow_queryByItemIDPageDef"
+              path="actionbazaar.view.pageDefs.editItem_flow_editItem_flow_queryByItemIDPageDef"/>
+        <page id="actionbazaar_view_editItemPageDef"
+              path="pages.seller.editItemPageDef"/>
+        <page id="actionbazaar_view_BidderOrderMDPageDef"
+              path="tabOrder.BidderOrderMDPageDef"/>
+        <page id="actionbazaar_view_updateShippingInfoPageDef"
+              path="pages.bidder.updateShippingInfoPageDef"/>
+        <page id="actionbazaar_view_viewImagesPageDef"
+              path="pages.bidder.viewImagesPageDef"/>
+        <page id="actionbazaar_view_browseItemsPageDef"
+              path="pages.bidder.browseItemsPageDef"/>
+    </pageDefinitionUsages>
+    <dataControlUsages>
+        <dc id="PlaceImageLocal" path="actionbazaar.PlaceImageLocal"/>
+        <dc id="PlaceItemsInCategoriesLocal"
+            path="actionbazaar.PlaceItemsInCategoriesLocal"/>
+        <dc id="PlaceShippingInfoLocal"
+            path="actionbazaar.PlaceShippingInfoLocal"/>
+        <dc id="PlaceItemLocal" path="actionbazaar.PlaceItemLocal"/>
+        <dc id="PlaceBidLocal" path="actionbazaar.PlaceBidLocal"/>
+        <dc id="PlaceOrderLocal" path="actionbazaar.PlaceOrderLocal"/>
+        <dc id="PlaceCategoryLocal" path="actionbazaar.PlaceCategoryLocal"/>
+        <dc id="ManageContactInfoLocal"
+            path="actionbazaar.ManageContactInfoLocal"/>
+        <dc id="PlaceBillingInfoLocal"
+            path="actionbazaar.PlaceBillingInfoLocal"/>
+        <dc id="AddUserLocal" path="actionbazaar.AddUserLocal"/>
+        <!--dc id="PlaceBid" path="actionbazaar.PlaceBid"/-->
+    </dataControlUsages>
+</Application>

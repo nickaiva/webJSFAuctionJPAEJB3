@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createCategoryPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.Long" Name="addCategory_Return"
+                IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.addCategory.result}"/>
+      <variable Type="java.lang.String" Name="addCategory_categoryName"
+                IsQueriable="false"/>
+      <variable Type="java.sql.Date" Name="addCategory_createDate"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addCategory_createdBy"
+                IsQueriable="false"/>
+      <variable Type="java.lang.Long" Name="addCategory_parentId"
+                IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="root" RangeSize="25" DataControl="PlaceCategoryLocal"
+              id="PlaceCategoryLocalIterator"/>
+    <accessorIterator MasterBinding="PlaceCategoryLocalIterator"
+                      Binds="categoryFindAll" RangeSize="-1"
+                      DataControl="PlaceCategoryLocal"
+                      BeanClass="actionbazaar.persistence.Category"
+                      id="categoryFindAllIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="addCategory" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addCategory"
+                  IsViewObjectMethod="false" DataControl="PlaceCategoryLocal"
+                  InstanceName="PlaceCategoryLocal.dataProvider"
+                  ReturnName="data.PlaceCategoryLocal.methodResults.addCategory_PlaceCategoryLocal_dataProvider_addCategory_result">
+      <NamedData NDName="categoryName" NDType="java.lang.String"
+                 NDValue="${bindings.addCategory_categoryName}"/>
+      <NamedData NDName="createDate" NDType="java.sql.Date"
+                 NDValue="${bindings.addCategory_createDate}"/>
+      <NamedData NDName="createdBy" NDType="java.lang.String"
+                 NDValue="${securityContext.userName}"/><!--  NDValue="${bindings.addCategory_createdBy}"-->
+      <NamedData NDName="parentId" NDType="java.lang.Long"
+                 NDValue="${bindings.addCategory_parentId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="categoryName">
+      <AttrNames>
+        <Item Value="addCategory_categoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="createDate">
+      <AttrNames>
+        <Item Value="addCategory_createDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="createdBy">
+      <AttrNames>
+        <Item Value="addCategory_createdBy"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="variables" id="parentId" DTSupportsMRU="true"
+          StaticList="false" ListIter="categoryFindAllIterator">
+      <AttrNames>
+        <Item Value="addCategory_parentId"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="categoryId"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="categoryId"/>
+        <Item Value="categoryName"/>
+        <Item Value="parentId"/>
+      </ListDisplayAttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

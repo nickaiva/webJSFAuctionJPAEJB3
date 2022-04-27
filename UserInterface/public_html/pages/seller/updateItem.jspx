@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="userinterfaceBundle"
+           value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document id="d1" title="Update Item"
+                     binding="#{backingBeanScope.backing_updateItem.d1}">
+            <af:messages id="m1"
+                         binding="#{backingBeanScope.backing_updateItem.m1}"/>
+            <af:form id="f1" usesUpload="true"
+                     binding="#{backingBeanScope.backing_updateItem.f1}">
+                <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                                 id="pt1">
+                    <f:facet name="content">
+                        <af:panelStretchLayout id="psl1" topHeight="144px"
+                                               inlineStyle="width:1270px; height:470px; background-color:transparent;"
+                                               binding="#{backingBeanScope.backing_updateItem.psl1}">
+                            <f:facet name="center">
+                                <af:panelGroupLayout id="pgl3" rendered="#{bindings.getItemGetItemsByNameIterator.estimatedRowCount > 0 and
+ requestContext.postback == true}" binding="#{backingBeanScope.backing_updateItem.pgl3}"
+                                                     layout="vertical"
+                                                     inlineStyle="background-color:transparent;">
+                                    <af:panelBorderLayout id="pbl2"
+                                                          binding="#{backingBeanScope.backing_updateItem.pbl2}"
+                                                          inlineStyle="height:306px;">
+                                        <!--af:carousel id="c1"
+                                                     binding="#{backingBeanScope.backing_updateItem.c1}"
+                                                     value='/imageservlet?itemId=#{bindings.itemId.inputValue}'>
+                                            <f:facet name="nodeStamp">
+                                                <af:carouselItem id="ci1"
+                                                                 binding="#{backingBeanScope.backing_updateItem.ci1}">
+                                                    <af:image source="/imageservlet?itemId=#{bindings.itemId.inputValue}"
+                                                              id="i1"
+                                                              binding="#{backingBeanScope.backing_updateItem.i1}"
+                                                              shortDesc="itemId=#{bindings.itemId.inputValue}"/>
+                                                </af:carouselItem>
+                                            </f:facet>
+                                        </af:carousel-->
+                                        <af:inlineFrame id="if2"
+                                                        source="/imageservlet?itemId=#{bindings.itemId.inputValue}"
+                                                        binding="#{backingBeanScope.backing_updateItem.if2}"
+                                                        shortDesc="itemImage"/>
+                                        <af:panelFormLayout id="pfl2"
+                                                            maxColumns="4"
+                                                            binding="#{backingBeanScope.backing_updateItem.pfl2}"
+                                                            inlineStyle="height:200px; width:1238px;"
+                                                            rows="3">
+                                            <af:inputDate value="#{bindings.createdDate.inputValue}"
+                                                          label="#{bindings.createdDate.hints.label}"
+                                                          required="#{bindings.createdDate.hints.mandatory}"
+                                                          columns="#{bindings.createdDate.hints.displayWidth}"
+                                                          shortDesc="#{bindings.createdDate.hints.tooltip}"
+                                                          id="id3"
+                                                          binding="#{backingBeanScope.backing_updateItem.id3}">
+                                                <f:validator binding="#{bindings.createdDate.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.createdDate.format}"/>
+                                            </af:inputDate>
+                                            <af:inputText value="#{bindings.initialPrice.inputValue}"
+                                                          label="#{bindings.initialPrice.hints.label}"
+                                                          required="#{bindings.initialPrice.hints.mandatory}"
+                                                          columns="#{bindings.initialPrice.hints.displayWidth}"
+                                                          maximumLength="#{bindings.initialPrice.hints.precision}"
+                                                          shortDesc="#{bindings.initialPrice.hints.tooltip}"
+                                                          id="it3"
+                                                          binding="#{backingBeanScope.backing_updateItem.it3}"
+                                                          converter="javax.faces.Double">
+                                                <f:validator binding="#{bindings.initialPrice.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.initialPrice.format}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.itemId.inputValue}"
+                                                          label="#{bindings.itemId.hints.label}"
+                                                          required="#{bindings.itemId.hints.mandatory}"
+                                                          columns="#{bindings.itemId.hints.displayWidth}"
+                                                          maximumLength="#{bindings.itemId.hints.precision}"
+                                                          shortDesc="#{bindings.itemId.hints.tooltip}"
+                                                          id="it4"
+                                                          binding="#{backingBeanScope.backing_updateItem.it4}"
+                                                          readOnly="true"
+                                                          disabled="false">
+                                                <f:validator binding="#{bindings.itemId.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.itemId.format}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.itemName1.inputValue}"
+                                                          label="#{bindings.itemName1.hints.label}"
+                                                          required="#{bindings.itemName1.hints.mandatory}"
+                                                          columns="#{bindings.itemName1.hints.displayWidth}"
+                                                          maximumLength="#{bindings.itemName1.hints.precision}"
+                                                          shortDesc="#{bindings.itemName1.hints.tooltip}"
+                                                          id="it5"
+                                                          binding="#{backingBeanScope.backing_updateItem.it5}">
+                                                <f:validator binding="#{bindings.itemName1.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.description.inputValue}"
+                                                          label="#{bindings.description.hints.label}"
+                                                          required="#{bindings.description.hints.mandatory}"
+                                                          columns="#{bindings.description.hints.displayWidth}"
+                                                          maximumLength="#{bindings.description.hints.precision}"
+                                                          shortDesc="#{bindings.description.hints.tooltip}"
+                                                          id="it6"
+                                                          binding="#{backingBeanScope.backing_updateItem.it6}">
+                                                <f:validator binding="#{bindings.description.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{! empty bindings.orderId.inputValue? bindings.orderId.inputValue : 'Not ordered yet'}"
+                                                          label="#{bindings.orderId.hints.label}"
+                                                          required="#{bindings.orderId.hints.mandatory}"
+                                                          columns="#{bindings.orderId.hints.displayWidth}"
+                                                          maximumLength="#{bindings.orderId.hints.precision}"
+                                                          shortDesc="#{bindings.orderId.hints.tooltip}"
+                                                          id="it7"
+                                                          binding="#{backingBeanScope.backing_updateItem.it7}"
+                                                          readOnly="true">
+                                                <f:validator binding="#{bindings.orderId.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.orderId.format}"/>
+                                            </af:inputText>
+                                            <f:facet name="footer">
+                                                <af:group id="g1"
+                                                          binding="#{backingBeanScope.backing_updateItem.g1}">
+                                                    <af:panelGroupLayout layout="horizontal"
+                                                                         id="pgl1"
+                                                                         halign="center"
+                                                                         binding="#{backingBeanScope.backing_updateItem.pgl1}">
+                                                        <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                        id="rb1"
+                                                                        binding="#{backingBeanScope.backing_updateItem.rb1}"/>
+                                                        <af:commandButton text="#{userinterfaceBundle.mergeObject}"
+                                                                          disabled="#{!bindings.mergeItem.enabled}"
+                                                                          id="cb2"
+                                                                          binding="#{backingBeanScope.backing_updateItem.cb2}"
+                                                                          action="#{backingBeanScope.backing_updateItem.updateItem_action}"/>
+                                                    </af:panelGroupLayout>
+                                                </af:group>
+                                            </f:facet>
+                                            <af:outputFormatted value="#{userinterfaceBundle.sizelimit}"
+                                                                id="of2"
+                                                                binding="#{backingBeanScope.backing_updateItem.of2}"/>
+                                            <af:inputFile label="#{userinterfaceBundle.selectAFile}"
+                                                          id="if1"
+                                                          binding="#{backingBeanScope.backing_updateItem.if1}"
+                                                          value="#{backingBeanScope.backing_updateItem.file}"
+                                                          valueChangeListener="#{backingBeanScope.backing_updateItem.uploadFileValueChangeEvent}"/>
+                                        </af:panelFormLayout>
+                                    </af:panelBorderLayout>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="top">
+                                <af:panelGroupLayout layout="scroll"
+                                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                                     id="pgl2"
+                                                     binding="#{backingBeanScope.backing_updateItem.pgl2}">
+                                    <af:outputFormatted value="#{userinterfaceBundle.queryCriterionInUppercase}"
+                                                        id="of1"
+                                                        binding="#{backingBeanScope.backing_updateItem.of1}"/>
+                                    <af:spacer width="10" height="10" id="s1"
+                                               binding="#{backingBeanScope.backing_updateItem.s1}"/>
+                                    <af:panelFormLayout id="pfl1"
+                                                        binding="#{backingBeanScope.backing_updateItem.pfl1}"
+                                                        inlineStyle="width:1243px;"
+                                                        maxColumns="2" rows="3">
+                                        <af:inputText value="#{bindings.itemName.inputValue}"
+                                                      label="#{bindings.itemName.hints.label}"
+                                                      required="#{bindings.itemName.hints.mandatory}"
+                                                      columns="#{bindings.itemName.hints.displayWidth}"
+                                                      maximumLength="#{bindings.itemName.hints.precision}"
+                                                      shortDesc="#{bindings.itemName.hints.tooltip}"
+                                                      id="it1"
+                                                      binding="#{backingBeanScope.backing_updateItem.it1}">
+                                            <f:validator binding="#{bindings.itemName.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.userId.inputValue}"
+                                                      label="#{bindings.userId.hints.label}"
+                                                      required="#{bindings.userId.hints.mandatory}"
+                                                      columns="#{bindings.userId.hints.displayWidth}"
+                                                      maximumLength="#{bindings.userId.hints.precision}"
+                                                      shortDesc="#{bindings.userId.hints.tooltip}"
+                                                      id="it2"
+                                                      rendered="#{securityContext.userInRole['ADMINISTRATOR']}"
+                                                      binding="#{backingBeanScope.backing_updateItem.it2}">
+                                            <f:validator binding="#{bindings.userId.validator}"/>
+                                        </af:inputText>
+                                        <af:panelBorderLayout id="pbl1"
+                                                              binding="#{backingBeanScope.backing_updateItem.pbl1}">
+                                            <f:facet name="top"/>
+                                            <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                            id="rb2"
+                                                            binding="#{backingBeanScope.backing_updateItem.rb2}"/>
+                                            <af:commandButton actionListener="#{bindings.getItemGetItemsByName.execute}"
+                                                              text="#{userinterfaceBundle.performQuery}"
+                                                              disabled="#{!bindings.getItemGetItemsByName.enabled}"
+                                                              id="cb1"
+                                                              binding="#{backingBeanScope.backing_updateItem.cb1}"/>
+                                        </af:panelBorderLayout>
+                                    </af:panelFormLayout>
+                                    <af:separator id="s2"
+                                                  binding="#{backingBeanScope.backing_updateItem.s2}"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_updateItem-->
+</jsp:root>

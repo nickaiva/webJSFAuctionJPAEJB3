@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trinidad-config xmlns="http://myfaces.apache.org/trinidad/config">
+  <skin-family>fusion</skin-family>
+  <!--skin-family>simple</skin-family-->
+<!--All but simple cause malformation of the resetButton-->
+<!-- Defines the default ISO 4217 currency code used by
+oracle.adf.view.faces.converter.NumberConverter -->
+<currency-code>€</currency-code>
+  </trinidad-config>

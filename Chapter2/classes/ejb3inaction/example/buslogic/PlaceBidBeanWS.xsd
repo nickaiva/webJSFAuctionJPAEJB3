@@ -1,0 +1,18 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="/ejb3inaction.example.buslogic/"
+     xmlns:tns="/ejb3inaction.example.buslogic/">
+    <include schemaLocation="../persistence/BidSDO.xsd"/>
+    <element name="addBidSDO">
+        <complexType>
+            <sequence>
+                <element name="bidSDO" type="tns:BidSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="addBidSDOResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="tns:BidSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

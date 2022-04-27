@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="homePageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String"
+                Name="getContactInfoGetContactInfoByUser_contactUserId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_userId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_email"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_phone"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_streetname1"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_streetname2"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_city"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_zipCode"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_stateCode"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="editContactInfo_country"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="getUserFindByUserId_userId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.Long"
+                Name="getBillingInfoFindByBilllingId_BillingId"
+                IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getContactInfoGetContactInfoByUser.result"
+                    DataControl="ManageContactInfoLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.ContactInfo"
+                    id="getContactInfoGetContactInfoByUserIterator"/>
+    <accessorIterator MasterBinding="getContactInfoGetContactInfoByUserIterator"
+                      Binds="address" RangeSize="25"
+                      DataControl="ManageContactInfoLocal"
+                      BeanClass="actionbazaar.persistence.Address"
+                      id="addressIterator"/>
+    <methodIterator Binds="getUserFindByUserId.result" DataControl="AddUserLocal"
+                    RangeSize="25" BeanClass="actionbazaar.persistence.User"
+                    id="getUserFindByUserIdIterator"/>
+    <methodIterator Binds="getBillingInfoFindByBilllingId.result"
+                    DataControl="PlaceBillingInfoLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.BillingInfo"
+                    id="getBillingInfoFindByBilllingIdIterator"/>
+    <accessorIterator MasterBinding="getBillingInfoFindByBilllingIdIterator"
+                      Binds="address" RangeSize="25"
+                      DataControl="PlaceBillingInfoLocal"
+                      BeanClass="actionbazaar.persistence.Address"
+                      id="addressIterator1"/>
+  </executables>
+  <bindings>
+    <methodAction id="getContactInfoGetContactInfoByUser"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getContactInfoGetContactInfoByUser"
+                  IsViewObjectMethod="false"
+                  DataControl="ManageContactInfoLocal"
+                  InstanceName="ManageContactInfoLocal.dataProvider"
+                  ReturnName="data.ManageContactInfoLocal.methodResults.getContactInfoGetContactInfoByUser_ManageContactInfoLocal_dataProvider_getContactInfoGetContactInfoByUser_result">
+      <NamedData NDName="contactUserId" NDType="java.lang.String"
+                 NDValue="${bindings.getContactInfoGetContactInfoByUser_contactUserId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="contactUserId">
+      <AttrNames>
+        <Item Value="getContactInfoGetContactInfoByUser_contactUserId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getContactInfoGetContactInfoByUserIterator"
+                     id="contactUserId1">
+      <AttrNames>
+        <Item Value="contactUserId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getContactInfoGetContactInfoByUserIterator"
+                     id="email">
+      <AttrNames>
+        <Item Value="email"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getContactInfoGetContactInfoByUserIterator"
+                     id="phone">
+      <AttrNames>
+        <Item Value="phone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="streetName1">
+      <AttrNames>
+        <Item Value="streetName1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="streetName2">
+      <AttrNames>
+        <Item Value="streetName2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="city">
+      <AttrNames>
+        <Item Value="city"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="state">
+      <AttrNames>
+        <Item Value="state"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="zipCode">
+      <AttrNames>
+        <Item Value="zipCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="country">
+      <AttrNames>
+        <Item Value="country"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="mergeContactInfo" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeContactInfo"
+                  IsViewObjectMethod="false"
+                  DataControl="ManageContactInfoLocal"
+                  InstanceName="ManageContactInfoLocal.dataProvider"
+                  ReturnName="data.ManageContactInfoLocal.methodResults.mergeContactInfo_ManageContactInfoLocal_dataProvider_mergeContactInfo_result">
+      <NamedData NDName="contactInfo"
+                 NDValue="#{bindings.getContactInfoGetContactInfoByUserIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.ContactInfo"/>
+    </methodAction>
+    <methodAction id="getUserFindByUserId" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getUserFindByUserId"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider"
+                  ReturnName="data.AddUserLocal.methodResults.getUserFindByUserId_AddUserLocal_dataProvider_getUserFindByUserId_result">
+      <NamedData NDName="userId" NDType="java.lang.String"
+                 NDValue="${bindings.getUserFindByUserId_userId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="userId">
+      <AttrNames>
+        <Item Value="getUserFindByUserId_userId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="birthDate">
+      <AttrNames>
+        <Item Value="birthDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="firstName">
+      <AttrNames>
+        <Item Value="firstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="lastName">
+      <AttrNames>
+        <Item Value="lastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator"
+                     id="userBillingId">
+      <AttrNames>
+        <Item Value="userBillingId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="userId1">
+      <AttrNames>
+        <Item Value="userId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="userType">
+      <AttrNames>
+        <Item Value="userType"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="mergeBidder" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeBidder"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider"
+                  ReturnName="data.AddUserLocal.methodResults.mergeBidder_AddUserLocal_dataProvider_mergeBidder_result">
+      <NamedData NDName="bidder"
+                 NDValue="#{bindings.getUserFindByUserIdIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.Bidder"/>
+    </methodAction>
+    <methodAction id="mergeSeller" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeSeller"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider"
+                  ReturnName="data.AddUserLocal.methodResults.mergeSeller_AddUserLocal_dataProvider_mergeSeller_result">
+      <NamedData NDName="seller"
+                 NDValue="#{bindings.getUserFindByUserIdIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.Seller"/>
+    </methodAction>
+    <methodAction id="getBillingInfoFindByBilllingId" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="getBillingInfoFindByBilllingId"
+                  IsViewObjectMethod="false" DataControl="PlaceBillingInfoLocal"
+                  InstanceName="PlaceBillingInfoLocal.dataProvider"
+                  ReturnName="data.PlaceBillingInfoLocal.methodResults.getBillingInfoFindByBilllingId_PlaceBillingInfoLocal_dataProvider_getBillingInfoFindByBilllingId_result">
+      <NamedData NDName="BillingId" NDType="java.lang.Long"
+                 NDValue="#{bindings.userBillingId.inputValue}"/>
+    </methodAction><!-- Replaced ${bindings.getBillingInfoFindByBilllingId_BillingId} 
+    with #{bindings.userBillingId.inputValue} so that each user sees only one's own billing details-->
+    <attributeValues IterBinding="variables" id="BillingId">
+      <AttrNames>
+        <Item Value="getBillingInfoFindByBilllingId_BillingId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getBillingInfoFindByBilllingIdIterator"
+                     id="accountNo">
+      <AttrNames>
+        <Item Value="accountNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getBillingInfoFindByBilllingIdIterator"
+                     id="cardType">
+      <AttrNames>
+        <Item Value="cardType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getBillingInfoFindByBilllingIdIterator"
+                     id="expiryDate">
+      <AttrNames>
+        <Item Value="expiryDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getBillingInfoFindByBilllingIdIterator"
+                     id="secretCode">
+      <AttrNames>
+        <Item Value="secretCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator1" id="streetName11">
+      <AttrNames>
+        <Item Value="streetName1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator1" id="streetName21">
+      <AttrNames>
+        <Item Value="streetName2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator1" id="city1">
+      <AttrNames>
+        <Item Value="city"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator1" id="state1">
+      <AttrNames>
+        <Item Value="state"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator1" id="zipCode1">
+      <AttrNames>
+        <Item Value="zipCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator1" id="country1">
+      <AttrNames>
+        <Item Value="country"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="mergeBillingInfo" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeBillingInfo"
+                  IsViewObjectMethod="false" DataControl="PlaceBillingInfoLocal"
+                  InstanceName="PlaceBillingInfoLocal.dataProvider"
+                  ReturnName="data.PlaceBillingInfoLocal.methodResults.mergeBillingInfo_PlaceBillingInfoLocal_dataProvider_mergeBillingInfo_result">
+      <NamedData NDName="billingInfo"
+                 NDValue="#{bindings.getBillingInfoFindByBilllingIdIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.BillingInfo"/>
+    </methodAction>
+    <methodAction id="removeBidder" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="removeBidder"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider">
+      <NamedData NDName="bidder"
+                 NDValue="#{bindings.getUserFindByUserIdIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.Bidder"/>
+    </methodAction>
+    <methodAction id="removeSeller" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="removeSeller"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider">
+      <NamedData NDName="seller"
+                 NDValue="#{bindings.getUserFindByUserIdIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.Seller"/>
+    </methodAction>
+    <methodAction id="removeContactInfo" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="removeContactInfo"
+                  IsViewObjectMethod="false"
+                  DataControl="ManageContactInfoLocal"
+                  InstanceName="ManageContactInfoLocal.dataProvider">
+      <NamedData NDName="contactInfo"
+                 NDValue="#{bindings.getContactInfoGetContactInfoByUserIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.ContactInfo"/>
+    </methodAction>
+    <methodAction id="removeBillingInfo" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="removeBillingInfo"
+                  IsViewObjectMethod="false" DataControl="PlaceBillingInfoLocal"
+                  InstanceName="PlaceBillingInfoLocal.dataProvider">
+      <NamedData NDName="billingInfo"
+                 NDValue="#{bindings.getBillingInfoFindByBilllingIdIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.BillingInfo"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createOrderPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="addOrder_bidderId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.Long" Name="addOrder_itemId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.Long" Name="addOrder_shippingId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.Long" Name="addOrder_billingId"
+                IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="variables" id="bidderId">
+      <AttrNames>
+        <Item Value="addOrder_bidderId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

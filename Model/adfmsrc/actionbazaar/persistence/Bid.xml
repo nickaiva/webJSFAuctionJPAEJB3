@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="Bid" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.Bid" isJavaBased="true">
+  <Attribute Name="bidDate" Type="java.sql.Date" PrecisionRule="false"
+             Precision="0" Scale="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Bid.bidDate_FMT_FORMATTER"/>
+        <FMT_FORMAT ResId="actionbazaar.persistence.Bid.bidDate_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="bidId" PrimaryKey="true" Type="java.lang.Long"
+             PrecisionRule="false" Precision="0" Scale="0"/>
+  <Attribute Name="bidPrice" Type="java.lang.Double" PrecisionRule="false"
+             Precision="0" Scale="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="actionbazaar.persistence.Bid.bidPrice_LABEL"/>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Bid.bidPrice_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="optLock" Type="java.lang.Long"/>
+  <AccessorAttribute id="bidBidder" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.Bidder"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="bidStatus" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.BidStatus"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="item" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.Item"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Bid"
+                     BeanClass="actionbazaar.persistence.Bid" id="Bid">
+    <ParameterInfo id="bidBidder" Type="actionbazaar.persistence.Bidder"
+                   isStructured="true"/>
+    <ParameterInfo id="bidDate" Type="java.sql.Date" isStructured="false"/>
+    <ParameterInfo id="bidId" Type="java.lang.Long" isStructured="false"/>
+    <ParameterInfo id="item" Type="actionbazaar.persistence.Item"
+                   isStructured="true"/>
+    <ParameterInfo id="bidPrice" Type="java.lang.Double" isStructured="false"/>
+    <ParameterInfo id="bidStatus" Type="actionbazaar.persistence.BidStatus"
+                   isStructured="true"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Bid"
+                     BeanClass="actionbazaar.persistence.Bid" id="Bid"/>
+  <ResourceBundle>
+    <PropertiesBundle xmlns="http://xmlns.oracle.com/adfm/resourcebundle"
+                      PropertiesFile="actionbazaar.ModelBundle"/>
+  </ResourceBundle>
+</JavaBean>

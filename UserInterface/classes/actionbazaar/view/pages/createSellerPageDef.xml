@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createSellerPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="addSeller_userId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addSeller_firstName"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addSeller_lastName"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addSeller_userType"
+                IsQueriable="false"/>
+      <variable Type="java.sql.Timestamp" Name="addSeller_birthDate"
+                IsQueriable="false"/>
+      <variable Type="long" Name="addSeller_maxItemsAllowed"
+                IsQueriable="false"/>
+      <variable Type="double" Name="addSeller_commissionRate"
+                IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="addSeller" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addSeller"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider">
+      <NamedData NDName="userId" NDType="java.lang.String"
+                 NDValue="${bindings.addSeller_userId}"/>
+      <NamedData NDName="firstName" NDType="java.lang.String"
+                 NDValue="${bindings.addSeller_firstName}"/>
+      <NamedData NDName="lastName" NDType="java.lang.String"
+                 NDValue="${bindings.addSeller_lastName}"/>
+      <NamedData NDName="userType" NDType="java.lang.String"
+                 NDValue="${bindings.addSeller_userType}"/>
+      <NamedData NDName="birthDate" NDType="java.sql.Timestamp"
+                 NDValue="${bindings.addSeller_birthDate}"/>
+      <NamedData NDName="maxItemsAllowed" NDType="long"
+                 NDValue="${bindings.addSeller_maxItemsAllowed}"/>
+      <NamedData NDName="commissionRate" NDType="double"
+                 NDValue="${bindings.addSeller_commissionRate}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="userId">
+      <AttrNames>
+        <Item Value="addSeller_userId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="firstName">
+      <AttrNames>
+        <Item Value="addSeller_firstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="lastName">
+      <AttrNames>
+        <Item Value="addSeller_lastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="userType">
+      <AttrNames>
+        <Item Value="addSeller_userType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="birthDate">
+      <AttrNames>
+        <Item Value="addSeller_birthDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="maxItemsAllowed">
+      <AttrNames>
+        <Item Value="addSeller_maxItemsAllowed"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="commissionRate">
+      <AttrNames>
+        <Item Value="addSeller_commissionRate"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

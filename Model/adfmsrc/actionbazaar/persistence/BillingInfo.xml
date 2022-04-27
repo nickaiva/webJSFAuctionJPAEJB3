@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="BillingInfo" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.BillingInfo" isJavaBased="true">
+  <Attribute Name="accountNo" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="billingId" PrimaryKey="true" Type="java.lang.Long"/>
+  <Attribute Name="cardType" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="expiryDate" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="secretCode" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute id="orderSet" IsCollection="true"
+                     RemoveMethod="removeOrder" AddMethod="addOrder"
+                     BeanClass="actionbazaar.persistence.Order"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeOrder"/>
+      <Property Name="AddMethod" Value="addOrder"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="address" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.Address"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Order"
+                  BeanClass="actionbazaar.persistence.Order" id="addOrder"
+                  ReturnNodeName="Order">
+    <ParameterInfo id="order" Type="actionbazaar.persistence.Order"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Order"
+                  BeanClass="actionbazaar.persistence.Order" id="removeOrder"
+                  ReturnNodeName="Order">
+    <ParameterInfo id="order" Type="actionbazaar.persistence.Order"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <ConstructorMethod IsCollection="true"
+                     Type="actionbazaar.persistence.BillingInfo"
+                     BeanClass="actionbazaar.persistence.BillingInfo"
+                     id="BillingInfo">
+    <ParameterInfo id="accountNo" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="cardType" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="expiryDate" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="secretCode" Type="java.lang.String"
+                   isStructured="false"/>
+    <!-- The fragment for address was addded manually on 22/6/2012-->
+    <ParameterInfo id="address" Type="actionbazaar.persistence.Address"
+                   isStructured="true"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true"
+                     Type="actionbazaar.persistence.BillingInfo"
+                     BeanClass="actionbazaar.persistence.BillingInfo"
+                     id="BillingInfo"/>
+</JavaBean>

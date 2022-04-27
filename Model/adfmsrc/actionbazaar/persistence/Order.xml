@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="Order" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.Order" isJavaBased="true">
+  <Attribute Name="orderId" PrimaryKey="true" Type="java.lang.Long"/>
+  <AccessorAttribute id="orderStatus" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.OrderStatus"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="billingInfo" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.BillingInfo"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="shippingInfo" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.ShippingInfo"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="bidder" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.Bidder"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="items" IsCollection="true" Type="java.util.List"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Order"
+                     BeanClass="actionbazaar.persistence.Order" id="Order">
+    <ParameterInfo id="billingInfo" Type="actionbazaar.persistence.BillingInfo"
+                   isStructured="true"/>
+    <ParameterInfo id="orderId" Type="java.lang.Long" isStructured="false"/>
+    <ParameterInfo id="shippingInfo"
+                   Type="actionbazaar.persistence.ShippingInfo"
+                   isStructured="true"/>
+    <ParameterInfo id="orderStatus" Type="actionbazaar.persistence.OrderStatus"
+                   isStructured="true"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Order"
+                     BeanClass="actionbazaar.persistence.Order" id="Order"/>
+</JavaBean>

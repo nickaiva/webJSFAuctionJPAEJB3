@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="viewImages.jspx" id="d1"
+                     binding="#{backingBeanScope.backing_viewImages.d1}">
+            <af:messages id="m1"
+                         binding="#{backingBeanScope.backing_viewImages.m1}"/>
+            <af:form id="f1"
+                     binding="#{backingBeanScope.backing_viewImages.f1}">
+                <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                                 id="pt1">
+                    <f:facet name="content">
+                        <af:panelStretchLayout id="psl1"
+                                               binding="#{backingBeanScope.backing_viewImages.psl1}">
+                            <f:facet name="center">
+                                <af:carousel id="c1" var="image" 
+                                             binding="#{backingBeanScope.backing_viewImages.c1}"
+                                             value="#{backingBeanScope.backing_viewImages.images}">
+                                     <f:facet name="nodeStamp">
+                                        <af:carouselItem id="ci1" 
+                                                         binding="#{backingBeanScope.backing_viewImages.ci1}">
+                                            <af:image source="#{image}"
+                                                      id="ai1"
+                                                      binding="#{backingBeanScope.backing_viewImages.ai1}"
+                                                      shortDesc="itemId=#{bindings.itemId.inputValue}"/>
+                                        </af:carouselItem>
+                                    </f:facet>
+                                </af:carousel>
+                            </f:facet>
+                            <f:facet name="start"/>
+                            <f:facet name="end"/>
+                            <f:facet name="top">
+                                <af:panelFormLayout id="pfl1"
+                                                    binding="#{backingBeanScope.backing_viewImages.pfl1}">
+                                    <af:inputText value="#{bindings.itemId.inputValue}"
+                                                  label="#{bindings.itemId.hints.label}"
+                                                  required="#{bindings.itemId.hints.mandatory}"
+                                                  columns="#{bindings.itemId.hints.displayWidth}"
+                                                  maximumLength="#{bindings.itemId.hints.precision}"
+                                                  shortDesc="#{bindings.itemId.hints.tooltip}"
+                                                  id="it1"
+                                                  binding="#{backingBeanScope.backing_viewImages.it1}">
+                                        <f:validator binding="#{bindings.itemId.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.itemId.format}"/>
+                                    </af:inputText>
+                                    <af:panelBorderLayout id="pbl1"
+                                                          binding="#{backingBeanScope.backing_viewImages.pbl1}">
+                                        <f:facet name="start"/>
+                                        <f:facet name="bottom"/>
+                                        <f:facet name="end"/>
+                                        <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                        id="rb2"
+                                                        binding="#{backingBeanScope.backing_viewImages.rb2}"/>
+                                        <af:commandButton
+                                                          text="#{userinterfaceBundle.performQuery}"
+                                                          disabled="#{!bindings.getImagesByItemId.enabled}"
+                                                          id="cb1"
+                                                          binding="#{backingBeanScope.backing_viewImages.cb1}"
+                                                          action="#{backingBeanScope.backing_viewImages.loadImages_action}"/>
+                                    </af:panelBorderLayout>
+                                </af:panelFormLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_viewImages-->
+</jsp:root>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="editUser-flow">
+    <display-name>editUser</display-name>
+    <default-activity>checkForExcplicitID</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <task-flow-reentry>
+      <reentry-allowed/>
+    </task-flow-reentry>
+    <input-parameter-definition id="__5">
+      <name>userID</name>
+      <value>#{pageFlowScope.userID}</value>
+      <required/>
+    </input-parameter-definition>
+    <router id="checkForExcplicitID">
+      <case id="__9">
+        <expression>#{ pageFlowScope.userID == securityContext.userName}</expression>
+        <outcome>byID</outcome>
+      </case>
+      <default-outcome>byID</default-outcome>
+    </router>
+    <method-call id="queryByUserID">
+      <method>#{data.actionbazaar_queryUsersPageDef.getUserFindByUserId.execute}</method>
+      <outcome>
+        <fixed-outcome>queryByUserID</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="editUser">
+      <page>/pages/editUser.jspx</page>
+    </view>
+    <task-flow-return id="editUserDone">
+      <outcome>
+        <name>home</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__1">
+      <from-activity-id>*</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>done</from-outcome>
+        <to-activity-id>editUserDone</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>checkForExcplicitID</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>byID</from-outcome>
+        <to-activity-id>queryByUserID</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id>queryByUserID</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>queryByUserID</from-outcome>
+        <to-activity-id>editUser</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

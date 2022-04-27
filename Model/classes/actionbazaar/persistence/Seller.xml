@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="Seller" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.Seller" isJavaBased="true">
+  <Attribute Name="commissionRate" Type="java.lang.Double"/>
+  <Attribute Name="maxItemsAllowed" Type="java.lang.Long"/>
+  <Attribute Name="birthDate" Type="java.sql.Timestamp">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Seller.birthDate_FMT_FORMATTER"/>
+        <FMT_FORMAT ResId="actionbazaar.persistence.Seller.birthDate_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="firstName" Type="java.lang.String" Precision="30"/>
+  <Attribute Name="lastName" Type="java.lang.String" Precision="30"/>
+  <Attribute Name="userBillingId" Type="java.lang.Long"/>
+  <Attribute Name="userId" PrimaryKey="true" Type="java.lang.String"/>
+  <Attribute Name="userType" Type="java.lang.String"/>
+  <AccessorAttribute id="items" IsCollection="true"
+                     BeanClass="actionbazaar.persistence.Item"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Seller"
+                     BeanClass="actionbazaar.persistence.Seller" id="Seller"/>
+  <ResourceBundle>
+    <PropertiesBundle xmlns="http://xmlns.oracle.com/adfm/resourcebundle"
+                      PropertiesFile="actionbazaar.ModelBundle"/>
+  </ResourceBundle>
+</JavaBean>

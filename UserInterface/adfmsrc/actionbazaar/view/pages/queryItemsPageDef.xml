@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.2.61.83" id="queryItemsPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters>
+    <parameter id="itemID" value="#{row.itemId}"/>
+  </parameters>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.sql.Timestamp"
+                Name="getItemGetItemsByDateInterval_bidStartDate"
+                IsQueriable="false"/>
+      <variable Type="java.sql.Timestamp"
+                Name="getItemGetItemsByDateInterval_bidEndDate"
+                IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getItemGetItemsByDateInterval.result"
+                    DataControl="PlaceItemLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.Item"
+                    id="getItemGetItemsByDateIntervalIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getItemGetItemsByDateInterval" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="getItemGetItemsByDateInterval"
+                  IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                  InstanceName="PlaceItemLocal.dataProvider"
+                  ReturnName="data.PlaceItemLocal.methodResults.getItemGetItemsByDateInterval_PlaceItemLocal_dataProvider_getItemGetItemsByDateInterval_result">
+      <NamedData NDName="bidStartDate" NDType="java.sql.Timestamp"
+                 NDValue="${bindings.getItemGetItemsByDateInterval_bidStartDate}"/>
+      <NamedData NDName="bidEndDate" NDType="java.sql.Timestamp"
+                 NDValue="${bindings.getItemGetItemsByDateInterval_bidEndDate}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="bidStartDate">
+      <AttrNames>
+        <Item Value="getItemGetItemsByDateInterval_bidStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="bidEndDate">
+      <AttrNames>
+        <Item Value="getItemGetItemsByDateInterval_bidEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <!--methodAction id="getItemGetItemsByDateInterval" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="getItemGetItemsByDateInterval"
+                  IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                  InstanceName="data.PlaceItemLocal.dataProvider"
+                  ReturnName="data.PlaceItemLocal.methodResults.getItemGetItemsByDateInterval_PlaceItemLocal_dataProvider_getItemGetItemsByDateInterval_result">
+      <NamedData NDName="bidStartDate"
+                 NDValue="${bindings.getItemGetItemsByDateInterval_bidStartDate}"
+                 NDType="java.sql.Timestamp"/>
+      <NamedData NDName="bidEndDate"
+                 NDValue="#{bindings.getItemGetItemsByDateInterval_bidEndDate}"
+                 NDType="java.sql.Timestamp"/>
+    </methodAction-->
+    <tree IterBinding="getItemGetItemsByDateIntervalIterator" id="Item">
+      <nodeDefinition DefName="actionbazaar.persistence.Item" Name="Item0">
+        <AttrNames>
+          <Item Value="bidEndDate"/>
+          <Item Value="bidStartDate"/>
+          <Item Value="createdDate"/>
+          <Item Value="initialPrice"/>
+          <Item Value="itemId"/>
+          <Item Value="itemName"/>
+          <Item Value="description"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="seller"/>
+          <Item Value="order"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.Seller" Name="Item1">
+        <AttrNames>
+          <Item Value="commissionRate"/>
+          <Item Value="maxItemsAllowed"/>
+          <Item Value="birthDate"/>
+          <Item Value="firstName"/>
+          <Item Value="lastName"/>
+          <Item Value="userBillingId"/>
+          <Item Value="userId"/>
+          <Item Value="userType"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.Order" Name="Item2">
+        <AttrNames>
+          <Item Value="orderId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="determineWinnerBidforItem" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="determineWinnerBidforItem"
+                  IsViewObjectMethod="false" DataControl="PlaceBidLocal"
+                  InstanceName="data.PlaceBidLocal.dataProvider"
+                  ReturnName="data.PlaceBidLocal.methodResults.determineWinnerBidforItem_PlaceBidLocal_dataProvider_determineWinnerBidforItem_result">
+      <NamedData NDName="itemId" NDValue="${row.itemId}"
+                 NDType="java.lang.Long"/>
+    </methodAction>
+    <methodAction id="deleteItem" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="deleteItem"
+                  IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                  InstanceName="data.PlaceItemLocal.dataProvider">
+      <NamedData NDName="itemId" NDValue="${row.itemId}"
+                 NDType="java.lang.Long"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

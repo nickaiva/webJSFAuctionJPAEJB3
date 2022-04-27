@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="/ejb3inaction.example.buslogic/"
+            xmlns="/ejb3inaction.example.buslogic/"
+            xmlns:sdoJava="commonj.sdo/java"
+            sdoJava:package="ejb3inaction.example.persistence">
+   <xsd:import namespace="commonj.sdo/java"/>
+   <xsd:complexType name="BidSDO">
+      <xsd:sequence>
+         <xsd:element name="bidBidder" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="bidDate" minOccurs="0">
+            <xsd:simpleType xmlns:sdoJava="commonj.sdo/java"
+                            sdoJava:instanceClass="java.sql.Timestamp">
+               <xsd:restriction base="xsd:dateTime"/>
+            </xsd:simpleType>
+         </xsd:element>
+         <xsd:element name="bidId" type="xsd:long" minOccurs="0"/>
+         <xsd:element name="bidItemId" type="xsd:long" minOccurs="0"/>
+         <xsd:element name="bidPrice" type="xsd:double" minOccurs="0"/>
+         <xsd:element name="bidStatus" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="bidSDO" type="BidSDO"/>
+</xsd:schema>

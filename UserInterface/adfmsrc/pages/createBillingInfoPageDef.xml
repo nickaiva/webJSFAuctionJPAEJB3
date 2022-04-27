@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createBillingInfoPageDef"
+                Package="pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.Long" Name="addBillingInfo_Return"
+                IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.addBillingInfo.result}"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_accountNo"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_cardType"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_expiryDate"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_secretCode"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_streetName1"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_streetName2"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_zipCode"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_city"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_state"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBillingInfo_country"
+                IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="addBillingInfo" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addBillingInfo"
+                  IsViewObjectMethod="false" DataControl="PlaceBillingInfoLocal"
+                  InstanceName="PlaceBillingInfoLocal.dataProvider"
+                  ReturnName="data.PlaceBillingInfoLocal.methodResults.addBillingInfo_PlaceBillingInfoLocal_dataProvider_addBillingInfo_result">
+      <NamedData NDName="accountNo" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_accountNo}"/>
+      <NamedData NDName="cardType" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_cardType}"/>
+      <NamedData NDName="expiryDate" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_expiryDate}"/>
+      <NamedData NDName="secretCode" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_secretCode}"/>
+      <NamedData NDName="streetName1" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_streetName1}"/>
+      <NamedData NDName="streetName2" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_streetName2}"/>
+      <NamedData NDName="zipCode" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_zipCode}"/>
+      <NamedData NDName="city" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_city}"/>
+      <NamedData NDName="state" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_state}"/>
+      <NamedData NDName="country" NDType="java.lang.String"
+                 NDValue="${bindings.addBillingInfo_country}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="accountNo">
+      <AttrNames>
+        <Item Value="addBillingInfo_accountNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="cardType">
+      <AttrNames>
+        <Item Value="addBillingInfo_cardType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="expiryDate">
+      <AttrNames>
+        <Item Value="addBillingInfo_expiryDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="secretCode">
+      <AttrNames>
+        <Item Value="addBillingInfo_secretCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="streetName1">
+      <AttrNames>
+        <Item Value="addBillingInfo_streetName1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="streetName2">
+      <AttrNames>
+        <Item Value="addBillingInfo_streetName2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="zipCode">
+      <AttrNames>
+        <Item Value="addBillingInfo_zipCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="city">
+      <AttrNames>
+        <Item Value="addBillingInfo_city"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="state">
+      <AttrNames>
+        <Item Value="addBillingInfo_state"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="country">
+      <AttrNames>
+        <Item Value="addBillingInfo_country"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

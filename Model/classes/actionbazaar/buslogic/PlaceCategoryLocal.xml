@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.59.23"
+          id="PlaceCategoryLocal" Package="actionbazaar.buslogic"
+          BeanClass="actionbazaar.buslogic.PlaceCategoryLocal"
+          isJavaBased="true">
+  <AccessorAttribute id="categoryFindAll" IsCollection="true"
+                     BeanClass="actionbazaar.persistence.Category"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="persistCategory" ReturnNodeName="Category">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="mergeCategory" ReturnNodeName="Category">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeCategory"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="getCategoryFindByCategoryId" ReturnNodeName="Category"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="categoryId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="getCategoryFindByParentId" ReturnNodeName="Category"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="parentId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="getCategoryFindByCategoryName" ReturnNodeName="Category"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="categoryName" Type="java.lang.String"
+                   isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="getCategoryFindByCreatedBy" ReturnNodeName="Category"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="createdBy" Type="java.lang.String" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="java.lang.Long" id="addCategory"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="categoryName" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="createDate" Type="java.sql.Date" isStructured="false"/>
+    <ParameterInfo id="createdBy" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="parentId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+</JavaBean>

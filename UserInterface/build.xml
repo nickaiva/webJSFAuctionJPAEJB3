@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--Generated Apr 7, 2012 9:24:35 AM-->
+<project name="UserInterface" default="UserInterface.ear" basedir=".">
+  <taskdef name="wldeploy"
+           classname="weblogic.ant.taskdefs.management.WLDeploy"/>
+  <taskdef resource="net/sf/antcontrib/antlib.xml">
+    <classpath>
+      <pathelement location="${ant.lib.folder}/lib/ant-contrib.jar"/>
+    </classpath>
+  </taskdef>
+  <property name="app.name" value="ejb3inaction"/>
+  <property name="context.root" value="${app.name}"/>
+  <property file="../UserInterface/build.properties"/>
+  <import file="../JDeveloperLibs/jdev-libs.xml"/>
+  <import file="../Model/build.xml"/>
+  <!--import file="Datasource.xml"/-->
+  <path id="UserInterface.classpath">
+    <pathelement location="../Model/classes"/>
+    <pathelement location="../lib/log4j-1.2.15.jar"/>
+    <!--path refid="JDeveloperLibs.library.JSTL.1.2"/-->
+    <path refid="JDeveloperLibs.library.JSTL.1.2.Tags"/>
+    <path refid="JDeveloperLibs.library.JSF.1.2"/>
+    <path refid="JDeveloperLibs.library.ADF.Faces.Runtime.11"/>
+    <path refid="JDeveloperLibs.library.ADF.Common.Runtime"/>
+    <path refid="JDeveloperLibs.library.JSP.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.DVT.Core.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.DVT.Faces.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.DVT.Faces.Databinding.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.Faces.Databinding.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.Page.Flow.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.Model.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.Controller.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.Web.Runtime"/>
+    <path refid="JDeveloperLibs.library.MDS.Runtime"/>
+    <path refid="JDeveloperLibs.library.EJB.Data.Control"/>
+    <path refid="JDeveloperLibs.library.EJB.3.0"/>
+    <path refid="JDeveloperLibs.library.TopLink"/>
+    <path refid="JDeveloperLibs.library.Java.EE.1.5.API"/>
+    <path refid="JDeveloperLibs.library.WebLogic.10.3.Remote-Client"/>
+    <path refid="JDeveloperLibs.library.Resource.Bundle.Support"/>
+    <path refid="JDeveloperLibs.library.ADF.Controller.Schema"/>
+    <path refid="JDeveloperLibs.library.MDS.Runtime.Dependencies"/>
+    <path refid="JDeveloperLibs.library.Commons.Beanutils.1.6"/>
+    <path refid="JDeveloperLibs.library.Commons.Logging.1.0.4"/>
+    <path refid="JDeveloperLibs.library.Commons.Collections.3.1"/>
+    <path refid="JDeveloperLibs.library.ADF.DVT.Faces.Databinding.MDS.Runtime"/>
+    <path refid="JDeveloperLibs.library.Oracle.JDBC"/>
+    <path refid="JDeveloperLibs.library.Oracle.JEWT"/>
+    <path refid="JDeveloperLibs.library.BC4J.Security"/>
+    <path refid="JDeveloperLibs.library.ADF.Common.Web.Runtime"/>
+    <path refid="JDeveloperLibs.library.Servlet.Runtime"/>
+    <path refid="JDeveloperLibs.library.Resource.Bundle.Variable.Resolver"/>
+    <path refid="JDeveloperLibs.library.Trinidad.Runtime.11"/>
+    <path refid="JDeveloperLibs.library.Trinidad.Databinding.Runtime"/>
+  </path>
+  <target name="UserInterface.init">
+    <tstamp/>
+    <mkdir dir="${UserInterface.output.dir}"/>
+    <mkdir dir="${UserInterface.deploy.dir}"/>
+  </target>
+  <target name="UserInterface.all" description="Build the project"
+          depends="UserInterface.compile,UserInterface.copy"/>
+  <target name="UserInterface.clean" description="Clean the project">
+    <delete includeemptydirs="true" quiet="true">
+      <fileset dir="${UserInterface.output.dir}" includes="**/*"/>
+      <fileset dir="${UserInterface.deploy.dir}" includes="**/*"/>
+      <fileset dir="${model.output.dir}" includes="**/*"/>
+      <fileset dir="${model.deploy.dir}" includes="**/*"/>
+    </delete>
+  </target>
+  <target name="UserInterface.compile" description="Compile Java source files"
+          depends="UserInterface.init,model.compile">
+    <javac destdir="${UserInterface.output.dir}"
+           classpathref="UserInterface.classpath" debug="${javac.debug}"
+           nowarn="${javac.nowarn}" deprecation="${javac.deprecation}"
+           encoding="UTF-8" source="1.6" target="1.6">
+      <src path="../lib"/>
+    </javac>
+    <javac destdir="${UserInterface.output.dir}"
+           classpathref="UserInterface.classpath" debug="${javac.debug}"
+           nowarn="${javac.nowarn}" deprecation="${javac.deprecation}"
+           encoding="UTF-8" source="1.6" target="1.6">
+      <src path="${UserInterface.src.dir}"/>
+    </javac>
+  </target>
+  <target name="UserInterface.copy" description="Copy files to output directory"
+          depends="UserInterface.init">
+    <patternset id="copy.patterns">
+      <include name="**/*.jspx"/>
+      <include name="**/*.gif"/>
+      <include name="**/*.jpg"/>
+      <include name="**/*.jpeg"/>
+      <include name="**/*.png"/>
+      <include name="**/*.properties"/>
+      <include name="**/*.xml"/>
+      <include name="**/*.ejx"/>
+      <include name="**/*.xcfg"/>
+      <include name="**/*.cpx"/>
+      <include name="**/*.dcx"/>
+      <include name="**/*.sva"/>
+      <include name="**/*.wsdl"/>
+      <include name="**/*.ini"/>
+      <include name="**/*.tld"/>
+      <include name="**/*.tag"/>
+      <include name="**/*.xlf"/>
+      <include name="**/*.xsl"/>
+      <include name="**/*.xsd"/>
+      <include name="**/*.sso"/>
+    </patternset>
+    <patternset id="webfile.patterns">
+      <include name="**/*.html"/>
+      <include name="**/*.jspx"/>
+      <include name="**/images/*.jpg"/>
+    </patternset>
+    <patternset id="webinf.patterns">
+      <include name="WEB-INF/**/*.xml"/>
+      <include name="**/WEB-INF/lib/*.jar"/>
+    </patternset>
+    <patternset id="library.patterns">
+      <!--include name="**/glassfish.jsf_1.0.0.0_1-2-15.jar"/>
+      <include name="**/glassfish.jstl_1.2.0.1.jar"/>
+      <include name="**/javax.jsf_1.1.0.0_1-2.jar"/>
+      <include name="**/wls.jsf.di.jar"/-->
+      <include name="**/log4j-1.2.15.jar"/>
+      <include name="**/adf-loc.jar"/>
+      <exclude name="**/modules/javax.jsf_1.1.0.0_1-2.jar"/>
+    </patternset>
+    <copy todir="${UserInterface.output.dir}">
+      <fileset dir="${UserInterface.src.dir}">
+        <patternset refid="copy.patterns"/>
+      </fileset>
+      <fileset dir="../lib">
+        <patternset refid="copy.patterns"/>
+      </fileset>
+    </copy>
+    <copy todir="${UserInterface.output.dir}">
+      <fileset dir="../UserInterface/adfmsrc">
+        <patternset refid="copy.patterns"/>
+      </fileset>
+    </copy>
+  </target>
+  <target name="UserInterface.war"
+          depends="UserInterface.copy,UserInterface.compile,model.copy">
+    <war destfile="${UserInterface.deploy.dir}/${UserInterface.war.file}"
+         webxml="${UserInterface.html.dir}/WEB-INF/web.xml">
+      <zipfileset dir="${UserInterface.html.dir}">
+        <patternset refid="webinf.patterns"/>
+      </zipfileset>
+      <zipfileset dir="${UserInterface.html.dir}">
+        <patternset refid="webfile.patterns"/>
+      </zipfileset>
+      <zipfileset dir="${UserInterface.output.dir}" prefix="WEB-INF/classes">
+        <exclude name=".data/**"/>
+        <exclude name="**/*.cdi"/>
+        <exclude name="**/build.xml"/>
+        <exclude name="**/build.properties"/>
+        <exclude name="**/*.java"/>
+        <exclude name="**/log4j-1.2.15.jar"/>
+        <exclude name="**/WEB-INF/temp/**"/>
+      </zipfileset>
+    </war>
+  </target>
+  <target name="UserInterface.ear" depends="UserInterface.war,model.jar">
+    <mkdir dir="${UserInterface.deploy.dir}\META-INF"/>
+    <mkdir dir="${UserInterface.deploy.dir}\lib"/>
+    <copy todir="${UserInterface.deploy.dir}\lib">
+      <zipfileset file="..\lib\*.jar" prefix="lib"/>
+    </copy>
+    <copy todir="${UserInterface.deploy.dir}\META-INF">
+      <fileset dir="${project.src.dir}\META-INF" excludes="application.xml"
+               includes="cwallet.sso">
+        <patternset refid="copy.patterns"/>
+      </fileset>
+    </copy>
+    <copy todir="${UserInterface.deploy.dir}\adf\META-INF">
+      <fileset dir="..\.adf\META-INF">
+        <patternset refid="copy.patterns"/>
+      </fileset>
+    </copy>
+    <copy file="${UserInterface.deploy.dir}/${UserInterface.war.file}"
+          todir="${UserInterface.deploy.dir}"/>
+    <copy file="${model.deploy.dir}/${model.jar.file}"
+          todir="${UserInterface.deploy.dir}"/>
+    <ear basedir="${UserInterface.deploy.dir}"
+         destfile="${UserInterface.deploy.dir}/${UserInterface.ear.file}"
+         appxml="${project.src.dir}/META-INF/application.xml">
+      <zipfileset dir="../JDeveloperLibs" prefix="lib">
+        <patternset refid="library.patterns"/>
+      </zipfileset>
+    </ear>
+  </target>
+  <target name="UserInterface.autodeploy"
+          depends="UserInterface.ear,UserInterface.clean">
+    <copy file="${UserInterface.deploy.dir}/${UserInterface.ear.file}"
+          todir="${weblogic.home}/${weblogic.deploy.dir}"/>
+  </target>
+  <target name="UserInterface.deploy"
+          depends="UserInterface.clean,UserInterface.ear"><!-- ,createDataSource-->
+    <echo message="START UNDEPLOYING APPLICATION..."></echo>
+    <wldeploy action="undeploy" verbose="true" debug="true" name="${project}"
+              adminurl="t3://${host}:${port}" user="${username}"
+              password="${password}" targets="${target.server}"
+              failonerror="false"/>
+    <wldeploy action="deploy" verbose="true" debug="true" name="${project}"
+              adminurl="t3://${host}:${port}" user="${username}"
+              password="${password}" targets="${target.server}"
+              failonerror="false"
+              source="${UserInterface.deploy.dir}/${UserInterface.ear.file}"
+              remote="true" upload="true"/>
+    <echo message="-----> ACCESS THE APPLICATION USING:"></echo>
+    <echo message="     http://${host}:${port}/${context.root}"></echo>
+  </target>
+</project>

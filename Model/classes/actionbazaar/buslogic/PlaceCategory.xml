@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.59.23"
+          id="PlaceCategory" Package="actionbazaar.buslogic"
+          BeanClass="actionbazaar.buslogic.PlaceCategory" isJavaBased="true">
+  <AccessorAttribute id="categoryFindAll" IsCollection="true"
+                     RemoveMethod="removeCategory"
+                     BeanClass="actionbazaar.persistence.Category"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeCategory"/>
+    </Properties>
+  </AccessorAttribute>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category" id="addCategory"
+                  ReturnNodeName="Category">
+    <ParameterInfo id="categoryName" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="createDate" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="createdBy" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="parentId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="persistCategory" ReturnNodeName="Category">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="mergeCategory" ReturnNodeName="Category">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeCategory"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="getCategoryFindByCategoryId" ReturnNodeName="Category"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="categoryId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+</JavaBean>

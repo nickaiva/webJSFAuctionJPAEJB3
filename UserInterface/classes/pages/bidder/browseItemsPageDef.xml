@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.2.64.36" id="browseItemsPageDef"
+                Package="pages.bidder">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="root" RangeSize="25" DataControl="PlaceItemLocal"
+              id="PlaceItemLocalIterator" ChangeEventPolicy="ppr"/>
+    <accessorIterator MasterBinding="PlaceItemLocalIterator" Binds="itemFindAll"
+                      RangeSize="25" DataControl="PlaceItemLocal"
+                      BeanClass="actionbazaar.persistence.Item"
+                      id="itemFindAllIterator" ChangeEventPolicy="ppr"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="itemFindAllIterator" id="bidEndDate">
+      <AttrNames>
+        <Item Value="bidEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="itemFindAllIterator" id="bidStartDate">
+      <AttrNames>
+        <Item Value="bidStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="itemFindAllIterator" id="createdDate">
+      <AttrNames>
+        <Item Value="createdDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="itemFindAllIterator" id="initialPrice">
+      <AttrNames>
+        <Item Value="initialPrice"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="itemFindAllIterator" id="itemId">
+      <AttrNames>
+        <Item Value="itemId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="itemFindAllIterator" id="itemName">
+      <AttrNames>
+        <Item Value="itemName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="itemFindAllIterator" id="description">
+      <AttrNames>
+        <Item Value="description"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="itemFindAllIterator" id="First"
+            RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="itemFindAllIterator" id="Previous"
+            RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="itemFindAllIterator" id="Next"
+            RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="itemFindAllIterator" id="Last"
+            RequiresUpdateModel="true" Action="last"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="placeAdditionalImages.jspx" id="d1"
+                     binding="#{backingBeanScope.backing_placeAdditionalImage.d1}">
+            <af:form id="f1"
+                     binding="#{backingBeanScope.backing_placeAdditionalImage.f1}"
+                     usesUpload="true">
+                <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                                 id="pt1">
+                    <f:facet name="content">
+                        <af:panelGroupLayout id="pgl1"
+                                             binding="#{backingBeanScope.backing_placeAdditionalImage.pgl1}">
+                            <af:panelFormLayout id="pfl1"
+                                                binding="#{backingBeanScope.backing_placeAdditionalImage.pfl1}">
+                                <f:facet name="footer"/>
+                                <af:inputFile label="#{userinterfaceBundle.selectAFile}"
+                                              id="if1"
+                                              binding="#{backingBeanScope.backing_placeAdditionalImage.if1}"
+                                              valueChangeListener="#{backingBeanScope.backing_placeAdditionalImage.uploadFileValueChangeEvent}"
+                                              value="#{backingBeanScope.backing_placeAdditionalImage.file}"/>
+                                <af:inputText label="Description" id="it2"
+                                              binding="#{backingBeanScope.backing_placeAdditionalImage.it2}"/>
+                                <af:inputText label="ObjectID" id="it1"
+                                              binding="#{backingBeanScope.backing_placeAdditionalImage.it1}"/>
+                                <af:panelBorderLayout id="pbl1"
+                                                      binding="#{backingBeanScope.backing_placeAdditionalImage.pbl1}">
+                                    <f:facet name="start"/>
+                                    <f:facet name="bottom"/>
+                                    <f:facet name="end"/>
+                                    <f:facet name="top"/>
+                                    <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                    id="rb1"
+                                                    binding="#{backingBeanScope.backing_placeAdditionalImage.rb1}"/>
+                                    <af:commandButton text="#{userinterfaceBundle.addObject}"
+                                                      id="cb1"
+                                                      binding="#{backingBeanScope.backing_placeAdditionalImage.cb1}"
+                                                      action="#{backingBeanScope.backing_placeAdditionalImage.placeAdditionalImage_action}"/>
+                                </af:panelBorderLayout>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_placeAdditionalImage-->
+</jsp:root>

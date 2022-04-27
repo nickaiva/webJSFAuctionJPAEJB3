@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="queryUsers">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         value="#{bindings.pageTemplateBinding}" id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout id="psl1"
+                                   inlineStyle="width:1338px; height:365px;"
+                                   topHeight="98px">
+              <f:facet name="center">
+                <af:table value="#{bindings.User.collectionModel}" var="row"
+                          rows="#{bindings.User.rangeSize}"
+                          emptyText="#{bindings.User.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.User.rangeSize}"
+                          rowBandingInterval="0"
+                          filterModel="#{bindings.UserQuery.queryDescriptor}"
+                          queryListener="#{bindings.UserQuery.processQuery}"
+                          filterVisible="false" varStatus="vs" id="t1"
+                          rendered="#{bindings.getUserFindByUserIdIterator.estimatedRowCount > 0}"
+                          columnStretching="column:c6">
+                  <af:column sortProperty="birthDate" filterable="true"
+                             sortable="true"
+                             headerText="#{bindings.User.hints.birthDate.label}"
+                             id="c2">
+                    <af:outputText value="#{row.birthDate}" id="ot3">
+                      <!--af:convertDateTime pattern="#{bindings.User.hints.birthDate.format}"/-->
+                      <f:convertDateTime type="date" dateStyle="medium"
+                                         pattern="dd/MM/yyyy"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="firstName" filterable="true"
+                             sortable="true"
+                             headerText="#{bindings.User.hints.firstName.label}"
+                             id="c1">
+                    <af:outputText value="#{row.firstName}" id="ot2"/>
+                  </af:column>
+                  <af:column sortProperty="lastName" filterable="true"
+                             sortable="true"
+                             headerText="#{bindings.User.hints.lastName.label}"
+                             id="c5" minimumWidth="100">
+                    <af:outputText value="#{row.lastName}" id="ot1"/>
+                  </af:column>
+                  <af:column sortProperty="userBillingId" filterable="true"
+                             sortable="true"
+                             headerText="#{bindings.User.hints.userBillingId.label}"
+                             id="c4">
+                    <af:outputText value="#{row.userBillingId}" id="ot5">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.User.hints.userBillingId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="userId" filterable="true"
+                             sortable="true"
+                             headerText="#{bindings.User.hints.userId.label}"
+                             id="c6" minimumWidth="100">
+                    <af:commandLink text="#{row.userId}" id="cl1" action="editUser">
+                      <!--af:outputText value="#{row.userId}" id="ot4"/-->
+                      <!--af:setPropertyListener type="action"
+                                              from="#{row.userId}"
+                                              to="#{pageFlowScope.userID}"/-->
+                    </af:commandLink>
+                  </af:column>
+                  <af:column sortProperty="userType" filterable="true"
+                             sortable="true"
+                             headerText="#{bindings.User.hints.userType.label}"
+                             id="c3">
+                    <af:outputText value="#{row.userType}" id="ot6"/>
+                  </af:column>
+                </af:table>
+              </f:facet>
+              <f:facet name="top">
+                <af:panelGroupLayout layout="scroll"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     id="pgl1">
+                  <af:panelFormLayout id="pfl1">
+                    <af:inputText value="#{bindings.userId.inputValue}"
+                                  label="#{bindings.userId.hints.label}"
+                                  required="#{bindings.userId.hints.mandatory}"
+                                  columns="#{bindings.userId.hints.displayWidth}"
+                                  maximumLength="#{bindings.userId.hints.precision}"
+                                  shortDesc="#{bindings.userId.hints.tooltip}"
+                                  id="it1">
+                      <f:validator binding="#{bindings.userId.validator}"/>
+                    </af:inputText>
+                    <af:panelBorderLayout id="pbl1">
+                      <f:facet name="bottom"/>
+                      <f:facet name="top"/>
+                      <af:resetButton text="#{userinterfaceBundle.reset}" id="rb1"/>
+                      <af:commandButton actionListener="#{bindings.getUserFindByUserId.execute}"
+                                        text="#{userinterfaceBundle.performQuery}"
+                                        disabled="#{!bindings.getUserFindByUserId.enabled}"
+                                        id="cb1"/>
+                    </af:panelBorderLayout>
+                  </af:panelFormLayout>
+                  <af:spacer width="10" height="10" id="s2"/>
+                  <af:separator id="s1"/>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

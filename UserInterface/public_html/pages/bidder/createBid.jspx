@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="Create bid">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         id="pt1">
+          <f:facet name="content">
+            <af:panelFormLayout id="pfl1">
+              <af:inputText value="#{securityContext.userName}"
+                            label="#{bindings.bidderId.hints.label}"
+                            required="#{bindings.bidderId.hints.mandatory}"
+                            columns="#{bindings.bidderId.hints.displayWidth}"
+                            maximumLength="#{bindings.bidderId.hints.precision}"
+                            shortDesc="#{bindings.bidderId.hints.tooltip}"
+                            id="it1" readOnly="true"><!-- #{bindings.bidderId.inputValue} -->
+                <f:validator binding="#{bindings.bidderId.validator}"/>
+              </af:inputText>
+              <af:selectOneChoice value="#{bindings.itemId.inputValue}"
+                                  label="#{bindings.itemId.label}"
+                                  required="#{bindings.itemId.hints.mandatory}"
+                                  shortDesc="#{bindings.itemId.hints.tooltip}"
+                                  id="soc1">
+                <f:selectItems value="#{bindings.itemId.items}" id="si1"/>
+              </af:selectOneChoice>
+              <af:inputText value="#{bindings.bidPrice.inputValue}"
+                            label="#{bindings.bidPrice.hints.label}"
+                            required="#{bindings.bidPrice.hints.mandatory}"
+                            columns="#{bindings.bidPrice.hints.displayWidth}"
+                            maximumLength="#{bindings.bidPrice.hints.precision}"
+                            shortDesc="#{bindings.bidPrice.hints.tooltip}"
+                            id="it2">
+                <f:validator binding="#{bindings.bidPrice.validator}"/>
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.bidPrice.format}"/>
+              </af:inputText>
+              <af:panelBorderLayout id="pbl1">
+                <f:facet name="start"/>
+                <f:facet name="bottom"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+                <af:resetButton text="#{userinterfaceBundle.reset}" id="rb1"/>
+                <af:commandButton actionListener="#{bindings.addBid.execute}"
+                                  text="#{userinterfaceBundle.addObject}"
+                                  disabled="#{!bindings.addBid.enabled}"
+                                  id="cb1"/>
+              </af:panelBorderLayout>
+            </af:panelFormLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

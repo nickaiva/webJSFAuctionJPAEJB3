@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createItemPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.Long" Name="placeItem_Return"
+                IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.placeItem.result}"/>
+      <variable Type="java.lang.String" Name="placeItem_itemName"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="placeItem_SellerId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.Double" Name="placeItem_initialPrice"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="placeItem_description"
+                IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="placeItem" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="placeItem"
+                  IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                  InstanceName="data.PlaceItemLocal.dataProvider"
+                  ReturnName="data.PlaceItemLocal.methodResults.placeItem_PlaceItemLocal_dataProvider_placeItem_result">
+      <NamedData NDName="itemName" NDType="java.lang.String"
+                 NDValue="${bindings.placeItem_itemName}"/>
+      <NamedData NDName="SellerId" NDType="java.lang.String"
+                 NDValue="#{securityContext.userName}"/><!-- ${bindings.placeItem_SellerId}-->
+      <NamedData NDName="initialPrice" NDType="java.lang.Double"
+                 NDValue="${bindings.placeItem_initialPrice}"/>
+      <NamedData NDName="description" NDType="java.lang.String"
+                 NDValue="${bindings.placeItem_description}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="itemName">
+      <AttrNames>
+        <Item Value="placeItem_itemName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="SellerId">
+      <AttrNames>
+        <Item Value="placeItem_SellerId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="initialPrice">
+      <AttrNames>
+        <Item Value="placeItem_initialPrice"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="description">
+      <AttrNames>
+        <Item Value="placeItem_description"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

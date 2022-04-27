@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.59.23"
+          id="PlaceItemLocal" Package="actionbazaar.buslogic"
+          BeanClass="actionbazaar.buslogic.PlaceItemLocal" isJavaBased="true">
+  <AccessorAttribute id="itemFindAll" IsCollection="true"
+                     RemoveMethod="removeItem"
+                     BeanClass="actionbazaar.persistence.Item"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeItem"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="contactInfoFindAll" IsCollection="true"
+                     RemoveMethod="removeContactInfo"
+                     BeanClass="actionbazaar.persistence.ContactInfo"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeContactInfo"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="sellerFindAll" IsCollection="true"
+                     RemoveMethod="removeSeller"
+                     BeanClass="actionbazaar.persistence.Seller"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeSeller"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="billingInfoFindAll" IsCollection="true"
+                     RemoveMethod="removeBillingInfo"
+                     BeanClass="actionbazaar.persistence.BillingInfo"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeBillingInfo"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="bidderFindAll" IsCollection="true"
+                     RemoveMethod="removeBidder"
+                     BeanClass="actionbazaar.persistence.Bidder"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeBidder"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="orderFindAll" IsCollection="true"
+                     RemoveMethod="removeOrder"
+                     BeanClass="actionbazaar.persistence.Order"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeOrder"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="categoryFindAll" IsCollection="true"
+                     RemoveMethod="removeCategory"
+                     BeanClass="actionbazaar.persistence.Category"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeCategory"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="shippingInfoFindAll" IsCollection="true"
+                     RemoveMethod="removeShippingInfo"
+                     BeanClass="actionbazaar.persistence.ShippingInfo"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeShippingInfo"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="userFindAll" IsCollection="true"
+                     RemoveMethod="removeUser"
+                     BeanClass="actionbazaar.persistence.User"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeUser"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="bidFindAll" IsCollection="true"
+                     RemoveMethod="removeBid"
+                     BeanClass="actionbazaar.persistence.Bid"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeBid"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="itemFindRemovedFromFurtherBiddingItems"
+                     IsCollection="true"
+                     BeanClass="actionbazaar.persistence.Item"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <AccessorAttribute id="itemFindAvailableItems" IsCollection="true"
+                     BeanClass="actionbazaar.persistence.Item"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <MethodAccessor IsCollection="false"
+                  Type="actionbazaar.persistence.ContactInfo"
+                  BeanClass="actionbazaar.persistence.ContactInfo"
+                  id="persistContactInfo" ReturnNodeName="ContactInfo">
+    <ParameterInfo id="contactInfo" Type="actionbazaar.persistence.ContactInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false"
+                  Type="actionbazaar.persistence.ContactInfo"
+                  BeanClass="actionbazaar.persistence.ContactInfo"
+                  id="mergeContactInfo" ReturnNodeName="ContactInfo">
+    <ParameterInfo id="contactInfo" Type="actionbazaar.persistence.ContactInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeContactInfo"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="contactInfo" Type="actionbazaar.persistence.ContactInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Seller"
+                  BeanClass="actionbazaar.persistence.Seller" id="persistSeller"
+                  ReturnNodeName="Seller">
+    <ParameterInfo id="seller" Type="actionbazaar.persistence.Seller"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Seller"
+                  BeanClass="actionbazaar.persistence.Seller" id="mergeSeller"
+                  ReturnNodeName="Seller">
+    <ParameterInfo id="seller" Type="actionbazaar.persistence.Seller"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeSeller"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="seller" Type="actionbazaar.persistence.Seller"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false"
+                  Type="actionbazaar.persistence.BillingInfo"
+                  BeanClass="actionbazaar.persistence.BillingInfo"
+                  id="persistBillingInfo" ReturnNodeName="BillingInfo">
+    <ParameterInfo id="billingInfo" Type="actionbazaar.persistence.BillingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false"
+                  Type="actionbazaar.persistence.BillingInfo"
+                  BeanClass="actionbazaar.persistence.BillingInfo"
+                  id="mergeBillingInfo" ReturnNodeName="BillingInfo">
+    <ParameterInfo id="billingInfo" Type="actionbazaar.persistence.BillingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeBillingInfo"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="billingInfo" Type="actionbazaar.persistence.BillingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bidder"
+                  BeanClass="actionbazaar.persistence.Bidder" id="persistBidder"
+                  ReturnNodeName="Bidder">
+    <ParameterInfo id="bidder" Type="actionbazaar.persistence.Bidder"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bidder"
+                  BeanClass="actionbazaar.persistence.Bidder" id="mergeBidder"
+                  ReturnNodeName="Bidder">
+    <ParameterInfo id="bidder" Type="actionbazaar.persistence.Bidder"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeBidder"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="bidder" Type="actionbazaar.persistence.Bidder"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Order"
+                  BeanClass="actionbazaar.persistence.Order" id="persistOrder"
+                  ReturnNodeName="Order">
+    <ParameterInfo id="order" Type="actionbazaar.persistence.Order"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Order"
+                  BeanClass="actionbazaar.persistence.Order" id="mergeOrder"
+                  ReturnNodeName="Order">
+    <ParameterInfo id="order" Type="actionbazaar.persistence.Order"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeOrder"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="order" Type="actionbazaar.persistence.Order"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="persistCategory" ReturnNodeName="Category">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Category"
+                  BeanClass="actionbazaar.persistence.Category"
+                  id="mergeCategory" ReturnNodeName="Category">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeCategory"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="category" Type="actionbazaar.persistence.Category"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item" id="persistItem"
+                  ReturnNodeName="Item">
+    <ParameterInfo id="item" Type="actionbazaar.persistence.Item"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item" id="mergeItem"
+                  ReturnNodeName="Item">
+    <ParameterInfo id="item" Type="actionbazaar.persistence.Item"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeItem"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="item" Type="actionbazaar.persistence.Item"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false"
+                  Type="actionbazaar.persistence.ShippingInfo"
+                  BeanClass="actionbazaar.persistence.ShippingInfo"
+                  id="persistShippingInfo" ReturnNodeName="ShippingInfo">
+    <ParameterInfo id="shippingInfo"
+                   Type="actionbazaar.persistence.ShippingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false"
+                  Type="actionbazaar.persistence.ShippingInfo"
+                  BeanClass="actionbazaar.persistence.ShippingInfo"
+                  id="mergeShippingInfo" ReturnNodeName="ShippingInfo">
+    <ParameterInfo id="shippingInfo"
+                   Type="actionbazaar.persistence.ShippingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeShippingInfo"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="shippingInfo"
+                   Type="actionbazaar.persistence.ShippingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.User"
+                  BeanClass="actionbazaar.persistence.User" id="persistUser"
+                  ReturnNodeName="User">
+    <ParameterInfo id="user" Type="actionbazaar.persistence.User"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.User"
+                  BeanClass="actionbazaar.persistence.User" id="mergeUser"
+                  ReturnNodeName="User">
+    <ParameterInfo id="user" Type="actionbazaar.persistence.User"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeUser"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="user" Type="actionbazaar.persistence.User"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="persistBid"
+                  ReturnNodeName="Bid">
+    <ParameterInfo id="bid" Type="actionbazaar.persistence.Bid"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="mergeBid"
+                  ReturnNodeName="Bid">
+    <ParameterInfo id="bid" Type="actionbazaar.persistence.Bid"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeBid"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="bid" Type="actionbazaar.persistence.Bid"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="getBidsByDate"
+                  ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidDate" Type="java.sql.Date" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item"
+                  id="getItemGetItemsByEndDate" ReturnNodeName="Item"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidEndDate" Type="java.sql.Timestamp"
+                   isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item"
+                  id="getItemGetItemsByStartDate" ReturnNodeName="Item"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidStartDate" Type="java.sql.Timestamp"
+                   isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item"
+                  id="getItemGetItemsByDateInterval" ReturnNodeName="Item"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidStartDate" Type="java.sql.Timestamp"
+                   isStructured="false"/>
+    <ParameterInfo id="bidEndDate" Type="java.sql.Timestamp"
+                   isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item"
+                  id="getItemGetItemsBySellerId" ReturnNodeName="Item"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="sellerId" Type="java.lang.String" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item"
+                  id="getItemFindWonItems" ReturnNodeName="Item"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="userId" Type="java.lang.String" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item" id="updateItem"
+                  ReturnNodeName="Item">
+    <ParameterInfo id="item" Type="actionbazaar.persistence.Item"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item" id="undoItemChanges"
+                  ReturnNodeName="Item">
+    <ParameterInfo id="item" Type="actionbazaar.persistence.Item"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item"
+                  id="getItemGetItemsByName" ReturnNodeName="Item"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="itemName" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="userId" Type="java.lang.String" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="java.lang.Object" id="queryByRange"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="jpqlStmt" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="firstResult" Type="int" isStructured="false"/>
+    <ParameterInfo id="maxResults" Type="int" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="java.lang.Long" id="placeItem"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="itemName" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="SellerId" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="initialPrice" Type="java.lang.Double"
+                   isStructured="false"/>
+    <ParameterInfo id="description" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="image" Type="byte[]" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="byte[]" id="getImageByItemId"
+                  ReturnNodeName="byte">
+    <ParameterInfo id="itemId" Type="java.lang.Long" isStructured="false"/>
+    <Attribute Name="element" Type="byte"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item"
+                  id="getItemGetItemById" ReturnNodeName="Item">
+    <ParameterInfo id="itemId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Item"
+                  BeanClass="actionbazaar.persistence.Item" id="updateItem"
+                  ReturnNodeName="Item">
+    <ParameterInfo id="itemId" Type="java.lang.Long" isStructured="false"/>
+    <ParameterInfo id="itemName" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="initialPrice" Type="java.lang.Double"
+                   isStructured="false"/>
+    <ParameterInfo id="description" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="image" Type="byte[]" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="deleteItem"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="itemId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+</JavaBean>

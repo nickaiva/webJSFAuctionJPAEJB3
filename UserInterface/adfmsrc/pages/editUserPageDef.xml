@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.2.61.83" id="editUserPageDef" Package="pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="getUserFindByUserId_userId"
+                IsQueriable="false" DefaultValue="#{pageFlowScope.userID}"/>
+                <!--  Added DefaultValue="#{pageFlowScope.userID}"-->
+    </variableIterator>
+    <methodIterator Binds="getUserFindByUserId.result"
+                    DataControl="AddUserLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.User"
+                    id="getUserFindByUserIdIterator" ChangeEventPolicy="ppr"/>
+  </executables>
+  <bindings>
+    <methodAction id="getUserFindByUserId" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getUserFindByUserId"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="data.AddUserLocal.dataProvider"
+                  ReturnName="data.AddUserLocal.methodResults.getUserFindByUserId_AddUserLocal_dataProvider_getUserFindByUserId_result">
+      <NamedData NDName="userId" NDType="java.lang.String"
+                 NDValue="${bindings.getUserFindByUserId_userId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="userId">
+      <AttrNames>
+        <Item Value="getUserFindByUserId_userId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="birthDate">
+      <AttrNames>
+        <Item Value="birthDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="firstName">
+      <AttrNames>
+        <Item Value="firstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="lastName">
+      <AttrNames>
+        <Item Value="lastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator"
+                     id="userBillingId">
+      <AttrNames>
+        <Item Value="userBillingId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="userId1">
+      <AttrNames>
+        <Item Value="userId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUserFindByUserIdIterator" id="userType">
+      <AttrNames>
+        <Item Value="userType"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="mergeUser" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeUser"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="data.AddUserLocal.dataProvider"
+                  ReturnName="data.AddUserLocal.methodResults.mergeUser_AddUserLocal_dataProvider_mergeUser_result">
+      <NamedData NDName="user"
+                 NDValue="#{bindings.getUserFindByUserIdIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.User"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

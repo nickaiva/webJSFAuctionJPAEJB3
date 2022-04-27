@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+           xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"
+                        deferredSyntaxAllowedAsLiteral="true"/><!--Added deferredSyntaxAllowedAsLiteral="true" for glassfish 3-->
+    <af:pageTemplateDef var="attrs">
+        <af:panelStretchLayout id="pt_psl1" topHeight="88px"
+                               bottomHeight="47px">
+            <f:facet name="center">
+                <af:panelSplitter id="pt_ps1" orientation="vertical"
+                                  splitterPosition="792">
+                    <f:facet name="first">
+                        <af:decorativeBox id="pt_db2" topHeight="26px">
+                            <f:facet name="center">
+                                <af:panelGroupLayout layout="scroll"
+                                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                                     id="pt_pgl7"
+                                                     halign="center">
+                                    <af:facetRef facetName="content"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="top">
+                                <af:panelGroupLayout id="pt_pgl8"
+                                                     halign="center"
+                                                     valign="middle"
+                                                     layout="scroll"
+                                                     inlineStyle="background-color:transparent;">
+                                    <af:menuBar id="pt_mb1"
+                                                inlineStyle="vertical-align:baseline;"
+                                                flex="0">
+                                        <af:group id="pt_g1">
+                                            <af:menu text="User management" id="menu2"
+                                                     textAndAccessKey="&amp;User management">
+                                                <af:commandMenuItem text="Add new user"
+                                                                    id="commandMenuItem3"
+                                                                    action="createUser"/>
+                                                <af:commandMenuItem text="Query users"
+                                                                    id="commandMenuItem4"
+                                                                    action="queryUsers"
+                                                                    rendered="#{securityContext.userInRole['ADMINISTRATOR']}"   />
+                                                <af:commandMenuItem text="Change bidder status"
+                                                                    id="pt_cmi3"
+                                                                    action="changeBidderStatus"
+                                                                    rendered="#{securityContext.userInRole['ADMINISTRATOR']}"/>
+                                                <af:commandMenuItem text="Edit personal details"
+                                                                    id="commandMenuItem12"
+                                                                    action="home"/>
+                                                <af:commandMenuItem text="Log out"
+                                                                    id="pt_cmi4"
+                                                                    rendered="#{securityContext.authenticated}"
+                                                                    action="#{login.performLogout}"/>
+                                            </af:menu>
+                                            <af:menu text="Bid for item" id="menu3"
+                                                     textAndAccessKey="&amp;Bid">
+                                                <af:commandMenuItem text="Add new bid"
+                                                                    id="commandMenuItem5"
+                                                                    action="addBid"
+                                                                    rendered="#{securityContext.userInRole['BIDDER , ADMINISTRATOR']}"/>
+                                                <af:commandMenuItem text="Query bids"
+                                                                    id="commandMenuItem6"
+                                                                    action="queryBids"/>
+                                                <af:commandMenuItem text="Withdraw a bid"
+                                                                    id="commandMenuItem11"
+                                                                    action="withdraw"
+                                                                    rendered="#{securityContext.userInRole['BIDDER , ADMINISTRATOR']}"/>
+                                            </af:menu>
+                                            <af:menu text="Items for Sale" id="pt_m2"
+                                                     textAndAccessKey="Items for &amp;sale">
+                                                <af:commandMenuItem text="Sell a new item"
+                                                                    id="pt_cmi7"
+                                                                    action="addItem"
+                                                                    rendered="#{securityContext.userInRole['SELLER, ADMINISTRATOR']}"/>
+                                                <af:commandMenuItem text="View item images"
+                                                                    id="pt_cmi2"
+                                                                    action="viewImages"/>
+                                                <af:commandMenuItem text="Query items"
+                                                                    id="commandMenuItem1"
+                                                                    action="queryItems"/>
+                                                <af:commandMenuItem text="Update item"
+                                                                    id="commandMenuItem14"
+                                                                    action="updateItem"
+                                                                    rendered="#{securityContext.userInRole['SELLER, ADMINISTRATOR']}"/>
+                                                <af:commandMenuItem text="Place item in category"
+                                                                    id="commandMenuItem16"
+                                                                    action="placeItemInCategory"
+                                                                    rendered="#{securityContext.userInRole['SELLER, ADMINISTRATOR']}"/>
+                                                <af:commandMenuItem text="Add new item image"
+                                                                    id="pt_cmi6"
+                                                                    action="addImages"
+                                                                    rendered="#{securityContext.userInRole['SELLER, ADMINISTRATOR']}"/>
+                                                <af:commandMenuItem text="Browse items"
+                                                                    id="pt_cmi8"
+                                                                    action="browseItems"/>
+                                            </af:menu>
+                                            <af:menu text="Categories of items" id="menu4"
+                                                     textAndAccessKey="&amp;Categories of items">
+                                                <af:commandMenuItem text="Add new category"
+                                                                    id="commandMenuItem7"
+                                                                    action="addCategory"
+                                                                    rendered="#{securityContext.userInRole['ADMINISTRATOR']}"/>
+                                                <af:commandMenuItem text="Query categories"
+                                                                    id="commandMenuItem8"
+                                                                    action="queryCategories"/>
+                                                <af:commandMenuItem text="Update category"
+                                                                    id="commandMenuItem15"
+                                                                    action="updateCategory"
+                                                                    rendered="#{securityContext.userInRole['ADMINISTRATOR']}"/>
+                                            </af:menu>
+                                            <af:menu text="Order" id="menu5"
+                                                     rendered="#{securityContext.userInRole['BIDDER,ADMINISTRATOR']}"
+                                                     textAndAccessKey="&amp;Order">
+                                                <af:commandMenuItem text="Create Shipping Info"
+                                                                    id="pt_cmi1"
+                                                                    action="createShippingInfo"/>
+                                                <af:commandMenuItem text="Add new order"
+                                                                    id="commandMenuItem9"
+                                                                    action="addOrder"/>
+                                                <af:commandMenuItem text="Query orders"
+                                                                    id="commandMenuItem10"
+                                                                    action="queryOrders"/>
+                                                <af:commandMenuItem text="Update Shipping Info"
+                                                                    id="pt_cmi5"
+                                                                    action="updateShippingInfo"/>
+                                            </af:menu>
+                                            <af:menu text="Help" id="menu1"
+                                                     textAndAccessKey="&amp;Help">
+                                                <af:commandMenuItem id="commandMenuItem2"
+                                                                    textAndAccessKey="&amp;About"
+                                                                    text="About">
+                                                    <af:showPopupBehavior popupId="aboutPopup"
+                                                                          triggerType="action"/>
+                                                </af:commandMenuItem>
+                                                <af:goMenuItem text="Diagnostics"
+                                                               id="goMenuItem1"
+                                                               destination="/servlet/SuperSnoop"/>
+                                                <af:commandMenuItem id="commandMenuItem13"
+                                                                    action="resetLog4j"
+                                                                    text="ResetLog4j"/>
+                                                <af:commandMenuItem id="commandMenuItem17"
+                                                                    textAndAccessKey="&amp;Change Locale"
+                                                                    text="Change Locale"
+                                                                    action="changeLocale"/>
+                                            </af:menu>
+                                        </af:group>
+                                    </af:menuBar>
+                                    <af:popup id="aboutPopup">
+                                        <af:dialog id="pt_d1" type="ok"
+                                                   title="About Auction Bazaar">
+                                            <af:panelGroupLayout id="pt_pgl3"
+                                                                 halign="center"
+                                                                 layout="vertical">
+                                                <af:outputText value="Developed by Nick Aiva.Weblogic Version  #{initParam.ActionBazaarApplicationVersion } Copyright
+2012 #{requestContext.timeZone.displayName} " id="outputText1"/>
+                                                <af:outputText value="Language and locale settings follow:
+#{facesContext.application.defaultLocale.displayLanguage}
+#{facesContext.application.defaultLocale.language}
+#{facesContext.application.defaultLocale.displayCountry}
+#{facesContext.application.defaultLocale.ISO3Country}
+#{facesContext.application.defaultLocale.ISO3Language}" id="pt_ot3"/>
+                                                <af:outputText value="Currency Symbol #{requestContext.currencyCode} #{adfFacesContext.currencyCode}"
+                                                               id="pt_ot4"/>
+                                                <af:spacer width="20"
+                                                           height="10"
+                                                           id="spacer1"/>
+                                                <af:outputText value="For newer versions please visit:"
+                                                               id="pt_ot2"/>
+                                                <af:spacer width="20"
+                                                           height="10"
+                                                           id="spacer3"/>
+                                                <af:goLink id="goLink1"
+                                                           targetFrame="_blank"
+                                                           destination="http://nickaiva.blogspot.com"
+                                                           inlineStyle="font-size:medium;"
+                                                           text="http://nickaiva.blogspot.com"/>
+                                                <af:spacer width="20"
+                                                           height="10"
+                                                           id="spacer2"/>
+                                            </af:panelGroupLayout>
+                                        </af:dialog>
+                                    </af:popup>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:decorativeBox>
+                    </f:facet>
+                </af:panelSplitter>
+            </f:facet>
+            <f:facet name="top">
+                <af:decorativeBox id="pt_db1" topHeight="50px">
+                    <f:facet name="center">
+                        <af:panelGroupLayout id="pt_pgl1" layout="horizontal"
+                                             valign="middle">
+                            <af:goLink id="pt_gl1" targetFrame="_blank"
+                                       destination="http://nickaiva.blogspot.com"
+                                       inlineStyle="font-size:medium;">
+                                <af:image id="pt_i1"
+                                          shortDesc="http://nickaiva.blogspot.com"
+                                          inlineStyle="height:auto; width:auto;"
+                                          source="/images/cropped-small-sea-wave .jpg"/>
+                                <af:spacer width="20" height="10" id="pt_s1"/>
+                            </af:goLink>
+                            <af:outputText value="#{attrs.pageTitle}"
+                                           id="pt_ot1"
+                                           inlineStyle="color:Navy; font-size:xx-large;"/>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:decorativeBox>
+            </f:facet>
+            <f:facet name="bottom">
+                <af:panelStretchLayout id="pt_psl3" startWidth="245px">
+                    <f:facet name="center">
+                        <af:panelGroupLayout id="pt_pgl2" halign="right"
+                                             layout="horizontal">
+                            <af:panelGroupLayout id="pt_pgl4" layout="vertical"
+                                                 inlineStyle="width:375px;">
+                                <af:spacer width="230" height="8" id="pt_s2"/>
+                                <af:outputFormatted value="&amp;copy; 2012 http://nickaiva.blogspot.com. All rights reserved."
+                                                    id="pt_of1"
+                                                    styleUsage="pageStamp"
+                                                    inlineStyle="text-align:right;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="start">
+                        <af:panelGroupLayout id="pt_pgl5" layout="vertical">
+                            <af:spacer width="200" height="8" id="pt_s3"/>
+                            <af:panelGroupLayout id="pt_pgl6"
+                                                 layout="horizontal"
+                                                 inlineStyle="width:242px;">
+                                <af:spacer width="4" height="10" id="pt_s4"/>
+                                <af:switcher id="pt_s5"
+                                             facetName="#{securityContext.authenticated?'loggedon':'loggedoff'}"
+                                             defaultFacet="loggedoff">
+                                    <f:facet name="loggedoff">
+                                        <af:outputFormatted value="[Not Connected]"
+                                                            id="pt_of5"
+                                                            styleUsage="pageStamp"/>
+                                    </f:facet>
+                                    <f:facet name="loggedon">
+                                        <af:outputFormatted value="[Connected as  #{securityContext.userName}]"
+                                                            id="pt_of6"
+                                                            styleUsage="pageStamp"/>
+                                    </f:facet>
+                                </af:switcher>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:panelStretchLayout>
+            </f:facet>
+        </af:panelStretchLayout>
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <display-name>templateABDef</display-name>
+                <facet>
+                    <facet-name>content</facet-name>
+                </facet>
+                <attribute>
+                    <attribute-name>pageTitle</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <default-value>Auction Bazaar</default-value>
+                </attribute>
+            </component>
+        </af:xmlContent>
+    </af:pageTemplateDef>
+</jsp:root>

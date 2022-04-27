@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--Ant buildfile runs only outside of JDeveloper-->
+<!--Generated Apr 7, 2012 8:59:13 AM-->
+<project name="Model" default="all" basedir=".">
+  <property file="../Model/build.properties"/>
+  <import file="../JDeveloperLibs/jdev-libs.xml"/>
+  <path id="model.classpath">
+    <pathelement location="classes"/>
+    <pathelement location="../lib/log4j-1.2.15.jar"/>
+
+    <path refid="JDeveloperLibs.library.EJB.3.0"/>
+    <path refid="JDeveloperLibs.library.TopLink"/>
+    <path refid="JDeveloperLibs.library.Java.EE.1.5.API"/>
+    <path refid="JDeveloperLibs.library.WebLogic.10.3.Remote-Client"/>
+    <path refid="JDeveloperLibs.library.ADF.Model.Runtime"/>
+    <path refid="JDeveloperLibs.library.ADF.Model.Generic.Runtime"/>
+    <path refid="JDeveloperLibs.library.Resource.Bundle.Support"/>
+    <path refid="JDeveloperLibs.library.ADF.Common.Runtime"/>
+    <!--path refid="JDeveloperLibs.library.Log4j-1.2.15.jar"/-->
+    <path refid="JDeveloperLibs.library.Oracle.JDBC"/>
+    <path refid="JDeveloperLibs.library.MDS.Runtime"/>
+    <path refid="JDeveloperLibs.library.Oracle.XML.Parser.v2"/>
+  </path>
+  <target name="model.init">
+    <tstamp/>
+    <mkdir dir="${model.output.dir}"/>
+    <mkdir dir="${model.deploy.dir}"/>
+  </target>
+  <target name="model.all" description="Build the project"
+          depends="model.compile,model.copy"/>
+  <target name="model.clean" description="Clean the project">
+    <delete includeemptydirs="true" quiet="true">
+      <fileset dir="${model.output.dir}" includes="**/*"/>
+      <fileset dir="${model.deploy.dir}" includes="**/*"/>
+    </delete>
+  </target>
+  <target name="model.compile" description="Compile Java source files"
+          depends="model.init">
+    <javac destdir="${model.output.dir}" classpathref="model.classpath"
+           debug="${javac.debug}" nowarn="${javac.nowarn}"
+           deprecation="${javac.deprecation}" encoding="UTF-8" source="1.6"
+           target="1.6">
+      <src path="../lib"/>
+    </javac>
+    <javac destdir="${model.output.dir}" classpathref="model.classpath"
+           debug="${javac.debug}" nowarn="${javac.nowarn}"
+           deprecation="${javac.deprecation}" encoding="UTF-8" source="1.6"
+           target="1.6">
+      <src path="${model.src.dir}"/>
+    </javac>
+  </target>
+  <target name="model.copy" description="Copy files to output directory"
+          depends="model.init">
+    <patternset id="copy.patterns">
+      <include name="**/*.gif"/>
+      <include name="**/*.jpg"/>
+      <include name="**/*.jpeg"/>
+      <include name="**/*.png"/>
+      <include name="**/*.properties"/>
+      <include name="**/*.xml"/>
+      <include name="**/*.ejx"/>
+      <include name="**/*.xcfg"/>
+      <include name="**/*.cpx"/>
+      <include name="**/*.dcx"/>
+      <include name="**/*.sva"/>
+      <include name="**/*.wsdl"/>
+      <include name="**/*.ini"/>
+      <include name="**/*.tld"/>
+      <include name="**/*.tag"/>
+      <include name="**/*.xlf"/>
+      <include name="**/*.xsl"/>
+      <include name="**/*.xsd"/>
+      <exclude name="**/persistence.xml"/>
+        <exclude name="**/weblogic-ejb-jar.xml"/>
+    </patternset>
+    <copy todir="${model.output.dir}">
+      <fileset dir="${model.src.dir}">
+        <patternset refid="copy.patterns"/>
+      </fileset>
+      <fileset dir="../lib">
+        <patternset refid="copy.patterns"/>
+      </fileset>
+    </copy>
+    <copy todir="${model.output.dir}">
+      <fileset dir="../Model/adfmsrc">
+        <patternset refid="copy.patterns"/>
+         <include name="../Model/adfmsrc/actionbazaar/DataControls.dcx"/>
+      </fileset>
+    </copy>
+  </target>
+  <target name="model.jar" depends="model.compile,model.copy">
+    <jar destfile="${model.deploy.dir}/${model.jar.file}" >
+      <fileset dir="${model.output.dir}">
+        <include name="**/*.class"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.dcx"/>
+         <exclude name="**/*.java"/>
+        <exclude name="**/**/actionbazaar/buslogic/client/**"/>
+      </fileset>
+      <fileset dir="${model.src.dir}/">
+        <include name="META-INF/persistence.xml"/>
+        <include name="META-INF/**"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.dcx"/>
+        <include name="**/*.properties"/>
+        <exclude name="**/*.java"/>
+        <exclude name="**/build.xml"/>
+        <exclude name="**/build.properties"/>
+      </fileset>
+    </jar>
+  </target>
+</project>

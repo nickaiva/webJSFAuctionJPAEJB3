@@ -1,0 +1,589 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="userinterfaceBundle1"
+           value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEN_US']}"/>
+    <c:set var="userinterfaceBundle"
+           value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document id="d1" title="home">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                                 value="#{bindings.pageTemplateBinding}"
+                                 id="pt1">
+                    <f:facet name="content">
+                        <af:panelStretchLayout id="psl1"
+                                               inlineStyle="width:1031px; height:380px;"
+                                               bottomHeight="50px">
+                            <f:facet name="center">
+                                <af:panelTabbed id="pt2">
+                                    <af:showDetailItem text="My contact details"
+                                                       id="sdi1">
+                                        <af:panelFormLayout id="pfl1"
+                                                            rendered="#{securityContext.userInRole['ADMINISTRATOR']}">
+                                            <!--div align="center"-->
+                                            <af:inputText value="#{bindings.contactUserId.inputValue}"
+                                                          label="#{bindings.contactUserId.hints.label}"
+                                                          required="#{bindings.contactUserId.hints.mandatory}"
+                                                          columns="#{bindings.contactUserId.hints.displayWidth}"
+                                                          maximumLength="#{bindings.contactUserId.hints.precision}"
+                                                          shortDesc="#{bindings.contactUserId.hints.tooltip}"
+                                                          id="it1">
+                                                <f:validator binding="#{bindings.contactUserId.validator}"/>
+                                            </af:inputText>
+                                            <af:panelBorderLayout id="pgl1"
+                                                                  inlineStyle="text-align:left;">
+                                                <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                id="resetButton1"/>
+                                                <af:commandButton actionListener="#{bindings.getContactInfoGetContactInfoByUser.execute}"
+                                                                  text="#{userinterfaceBundle.performQuery}"
+                                                                  disabled="#{!bindings.getContactInfoGetContactInfoByUser.enabled}"
+                                                                  id="cb1"/>
+                                            </af:panelBorderLayout>
+                                            <!--/div-->
+                                        </af:panelFormLayout>
+                                        <af:separator id="s1"/>
+                                        <af:outputText value="#{userinterfaceBundle1.ACCURACY}"
+                                                       id="ot1"/>
+                                        <af:spacer width="10" height="10"
+                                                   id="s7"/>
+                                        <af:panelBorderLayout id="pbl4">
+                                            <div align="center"
+                                                 style="height:329px;">
+                                                <af:panelFormLayout id="pfl2"
+                                                                    rendered="#{bindings.getContactInfoGetContactInfoByUserIterator.estimatedRowCount > 0}"
+                                                                    maxColumns="2"
+                                                                    rows="2">
+                                                    <af:inputText value="#{bindings.contactUserId1.inputValue}"
+                                                                  label="#{bindings.contactUserId1.hints.label}"
+                                                                  required="#{bindings.contactUserId1.hints.mandatory}"
+                                                                  columns="#{bindings.contactUserId1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.contactUserId1.hints.precision}"
+                                                                  shortDesc="#{bindings.contactUserId1.hints.tooltip}"
+                                                                  id="it8"
+                                                                  readOnly="true"
+                                                                  rendered="#{securityContext.userInRole['ADMINISTRATOR']}">
+                                                        <f:validator binding="#{bindings.contactUserId1.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.email.inputValue}"
+                                                                  label="#{bindings.email.hints.label}"
+                                                                  required="#{bindings.email.hints.mandatory}"
+                                                                  columns="#{bindings.email.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.email.hints.precision}"
+                                                                  shortDesc="#{bindings.email.hints.tooltip}"
+                                                                  id="it5">
+                                                        <f:validator binding="#{bindings.email.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.phone.inputValue}"
+                                                                  label="#{bindings.phone.hints.label}"
+                                                                  required="#{bindings.phone.hints.mandatory}"
+                                                                  columns="#{bindings.phone.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.phone.hints.precision}"
+                                                                  shortDesc="#{bindings.phone.hints.tooltip}"
+                                                                  id="it4">
+                                                        <f:validator binding="#{bindings.phone.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.streetName1.inputValue}"
+                                                                  label="#{bindings.streetName1.hints.label}"
+                                                                  required="#{bindings.streetName1.hints.mandatory}"
+                                                                  columns="#{bindings.streetName1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.streetName1.hints.precision}"
+                                                                  shortDesc="#{bindings.streetName1.hints.tooltip}"
+                                                                  id="it3">
+                                                        <f:validator binding="#{bindings.streetName1.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.streetName2.inputValue}"
+                                                                  label="#{bindings.streetName2.hints.label}"
+                                                                  required="#{bindings.streetName2.hints.mandatory}"
+                                                                  columns="#{bindings.streetName2.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.streetName2.hints.precision}"
+                                                                  shortDesc="#{bindings.streetName2.hints.tooltip}"
+                                                                  id="it10">
+                                                        <f:validator binding="#{bindings.streetName2.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.city.inputValue}"
+                                                                  label="#{bindings.city.hints.label}"
+                                                                  required="#{bindings.city.hints.mandatory}"
+                                                                  columns="#{bindings.city.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.city.hints.precision}"
+                                                                  shortDesc="#{bindings.city.hints.tooltip}"
+                                                                  id="it2">
+                                                        <f:validator binding="#{bindings.city.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.state.inputValue}"
+                                                                  label="#{bindings.state.hints.label}"
+                                                                  required="#{bindings.state.hints.mandatory}"
+                                                                  columns="#{bindings.state.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.state.hints.precision}"
+                                                                  shortDesc="#{bindings.state.hints.tooltip}"
+                                                                  id="it6">
+                                                        <f:validator binding="#{bindings.state.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.zipCode.inputValue}"
+                                                                  label="#{bindings.zipCode.hints.label}"
+                                                                  required="#{bindings.zipCode.hints.mandatory}"
+                                                                  columns="#{bindings.zipCode.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.zipCode.hints.precision}"
+                                                                  shortDesc="#{bindings.zipCode.hints.tooltip}"
+                                                                  id="it7">
+                                                        <f:validator binding="#{bindings.zipCode.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.country.inputValue}"
+                                                                  label="#{bindings.country.hints.label}"
+                                                                  required="#{bindings.country.hints.mandatory}"
+                                                                  columns="#{bindings.country.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.country.hints.precision}"
+                                                                  shortDesc="#{bindings.country.hints.tooltip}"
+                                                                  id="it9">
+                                                        <f:validator binding="#{bindings.country.validator}"/>
+                                                    </af:inputText>
+                                                    <f:facet name="footer">
+                                                        <af:group id="g7">
+                                                            <af:spacer width="10"
+                                                                       height="10"
+                                                                       id="s12"/>
+                                                            <af:panelBorderLayout id="pbl3"
+                                                                                  inlineStyle="text-align:center;">
+                                                                <af:group id="g1">
+                                                                    <!--af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                                    id="rb2"/-->
+                                                                    
+                                                                    <af:commandButton actionListener="#{bindings.mergeContactInfo.execute}"
+                                                                                      text="#{userinterfaceBundle.mergeObject}"
+                                                                                      disabled="#{!bindings.mergeContactInfo.enabled}"
+                                                                                      id="cb3"/>
+                                                                    <af:commandButton actionListener="#{bindings.removeContactInfo.execute}"
+                                                                                      text="#{userinterfaceBundle.removeObject}"
+                                                                                      disabled="false"
+                                                                                      id="cb10"/>
+                                                                    <!--   disabled="#{!bindings.removeContactInfo.enabled}" -->
+                                                                </af:group>
+                                                            </af:panelBorderLayout>
+                                                        </af:group>
+                                                    </f:facet>
+                                                </af:panelFormLayout>
+                                            </div>
+                                        </af:panelBorderLayout>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="My bidding details"
+                                                       id="showDetailItem2"
+                                                       rendered="#{securityContext.userInRole['BIDDER , ADMINISTRATOR']}">
+                                        <af:panelFormLayout id="pfl3"
+                                                            rendered="#{securityContext.userInRole['ADMINISTRATOR']}">
+                                            <af:inputText value="#{bindings.userId.inputValue}"
+                                                          label="#{bindings.userId.hints.label}"
+                                                          required="#{bindings.userId.hints.mandatory}"
+                                                          columns="#{bindings.userId.hints.displayWidth}"
+                                                          maximumLength="#{bindings.userId.hints.precision}"
+                                                          shortDesc="#{bindings.userId.hints.tooltip}"
+                                                          id="it11">
+                                                <f:validator binding="#{bindings.userId.validator}"/>
+                                            </af:inputText>
+                                            <div align="center">&#160;</div>
+                                            <af:panelGroupLayout id="pgl2">
+                                                <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                id="resetButton2"/>
+                                                <af:commandButton actionListener="#{bindings.getUserFindByUserId.execute}"
+                                                                  text="#{userinterfaceBundle.performQuery}"
+                                                                  disabled="#{!bindings.getUserFindByUserId.enabled}"
+                                                                  id="cb2"/>
+                                            </af:panelGroupLayout>
+                                        </af:panelFormLayout>
+                                        <af:separator id="s2"/>
+                                        <af:outputText value="#{userinterfaceBundle1.ACCURACY}"
+                                                       id="ot2"/>
+                                        <af:spacer width="10" height="10"
+                                                   id="s6"/>
+                                        <af:panelBorderLayout id="pbl5">
+                                            <div align="center">
+                                                <af:panelFormLayout id="pfl4"
+                                                                    rendered="#{bindings.getUserFindByUserIdIterator.estimatedRowCount > 0}"
+                                                                    maxColumns="2"
+                                                                    rows="2">
+                                                    <af:inputDate value="#{bindings.birthDate.inputValue}"
+                                                                  label="#{bindings.birthDate.hints.label}"
+                                                                  required="#{bindings.birthDate.hints.mandatory}"
+                                                                  shortDesc="#{bindings.birthDate.hints.tooltip}"
+                                                                  id="id1">
+                                                        <f:validator binding="#{bindings.birthDate.validator}"/>
+                                                        <!--af:convertDateTime pattern="#{bindings.birthDate.format}"/-->
+                                                        <f:convertDateTime type="date"
+                                                                           dateStyle="medium"
+                                                                           pattern="dd/MM/yyyy"/>
+                                                    </af:inputDate>
+                                                    <af:inputText value="#{bindings.firstName.inputValue}"
+                                                                  label="#{bindings.firstName.hints.label}"
+                                                                  required="#{bindings.firstName.hints.mandatory}"
+                                                                  columns="#{bindings.firstName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.firstName.hints.precision}"
+                                                                  shortDesc="#{bindings.firstName.hints.tooltip}"
+                                                                  id="it14">
+                                                        <f:validator binding="#{bindings.firstName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.lastName.inputValue}"
+                                                                  label="#{bindings.lastName.hints.label}"
+                                                                  required="#{bindings.lastName.hints.mandatory}"
+                                                                  columns="#{bindings.lastName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.lastName.hints.precision}"
+                                                                  shortDesc="#{bindings.lastName.hints.tooltip}"
+                                                                  id="it15">
+                                                        <f:validator binding="#{bindings.lastName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.userBillingId.inputValue}"
+                                                                  label="#{bindings.userBillingId.hints.label}"
+                                                                  required="#{bindings.userBillingId.hints.mandatory}"
+                                                                  columns="#{bindings.userBillingId.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.userBillingId.hints.precision}"
+                                                                  shortDesc="#{bindings.userBillingId.hints.tooltip}"
+                                                                  id="it12">
+                                                        <f:validator binding="#{bindings.userBillingId.validator}"/>
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.userBillingId.format}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.userId1.inputValue}"
+                                                                  label="#{bindings.userId1.hints.label}"
+                                                                  required="#{bindings.userId1.hints.mandatory}"
+                                                                  columns="#{bindings.userId1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.userId1.hints.precision}"
+                                                                  shortDesc="#{bindings.userId1.hints.tooltip}"
+                                                                  id="it16">
+                                                        <f:validator binding="#{bindings.userId1.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.userType.inputValue}"
+                                                                  label="#{bindings.userType.hints.label}"
+                                                                  required="#{bindings.userType.hints.mandatory}"
+                                                                  columns="#{bindings.userType.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.userType.hints.precision}"
+                                                                  shortDesc="#{bindings.userType.hints.tooltip}"
+                                                                  id="it13"
+                                                                  disabled="true">
+                                                        <f:validator binding="#{bindings.userType.validator}"/>
+                                                    </af:inputText>
+                                                    <f:facet name="footer">
+                                                        <af:group id="g8">
+                                                            <af:spacer width="10"
+                                                                       height="10"
+                                                                       id="s11"/>
+                                                            <af:panelBorderLayout id="pbl6"
+                                                                                  inlineStyle="text-align:center;">
+                                                                <af:group id="g2">
+                                                                    <!--af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                                id="rb3"/-->
+                                                                    <af:commandButton actionListener="#{bindings.mergeBidder.execute}"
+                                                                                      text="#{userinterfaceBundle.mergeObject}"
+                                                                                      disabled="#{!bindings.mergeBidder.enabled}"
+                                                                                      id="cb5"/>
+                                                                    <af:commandButton actionListener="#{bindings.removeBidder.execute}"
+                                                                                      text="#{userinterfaceBundle.removeObject}"
+                                                                                      disabled="false"
+                                                                                      id="cb4"/>
+                                                                    <!-- #{!bindings.removeBidder.enabled}-->
+                                                                </af:group>
+                                                            </af:panelBorderLayout>
+                                                        </af:group>
+                                                    </f:facet>
+                                                </af:panelFormLayout>
+                                            </div>
+                                        </af:panelBorderLayout>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="My selling details"
+                                                       id="showDetailItem3"
+                                                       rendered="#{securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                        <af:panelFormLayout id="pfl5"
+                                                            rendered="#{securityContext.userInRole['ADMINISTRATOR']}">
+                                            <af:inputText value="#{bindings.userId.inputValue}"
+                                                          label="#{bindings.userId.hints.label}"
+                                                          required="#{bindings.userId.hints.mandatory}"
+                                                          columns="#{bindings.userId.hints.displayWidth}"
+                                                          maximumLength="#{bindings.userId.hints.precision}"
+                                                          shortDesc="#{bindings.userId.hints.tooltip}"
+                                                          id="it17">
+                                                <f:validator binding="#{bindings.userId.validator}"/>
+                                            </af:inputText>
+                                            <div align="center">&#160;</div>
+                                            <af:panelGroupLayout id="pgl4">
+                                                <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                id="resetButton4"/>
+                                                <af:commandButton actionListener="#{bindings.getUserFindByUserId.execute}"
+                                                                  text="#{userinterfaceBundle.performQuery}"
+                                                                  disabled="#{!bindings.getUserFindByUserId.enabled}"
+                                                                  id="cb6"/>
+                                            </af:panelGroupLayout>
+                                        </af:panelFormLayout>
+                                        <af:separator id="s4"/>
+                                        <af:outputText value="#{userinterfaceBundle1.ACCURACY}"
+                                                       id="ot3"/>
+                                        <af:spacer width="10" height="10"
+                                                   id="s5"/>
+                                        <af:panelBorderLayout id="pbl7"
+                                                              inlineStyle="text-align:center; height:336px;">
+                                            <div align="center">
+                                                <af:panelFormLayout id="pfl6"
+                                                                    rendered="#{bindings.getUserFindByUserIdIterator.estimatedRowCount > 0}"
+                                                                    maxColumns="2"
+                                                                    rows="2">
+                                                    <af:inputDate value="#{bindings.birthDate.inputValue}"
+                                                                  label="#{bindings.birthDate.hints.label}"
+                                                                  required="#{bindings.birthDate.hints.mandatory}"
+                                                                  shortDesc="#{bindings.birthDate.hints.tooltip}"
+                                                                  id="id2">
+                                                        <f:validator binding="#{bindings.birthDate.validator}"/>
+                                                        <!--af:convertDateTime pattern="#{bindings.birthDate.format}"/-->
+                                                        <f:convertDateTime type="date"
+                                                                           dateStyle="medium"
+                                                                           pattern="dd/MM/yyyy"/>
+                                                    </af:inputDate>
+                                                    <af:inputText value="#{bindings.firstName.inputValue}"
+                                                                  label="#{bindings.firstName.hints.label}"
+                                                                  required="#{bindings.firstName.hints.mandatory}"
+                                                                  columns="#{bindings.firstName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.firstName.hints.precision}"
+                                                                  shortDesc="#{bindings.firstName.hints.tooltip}"
+                                                                  id="it19">
+                                                        <f:validator binding="#{bindings.firstName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.lastName.inputValue}"
+                                                                  label="#{bindings.lastName.hints.label}"
+                                                                  required="#{bindings.lastName.hints.mandatory}"
+                                                                  columns="#{bindings.lastName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.lastName.hints.precision}"
+                                                                  shortDesc="#{bindings.lastName.hints.tooltip}"
+                                                                  id="it18">
+                                                        <f:validator binding="#{bindings.lastName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.userBillingId.inputValue}"
+                                                                  label="#{bindings.userBillingId.hints.label}"
+                                                                  required="#{bindings.userBillingId.hints.mandatory}"
+                                                                  columns="#{bindings.userBillingId.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.userBillingId.hints.precision}"
+                                                                  shortDesc="#{bindings.userBillingId.hints.tooltip}"
+                                                                  id="it22">
+                                                        <f:validator binding="#{bindings.userBillingId.validator}"/>
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.userBillingId.format}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.userId1.inputValue}"
+                                                                  label="#{bindings.userId1.hints.label}"
+                                                                  required="#{bindings.userId1.hints.mandatory}"
+                                                                  columns="#{bindings.userId1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.userId1.hints.precision}"
+                                                                  shortDesc="#{bindings.userId1.hints.tooltip}"
+                                                                  id="it20">
+                                                        <f:validator binding="#{bindings.userId1.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.userType.inputValue}"
+                                                                  label="#{bindings.userType.hints.label}"
+                                                                  required="#{bindings.userType.hints.mandatory}"
+                                                                  columns="#{bindings.userType.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.userType.hints.precision}"
+                                                                  shortDesc="#{bindings.userType.hints.tooltip}"
+                                                                  id="it21"
+                                                                  disabled="true">
+                                                        <f:validator binding="#{bindings.userType.validator}"/>
+                                                    </af:inputText>
+                                                    <f:facet name="footer">
+                                                        <af:group id="g5">
+                                                            <af:spacer width="10"
+                                                                       height="10"
+                                                                       id="s10"/>
+                                                            <af:panelBorderLayout id="pbl8"
+                                                                                  inlineStyle="text-align:center;">
+                                                                <af:group id="g3">
+                                                                    <!--af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                                    id="rb1"/-->
+                                                                    <af:commandButton actionListener="#{bindings.mergeSeller.execute}"
+                                                                                      text="#{userinterfaceBundle.mergeObject}"
+                                                                                      disabled="#{!bindings.mergeSeller.enabled}"
+                                                                                      id="cb8"/>
+                                                                    <af:commandButton actionListener="#{bindings.removeSeller.execute}"
+                                                                                      text="#{userinterfaceBundle.removeObject}"
+                                                                                      disabled="false"
+                                                                                      id="cb7"/>
+                                                                    <!-- #{!bindings.removeSeller.enabled}-->
+                                                                </af:group>
+                                                            </af:panelBorderLayout>
+                                                        </af:group>
+                                                    </f:facet>
+                                                </af:panelFormLayout>
+                                            </div>
+                                        </af:panelBorderLayout>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="My billing details"
+                                                       id="showDetailItem1"
+                                                       rendered="#{securityContext.userInRole['SELLER , BIDDER, ADMINISTRATOR']}">
+                                        <!--div align="center"-->
+                                        <af:message id="m2"
+                                                    message="Caution: A billing ID is assigned to bidders only!"
+                                                    rendered="#{ empty bindings.userBillingId.inputValue}"/>
+                                        <af:panelFormLayout id="pfl7"
+                                                            rendered="false">
+                                            <af:inputText value="#{bindings.BillingId.inputValue}"
+                                                          label="#{bindings.BillingId.hints.label}"
+                                                          required="#{bindings.BillingId.hints.mandatory}"
+                                                          columns="#{bindings.BillingId.hints.displayWidth}"
+                                                          maximumLength="#{bindings.BillingId.hints.precision}"
+                                                          shortDesc="#{bindings.BillingId.hints.tooltip}"
+                                                          id="it23">
+                                                <f:validator binding="#{bindings.BillingId.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.BillingId.format}"/>
+                                            </af:inputText>
+                                            <!--div align="center">
+                         
+                      </div-->
+                                            <af:panelGroupLayout id="pgl3">
+                                                <af:resetButton text="Reset"
+                                                                id="resetButton3"/>
+                                                <af:commandButton actionListener="#{bindings.getBillingInfoFindByBilllingId.execute}"
+                                                                  text="getBillingInfoFindByBilllingId"
+                                                                  disabled="#{!bindings.getBillingInfoFindByBilllingId.enabled}"
+                                                                  id="cb9"/>
+                                            </af:panelGroupLayout>
+                                        </af:panelFormLayout>
+                                        <!--/div-->
+                                        <af:separator id="s3"/>
+                                        <af:outputText value="#{userinterfaceBundle1.ACCURACY}"
+                                                       id="ot4"/>
+                                        <af:spacer width="10" height="10"
+                                                   id="s8"/>
+                                        <af:panelBorderLayout id="pbl2">
+                                            <div align="center"
+                                                 style="height:329px;">
+                                                <af:panelFormLayout id="pfl8"
+                                                                    rendered="#{bindings.getBillingInfoFindByBilllingIdIterator.estimatedRowCount > 0}"
+                                                                    maxColumns="2"
+                                                                    inlineStyle="height:383px;"
+                                                                    rows="2">
+                                                    <af:inputText value="#{bindings.accountNo.inputValue}"
+                                                                  label="#{bindings.accountNo.hints.label}"
+                                                                  required="#{bindings.accountNo.hints.mandatory}"
+                                                                  columns="#{bindings.accountNo.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.accountNo.hints.precision}"
+                                                                  shortDesc="#{bindings.accountNo.hints.tooltip}"
+                                                                  id="it25">
+                                                        <f:validator binding="#{bindings.accountNo.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.cardType.inputValue}"
+                                                                  label="#{bindings.cardType.hints.label}"
+                                                                  required="#{bindings.cardType.hints.mandatory}"
+                                                                  columns="#{bindings.cardType.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.cardType.hints.precision}"
+                                                                  shortDesc="#{bindings.cardType.hints.tooltip}"
+                                                                  id="it34">
+                                                        <f:validator binding="#{bindings.cardType.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.expiryDate.inputValue}"
+                                                                  label="#{bindings.expiryDate.hints.label}"
+                                                                  required="#{bindings.expiryDate.hints.mandatory}"
+                                                                  columns="#{bindings.expiryDate.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.expiryDate.hints.precision}"
+                                                                  shortDesc="#{bindings.expiryDate.hints.tooltip}"
+                                                                  id="it26">
+                                                        <f:validator binding="#{bindings.expiryDate.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.secretCode.inputValue}"
+                                                                  label="#{bindings.secretCode.hints.label}"
+                                                                  required="#{bindings.secretCode.hints.mandatory}"
+                                                                  columns="#{bindings.secretCode.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.secretCode.hints.precision}"
+                                                                  shortDesc="#{bindings.secretCode.hints.tooltip}"
+                                                                  id="it29">
+                                                        <f:validator binding="#{bindings.secretCode.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.streetName11.inputValue}"
+                                                                  label="#{bindings.streetName11.hints.label}"
+                                                                  required="#{bindings.streetName11.hints.mandatory}"
+                                                                  columns="#{bindings.streetName11.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.streetName11.hints.precision}"
+                                                                  shortDesc="#{bindings.streetName11.hints.tooltip}"
+                                                                  id="it27">
+                                                        <f:validator binding="#{bindings.streetName11.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.streetName21.inputValue}"
+                                                                  label="#{bindings.streetName21.hints.label}"
+                                                                  required="#{bindings.streetName21.hints.mandatory}"
+                                                                  columns="#{bindings.streetName21.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.streetName21.hints.precision}"
+                                                                  shortDesc="#{bindings.streetName21.hints.tooltip}"
+                                                                  id="it32">
+                                                        <f:validator binding="#{bindings.streetName21.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.city1.inputValue}"
+                                                                  label="#{bindings.city1.hints.label}"
+                                                                  required="#{bindings.city1.hints.mandatory}"
+                                                                  columns="#{bindings.city1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.city1.hints.precision}"
+                                                                  shortDesc="#{bindings.city1.hints.tooltip}"
+                                                                  id="it24">
+                                                        <f:validator binding="#{bindings.city1.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.state1.inputValue}"
+                                                                  label="#{bindings.state1.hints.label}"
+                                                                  required="#{bindings.state1.hints.mandatory}"
+                                                                  columns="#{bindings.state1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.state1.hints.precision}"
+                                                                  shortDesc="#{bindings.state1.hints.tooltip}"
+                                                                  id="it30">
+                                                        <f:validator binding="#{bindings.state1.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.zipCode1.inputValue}"
+                                                                  label="#{bindings.zipCode1.hints.label}"
+                                                                  required="#{bindings.zipCode1.hints.mandatory}"
+                                                                  columns="#{bindings.zipCode1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.zipCode1.hints.precision}"
+                                                                  shortDesc="#{bindings.zipCode1.hints.tooltip}"
+                                                                  id="it33">
+                                                        <f:validator binding="#{bindings.zipCode1.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.country1.inputValue}"
+                                                                  label="#{bindings.country1.hints.label}"
+                                                                  required="#{bindings.country1.hints.mandatory}"
+                                                                  columns="#{bindings.country1.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.country1.hints.precision}"
+                                                                  shortDesc="#{bindings.country1.hints.tooltip}"
+                                                                  id="it28">
+                                                        <f:validator binding="#{bindings.country1.validator}"/>
+                                                    </af:inputText>
+                                                    <f:facet name="footer">
+                                                        <af:group id="g6">
+                                                            <af:spacer width="10"
+                                                                       height="10"
+                                                                       id="s9"/>
+                                                            <!--div align="center"-->
+                                                            <af:panelBorderLayout id="pbl1"
+                                                                                  inlineStyle="text-align:center;">
+                                                                <af:group id="g4">
+                                                                    <!--af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                                    id="rb4"/-->
+                                                                    <af:commandButton actionListener="#{bindings.mergeBillingInfo.execute}"
+                                                                                      text="#{userinterfaceBundle.mergeObject}"
+                                                                                      disabled="#{!bindings.mergeBillingInfo.enabled}"
+                                                                                      id="cb11"/>
+                                                                    <af:commandButton actionListener="#{bindings.removeBillingInfo.execute}"
+                                                                                      text="#{userinterfaceBundle.removeObject}"
+                                                                                      id="cb12"
+                                                                                      disabled="false"/>
+                                                                    <!-- #{!bindings.removeBillingInfo.enabled -->
+                                                                </af:group>
+                                                            </af:panelBorderLayout>
+                                                            <!--/div-->
+                                                        </af:group>
+                                                    </f:facet>
+                                                </af:panelFormLayout>
+                                            </div>
+                                        </af:panelBorderLayout>
+                                    </af:showDetailItem>
+                                </af:panelTabbed>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:attribute name="pageTitle" value="Auction Bazaar"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

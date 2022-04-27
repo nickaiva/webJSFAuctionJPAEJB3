@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="changeBidderStatusPageDef"
+                Package="pages.admin">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="changeBidderStatus" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="changeBidderStatus"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider">
+      <NamedData NDName="bidderId" NDType="java.lang.String"
+                 NDValue="${bindings.changeBidderStatus_bidderId}"/>
+      <NamedData NDName="bidderStatus"
+                 NDType="actionbazaar.persistence.BidderStatus"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

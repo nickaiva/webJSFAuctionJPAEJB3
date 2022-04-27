@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="queryItems">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         value="#{bindings.pageTemplateBinding}" id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout id="psl1"
+                                   inlineStyle="width:1264px; height:470px; border-color:transparent; background-color:transparent;"
+                                   startWidth="0px" endWidth="0px"
+                                   topHeight="121px">
+              <f:facet name="top">
+                <af:panelGroupLayout layout="scroll"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     id="pgl2">
+                  <af:panelFormLayout id="pfl1"
+                                      inlineStyle="height:94px; width:1176px;">
+                    <af:inputDate value="#{bindings.bidStartDate.inputValue}"
+                                  label="#{bindings.bidStartDate.hints.label}"
+                                  required="#{bindings.bidStartDate.hints.mandatory}"
+                                  shortDesc="#{bindings.bidStartDate.hints.tooltip}"
+                                  id="id1">
+                      <f:validator binding="#{bindings.bidStartDate.validator}"/>
+                      <!--af:convertDateTime pattern="#{bindings.bidStartDate.format}"/-->
+                      <f:convertDateTime type="date" dateStyle="medium"
+                                         pattern="dd/MM/yyyy"/>
+                    </af:inputDate>
+                    <af:inputDate value="#{bindings.bidEndDate.inputValue}"
+                                  label="#{bindings.bidEndDate.hints.label}"
+                                  required="#{bindings.bidEndDate.hints.mandatory}"
+                                  shortDesc="#{bindings.bidEndDate.hints.tooltip}"
+                                  id="id2">
+                      <f:validator binding="#{bindings.bidEndDate.validator}"/>
+                      <!--af:convertDateTime pattern="#{bindings.bidEndDate.format}"/-->
+                      <f:convertDateTime type="date" dateStyle="medium"
+                                         pattern="dd/MM/yyyy"/>
+                    </af:inputDate>
+                    <af:panelBorderLayout id="pbl1">
+                      <f:facet name="start"/>
+                      <f:facet name="end"/>
+                      <f:facet name="top"/>
+                      <af:resetButton text="#{userinterfaceBundle.reset}" id="rb1"/>
+                      <af:commandButton actionListener="#{bindings.getItemGetItemsByDateInterval.execute}"
+                                        text="#{userinterfaceBundle.performQuery}"
+                                        disabled="#{!bindings.getItemGetItemsByDateInterval.enabled}"
+                                        id="cb1"/>
+                    </af:panelBorderLayout>
+                  </af:panelFormLayout>
+                  <af:separator id="s1"/>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="center">
+                <af:panelGroupLayout layout="horizontal"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     id="pgl1"
+                                     rendered="#{bindings.getItemGetItemsByDateIntervalIterator.estimatedRowCount > 0}"
+                                     halign="start" valign="middle"
+                                     inlineStyle="border-style:dotted; background-color:transparent;">
+                  <div align="center">
+                    <af:table value="#{bindings.Item.collectionModel}" var="row"
+                              rows="#{bindings.Item.rangeSize}"
+                              emptyText="#{bindings.Item.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.Item.rangeSize}"
+                              rowBandingInterval="0" id="t1"
+                              inlineStyle="height:264px;" width="1164"
+                              columnStretching="column:c6">
+                      <af:column sortProperty="#{bindings.Item.hints.itemId.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.Item.hints.itemId.label}"
+                                 id="c5" width="55">
+                        <af:commandLink text="#{row.itemId}" id="cl1"
+                                        action="editItemByID">
+                          <!--af:setPropertyListener from="#{row.itemId}"
+                                                to="#{pageFlowScope.itemID}"
+                                                  type="action"/-->
+                        </af:commandLink>
+                        <!--af:outputText value="#{row.itemId}" id="ot5">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.Item.hints.itemId.format}"/>
+                        </af:outputText-->
+                      </af:column>
+                      <af:column sortProperty="#{bindings.Item.hints.itemName.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.Item.hints.itemName.label}"
+                                 id="c6" width="200">
+                        <af:outputText value="#{row.itemName}" id="ot6"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.Item.hints.bidEndDate.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.Item.hints.bidEndDate.label}"
+                                 id="c1" width="85">
+                        <af:outputText value="#{row.bidEndDate}" id="ot1">
+                          <af:convertDateTime pattern="#{bindings.Item.hints.bidEndDate.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.Item.hints.bidStartDate.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.Item.hints.bidStartDate.label}"
+                                 id="c2" width="85">
+                        <af:outputText value="#{row.bidStartDate}" id="ot2">
+                          <af:convertDateTime pattern="#{bindings.Item.hints.bidStartDate.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.Item.hints.createdDate.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.Item.hints.createdDate.label}"
+                                 id="c3" width="85">
+                        <af:outputText value="#{row.createdDate}" id="ot3">
+                          <af:convertDateTime pattern="#{bindings.Item.hints.createdDate.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.Item.hints.initialPrice.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.Item.hints.initialPrice.label}"
+                                 id="c4" width="105">
+                        <af:outputText value="#{row.initialPrice}" id="ot4">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.Item.hints.initialPrice.format}"
+                                            currencyCode="#{adfFacesContext.currencyCode}"
+                                            type="currency"
+                                            currencySymbol="#{requestContext.currencyCode}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.Item.hints.description.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.Item.hints.description.label}"
+                                 id="c7" width="250">
+                        <af:outputText value="#{row.description}" id="ot7"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.Item.hints.seller.userId.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.Item.hints.seller.userId.label}"
+                                 id="c14" width="155">
+                        <af:outputText value="#{row.seller.bindings.userId.inputValue}"
+                                       id="ot14"/>
+                      </af:column>
+                      <af:column sortable="false"
+                                 headerText="#{bindings.Item.hints.image.label}"
+                                 id="c22" width="58">
+                        <af:image id="im1"
+                                  source="/imageservlet?itemId=#{row.itemId}"
+                                  shortDesc=" item image "
+                                  inlineStyle="height:20px; width:20px;"/>
+                      </af:column>
+                      <f:facet name="detailStamp">
+                        <af:group id="g1">
+                          <af:commandButton actionListener="#{bindings.determineWinnerBidforItem.execute}"
+                                            text="#{userinterfaceBundle.determineWinnerBidForItem}"
+                                            disabled="#{!bindings.determineWinnerBidforItem.enabled}"
+                                            id="cb2" rendered="#{bindings.getItemGetItemsByDateIntervalIterator.deferredEstimatedRowCount > 0 and 
+securityContext.userInRole['ADMINISTRATOR']}"/>
+                          <af:commandButton actionListener="#{bindings.deleteItem.execute}"
+                                            text="#{userinterfaceBundle.deleteItem}"
+                                            id="cb3"
+                                            rendered="#{securityContext.userInRole['ADMINISTRATOR']}"/>
+                        </af:group>
+                      </f:facet>
+                    </af:table>
+                  </div>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

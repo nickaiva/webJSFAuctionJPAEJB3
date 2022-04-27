@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.2.64.36" id="viewImagesPageDef"
+                Package="pages.bidder">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.Long" Name="getImagesByItemId_itemId"
+                IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getImagesByItemId.result"
+                    DataControl="PlaceImageLocal" RangeSize="25"
+                    BeanClass="byte" id="getImagesByItemIdIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getImagesByItemId" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getImagesByItemId"
+                  IsViewObjectMethod="false" DataControl="PlaceImageLocal"
+                  InstanceName="data.PlaceImageLocal.dataProvider"
+                  ReturnName="data.PlaceImageLocal.methodResults.getImagesByItemId_PlaceImageLocal_dataProvider_getImagesByItemId_result">
+      <NamedData NDName="itemId" NDType="java.lang.Long"
+                 NDValue="${bindings.getImagesByItemId_itemId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="itemId">
+      <AttrNames>
+        <Item Value="getImagesByItemId_itemId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

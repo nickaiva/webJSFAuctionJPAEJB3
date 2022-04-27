@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  
+    <af:pageTemplateDef var="attrs">
+      <af:xmlContent>
+        <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+          <display-name>
+            ABTrainTemplate
+          </display-name>
+          <facet>
+            <facet-name>
+              trainContent
+            </facet-name>
+          </facet>
+          <attribute>
+            <attribute-name>
+              pageUse
+            </attribute-name>
+            <attribute-class>
+              java.lang.String
+            </attribute-class>
+            <required>
+              true
+            </required>
+          </attribute>
+          <attribute>
+            <attribute-name>
+              pageDescription
+            </attribute-name>
+            <attribute-class>
+              java.lang.String
+            </attribute-class>
+            <required>
+              true
+            </required>
+          </attribute>
+        </component>
+      </af:xmlContent>
+      <af:panelStretchLayout id="pt_psl1" topHeight="150px" bottomHeight="50px"
+                             inlineStyle="height:550px; width:700.0px;">
+        <f:facet name="top">
+          <af:panelGroupLayout id="pt_pgl1" layout="vertical">
+            <af:outputText value="#{attrs.pageUse}" id="pt_ot1"
+                           inlineStyle="font-size:large;"/>
+            <af:separator id="pt_s6"/>
+            <af:train id="pt_t1"
+                      value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}">
+              <f:facet name="nodeStamp"/>
+            </af:train>
+            <af:spacer width="10" height="10" id="pt_s1"/>
+            <af:outputText value="#{attrs.pageDescription}" id="pt_ot2"/>
+            <af:separator id="pt_s2"/>
+          </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="center">
+          <af:panelGroupLayout layout="scroll"
+                               xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                               id="pt_pgl4">
+            <af:facetRef facetName="trainContent"/>
+          </af:panelGroupLayout>
+          <!-- id="af_one_column_header_footer_stretched"   -->
+        </f:facet>
+        <f:facet name="bottom">
+          <af:panelGroupLayout id="pt_pgl2" layout="vertical">
+            <af:separator id="pt_s3"/>
+            <af:spacer width="10" height="6" id="pt_s4"/>
+            <af:panelGroupLayout id="pt_pgl3" layout="horizontal">
+              <af:trainButtonBar id="pt_tbb1"
+                                 value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"/>
+              <af:commandButton text="Finish" id="pt_cb1" action="finish"/>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:panelStretchLayout>
+    </af:pageTemplateDef>
+  
+  
+</jsp:root>

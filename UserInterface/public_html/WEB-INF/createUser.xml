@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="createUser">
+    <default-activity id="__1">createContactInfo</default-activity>
+    <task-flow-return id="createUserDone">
+      <outcome id="__2">
+        <name>home</name>
+      </outcome>
+    </task-flow-return>
+    <view id="createContactInfo">
+      <display-name id="__13">Enter the contact info</display-name>
+      <page>/pages/createUser.jspx</page>
+      <train-stop id="__8"/>
+    </view>
+      <view id="createBillingInfo">
+      <page>/pages/createBillingInfo.jspx</page>
+      <train-stop id="__17"/>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createUserPageDef1.streetname1.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_view_createBillingInfoPageDef.streetName1.inputValue}</to-value>
+      </input-page-parameter>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createUserPageDef1.streetname2.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_view_createBillingInfoPageDef.streetName2.inputValue}</to-value>
+      </input-page-parameter>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createUserPageDef1.zipCode.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_view_createBillingInfoPageDef.zipCode.inputValue}</to-value>
+      </input-page-parameter>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createUserPageDef1.city.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_view_createBillingInfoPageDef.city.inputValue}</to-value>
+      </input-page-parameter>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createUserPageDef1.stateCode.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_view_createBillingInfoPageDef.state.inputValue}</to-value>
+      </input-page-parameter>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createUserPageDef1.country.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_view_createBillingInfoPageDef.country.inputValue}</to-value>
+      </input-page-parameter>
+    </view>
+    <view id="createBidder">
+      <page>/pages/createBidder.jspx</page>
+      <train-stop id="__9"/>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_view_createBillingInfoPageDef.addBillingInfo_Return}</from-value>
+        <to-value>#{data.actionbazaar_createBidderPageDef.userBillingId.inputValue}</to-value>
+      </input-page-parameter>
+    </view>
+    <view id="createSeller">
+      <page>/pages/createSeller.jspx</page>
+      <train-stop id="__10"/>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createBidderPageDef.firstName.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_createSellerPageDef.firstName.inputValue}</to-value>
+      </input-page-parameter>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createBidderPageDef.lastName.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_createSellerPageDef.lastName.inputValue}</to-value>
+      </input-page-parameter>
+      <input-page-parameter>
+        <from-value>#{data.actionbazaar_createBidderPageDef.birthDate.inputValue}</from-value>
+        <to-value>#{data.actionbazaar_createSellerPageDef.birthDate.inputValue}</to-value>
+      </input-page-parameter>
+    </view>
+  
+    <train/>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">*</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__7">finish</from-outcome>
+        <to-activity-id id="__6">createUserDone</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="withdrawBidPageDef"
+                Package="actionbazaar.view.pages.bidder">
+  <parameters/>
+  <executables>
+    <methodIterator Binds="getBidsByBidderId.result" DataControl="PlaceBidLocal"
+                    RangeSize="25" BeanClass="actionbazaar.persistence.Bid"
+                    id="getBidsByBidderIdIterator"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="getBidsByBidderId_userId"
+                IsQueriable="false"/>
+    </variableIterator>
+    <searchRegion Binds="getBidsByBidderIdIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="BidQuery"/>
+  </executables>
+  <bindings>
+    <methodAction id="getBidsByBidderId" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getBidsByBidderId"
+                  IsViewObjectMethod="false" DataControl="PlaceBidLocal"
+                  InstanceName="PlaceBidLocal.dataProvider"
+                  ReturnName="data.PlaceBidLocal.methodResults.getBidsByBidderId_PlaceBidLocal_dataProvider_getBidsByBidderId_result">
+      <NamedData NDName="userId" NDType="java.lang.String"
+                 NDValue="${bindings.getBidsByBidderId_userId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="userId">
+      <AttrNames>
+        <Item Value="getBidsByBidderId_userId"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="getBidsByBidderIdIterator" id="Bid">
+      <nodeDefinition DefName="actionbazaar.persistence.Bid" Name="Bid0">
+        <AttrNames>
+          <Item Value="bidId"/>
+          <Item Value="bidPrice"/>
+          <Item Value="bidDate"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="bidBidder"/>
+          <Item Value="item"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.Bidder" Name="Bid1">
+        <AttrNames>
+          <Item Value="creditRating"/>
+          <Item Value="birthDate"/>
+          <Item Value="firstName"/>
+          <Item Value="lastName"/>
+          <Item Value="userBillingId"/>
+          <Item Value="userId"/>
+          <Item Value="userType"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.Item" Name="Bid2">
+        <AttrNames>
+          <Item Value="bidEndDate"/>
+          <Item Value="bidStartDate"/>
+          <Item Value="createdDate"/>
+          <Item Value="initialPrice"/>
+          <Item Value="itemId"/>
+          <Item Value="itemName"/>
+          <Item Value="optLock"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="withdrawlBid" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="withdrawlBid"
+                  IsViewObjectMethod="false" DataControl="PlaceBidLocal"
+                  InstanceName="PlaceBidLocal.dataProvider">
+      <NamedData NDName="bidId" NDValue="#{row.bidId}" NDType="java.lang.Long"/>
+    </methodAction>
+    <methodAction id="cancelBid" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="cancelBid"
+                  IsViewObjectMethod="false" DataControl="PlaceBidLocal"
+                  InstanceName="PlaceBidLocal.dataProvider">
+      <NamedData NDName="bidId" NDValue="#{row.bidId}" NDType="java.lang.Long"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

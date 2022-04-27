@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1"
+                 binding="#{backingBeanScope.backing_changeBidderStatus.d1}">
+      <af:messages binding="#{backingBeanScope.backing_changeBidderStatus.m1}"
+                   id="m1"/>
+      <af:form id="f1"
+               binding="#{backingBeanScope.backing_changeBidderStatus.f1}">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout binding="#{backingBeanScope.backing_changeBidderStatus.psl1}"
+                                   id="psl1">
+              <f:facet name="center">
+                <af:panelFormLayout binding="#{backingBeanScope.backing_changeBidderStatus.pfl2}"
+                                    id="pfl2">
+                  <af:outputFormatted value="#{userinterfaceBundle['changeBidderStatus.instruction']}"
+                                      binding="#{backingBeanScope.backing_changeBidderStatus.of1}"
+                                      id="of1"/>
+                  <af:spacer width="10" height="10" id="s1"
+                             binding="#{backingBeanScope.backing_changeBidderStatus.s1}"/>
+                  <af:selectOneChoice label="Select a bidder"
+                                      binding="#{backingBeanScope.backing_changeBidderStatus.soc2}"
+                                      id="soc2">
+                    <f:selectItems value="#{backingBeanScope.backing_changeBidderStatus.allBidders}"
+                                   binding="#{backingBeanScope.backing_changeBidderStatus.si2}"
+                                   id="si2"/>
+                  </af:selectOneChoice>
+                  <af:selectOneChoice label="Select the new bidder status"
+                                      binding="#{backingBeanScope.backing_changeBidderStatus.soc1}"
+                                      id="soc1">
+                    <f:selectItems value="#{backingBeanScope.backing_changeBidderStatus.allBidderStatuses}"
+                                   binding="#{backingBeanScope.backing_changeBidderStatus.si1}"
+                                   id="si1"/>
+                  </af:selectOneChoice>
+                  <af:panelBorderLayout binding="#{backingBeanScope.backing_changeBidderStatus.pbl1}"
+                                        id="pbl1">
+                    <f:facet name="start"/>
+                    <f:facet name="bottom"/>
+                    <f:facet name="end"/>
+                    <f:facet name="top"/>
+                    <af:resetButton text="#{userinterfaceBundle.reset}"
+                                    binding="#{backingBeanScope.backing_changeBidderStatus.rb1}"
+                                    id="rb1"/>
+                    <af:commandButton text="#{userinterfaceBundle.changeBidderStatus}"
+                                      disabled="#{!bindings.changeBidderStatus.enabled}"
+                                      binding="#{backingBeanScope.backing_changeBidderStatus.cb2}"
+                                      id="cb2"
+                                      action="#{backingBeanScope.backing_changeBidderStatus.changeBidderStatus}"/>
+                  </af:panelBorderLayout>
+                </af:panelFormLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_changeBidderStatus-->
+</jsp:root>

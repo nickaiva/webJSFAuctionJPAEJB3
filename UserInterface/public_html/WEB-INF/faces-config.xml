@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee">
+  <application>
+    <default-render-kit-id>oracle.adf.rich</default-render-kit-id>
+    <locale-config>
+      <default-locale>en_US</default-locale>
+      <supported-locale>en_US</supported-locale>
+      <!--supported-locale>el_GR</supported-locale-->
+      <supported-locale>de_DE</supported-locale>
+      <supported-locale>el</supported-locale>
+    </locale-config>
+    <resource-bundle>
+      <base-name>actionbazaar.view.UserInterfaceBundleEN_US</base-name>
+      <var>userinterfaceBundle</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>actionbazaar.view.UserInterfaceBundleDE_DE</base-name>
+      <var>userinterfaceBundle</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>actionbazaar.view.UserInterfaceBundleEL_GR</base-name>
+      <var>userinterfaceBundle</var>
+    </resource-bundle>
+  </application>
+</faces-config>

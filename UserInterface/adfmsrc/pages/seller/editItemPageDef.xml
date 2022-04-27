@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.2.61.83" id="editItemPageDef"
+                Package="pages.seller">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.Long" Name="getItemGetItemById_itemId"
+                IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getItemGetItemById.result"
+                    DataControl="PlaceItemLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.Item"
+                    id="getItemGetItemByIdIterator" ChangeEventPolicy="ppr"/>
+    <accessorIterator MasterBinding="getItemGetItemByIdIterator" Binds="seller"
+                      RangeSize="25" DataControl="PlaceItemLocal"
+                      BeanClass="actionbazaar.persistence.Seller"
+                      id="sellerIterator" ChangeEventPolicy="ppr"/>
+    <accessorIterator MasterBinding="getItemGetItemByIdIterator" Binds="order"
+                      RangeSize="25" DataControl="PlaceItemLocal"
+                      BeanClass="actionbazaar.persistence.Order"
+                      id="orderIterator" ChangeEventPolicy="ppr"/>
+  </executables>
+  <bindings>
+    <methodAction id="getItemGetItemById" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getItemGetItemById"
+                  IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                  InstanceName="data.PlaceItemLocal.dataProvider"
+                  ReturnName="data.PlaceItemLocal.methodResults.getItemGetItemById_PlaceItemLocal_dataProvider_getItemGetItemById_result">
+      <NamedData NDName="itemId" NDType="java.lang.Long"
+                 NDValue="${ pageFlowScope.itemID != null ? pageFlowScope.itemID : bindings.getItemGetItemById_itemId}"/>
+                 <!-- NDValue="${bindings.getItemGetItemById_itemId}" -->
+    </methodAction>
+    <attributeValues IterBinding="variables" id="itemId">
+      <AttrNames>
+        <Item Value="getItemGetItemById_itemId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getItemGetItemByIdIterator" id="bidEndDate">
+      <AttrNames>
+        <Item Value="bidEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getItemGetItemByIdIterator" id="bidStartDate">
+      <AttrNames>
+        <Item Value="bidStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getItemGetItemByIdIterator" id="createdDate">
+      <AttrNames>
+        <Item Value="createdDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getItemGetItemByIdIterator" id="initialPrice">
+      <AttrNames>
+        <Item Value="initialPrice"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getItemGetItemByIdIterator" id="itemId1">
+      <AttrNames>
+        <Item Value="itemId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getItemGetItemByIdIterator" id="itemName">
+      <AttrNames>
+        <Item Value="itemName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getItemGetItemByIdIterator" id="description">
+      <AttrNames>
+        <Item Value="description"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="sellerIterator" id="commissionRate">
+      <AttrNames>
+        <Item Value="commissionRate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="sellerIterator" id="maxItemsAllowed">
+      <AttrNames>
+        <Item Value="maxItemsAllowed"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="sellerIterator" id="birthDate">
+      <AttrNames>
+        <Item Value="birthDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="sellerIterator" id="firstName">
+      <AttrNames>
+        <Item Value="firstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="sellerIterator" id="lastName">
+      <AttrNames>
+        <Item Value="lastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="sellerIterator" id="userBillingId">
+      <AttrNames>
+        <Item Value="userBillingId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="sellerIterator" id="userId">
+      <AttrNames>
+        <Item Value="userId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="sellerIterator" id="userType">
+      <AttrNames>
+        <Item Value="userType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="orderIterator" id="orderId">
+      <AttrNames>
+        <Item Value="orderId"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="mergeItem" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeItem"
+                  IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                  InstanceName="data.PlaceItemLocal.dataProvider"
+                  ReturnName="data.PlaceItemLocal.methodResults.mergeItem_PlaceItemLocal_dataProvider_mergeItem_result">
+      <NamedData NDName="item"
+                 NDValue="#{data.actionbazaar_view_editItemPageDef.getItemGetItemByIdIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.Item"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

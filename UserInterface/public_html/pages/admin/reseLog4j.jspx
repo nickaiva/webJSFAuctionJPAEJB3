@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8" import="org.apache.log4j.*" />
+  <jsp:directive.page import="org.apache.log4j.config.PropertyPrinter" />
+  <jsp:directive.page import="java.net.URL" />
+  <jsp:directive.page import="java.io.PrintWriter"/>
+  <f:view>
+    <af:document id="d1" title="Reset Log4j">
+      <af:form id="f1">
+        
+           <jsp:scriptlet>LogManager.resetConfiguration();
+  
+  ClassLoader cl = this.getClass().getClassLoader();
+   
+ URL log4jprops = cl.getResource("log4j.properties");
+   
+ if (log4jprops != null) 
+    {
+  
+      PropertyConfigurator l4jconfig = new PropertyConfigurator();
+ 
+       l4jconfig.configure(log4jprops);
+   
+ }
+    out.println("#Log4j configuration");
+  
+  PrintWriter pw = new PrintWriter( out );
+  
+  PropertyPrinter pp = new PropertyPrinter(pw);
+  
+  pp.print(pw);
+    out.println("#End of Config");</jsp:scriptlet>
+
+            
+         
+      </af:form>
+     
+    
+    </af:document>
+  </f:view>
+</jsp:root>

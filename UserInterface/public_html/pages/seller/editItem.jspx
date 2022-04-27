@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="userinterfaceBundle"
+           value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="editItem.jspx" id="d1">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                                 id="pt1">
+                    <f:facet name="content">
+                        <af:panelStretchLayout id="psl1" endWidth="52px"
+                                               inlineStyle="width:1270px; height:470px;">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelGroupLayout layout="scroll" id="pgl4">
+                                    <af:separator id="s1"/>
+                                    <af:spacer width="10" height="10" id="s2"/>
+                                    <af:panelFormLayout id="pfl2" maxColumns="3"
+                                                        rows="3">
+                                        <af:inputDate value="#{bindings.bidEndDate.inputValue}"
+                                                      label="#{bindings.bidEndDate.hints.label}"
+                                                      required="#{bindings.bidEndDate.hints.mandatory}"
+                                                      columns="#{bindings.bidEndDate.hints.displayWidth}"
+                                                      shortDesc="#{bindings.bidEndDate.hints.tooltip}"
+                                                      id="id1"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.bidEndDate.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.bidEndDate.format}"/>
+                                        </af:inputDate>
+                                        <af:inputDate value="#{bindings.bidStartDate.inputValue}"
+                                                      label="#{bindings.bidStartDate.hints.label}"
+                                                      required="#{bindings.bidStartDate.hints.mandatory}"
+                                                      columns="#{bindings.bidStartDate.hints.displayWidth}"
+                                                      shortDesc="#{bindings.bidStartDate.hints.tooltip}"
+                                                      id="id2"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.bidStartDate.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.bidStartDate.format}"/>
+                                        </af:inputDate>
+                                        <af:inputDate value="#{bindings.createdDate.inputValue}"
+                                                      label="#{bindings.createdDate.hints.label}"
+                                                      required="#{bindings.createdDate.hints.mandatory}"
+                                                      columns="#{bindings.createdDate.hints.displayWidth}"
+                                                      shortDesc="#{bindings.createdDate.hints.tooltip}"
+                                                      id="id3"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.createdDate.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.createdDate.format}"/>
+                                        </af:inputDate>
+                                        <af:inputText value="#{bindings.initialPrice.inputValue}"
+                                                      label="#{bindings.initialPrice.hints.label}"
+                                                      required="#{bindings.initialPrice.hints.mandatory}"
+                                                      columns="#{bindings.initialPrice.hints.displayWidth}"
+                                                      maximumLength="#{bindings.initialPrice.hints.precision}"
+                                                      shortDesc="#{bindings.initialPrice.hints.tooltip}"
+                                                      id="it2"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.initialPrice.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.initialPrice.format}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.itemId1.inputValue}"
+                                                      label="#{bindings.itemId1.hints.label}"
+                                                      required="#{bindings.itemId1.hints.mandatory}"
+                                                      columns="#{bindings.itemId1.hints.displayWidth}"
+                                                      maximumLength="#{bindings.itemId1.hints.precision}"
+                                                      shortDesc="#{bindings.itemId1.hints.tooltip}"
+                                                      id="it3"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.itemId1.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.itemId1.format}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.itemName.inputValue}"
+                                                      label="#{bindings.itemName.hints.label}"
+                                                      required="#{bindings.itemName.hints.mandatory}"
+                                                      columns="#{bindings.itemName.hints.displayWidth}"
+                                                      maximumLength="#{bindings.itemName.hints.precision}"
+                                                      shortDesc="#{bindings.itemName.hints.tooltip}"
+                                                      id="it4"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.itemName.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.description.inputValue}"
+                                                      label="#{bindings.description.hints.label}"
+                                                      required="#{bindings.description.hints.mandatory}"
+                                                      columns="#{bindings.description.hints.displayWidth}"
+                                                      maximumLength="#{bindings.description.hints.precision}"
+                                                      shortDesc="#{bindings.description.hints.tooltip}"
+                                                      id="it5"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.description.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.commissionRate.inputValue}"
+                                                      label="#{bindings.commissionRate.hints.label}"
+                                                      required="#{bindings.commissionRate.hints.mandatory}"
+                                                      columns="#{bindings.commissionRate.hints.displayWidth}"
+                                                      maximumLength="#{bindings.commissionRate.hints.precision}"
+                                                      shortDesc="#{bindings.commissionRate.hints.tooltip}"
+                                                      id="it6"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.commissionRate.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.commissionRate.format}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.maxItemsAllowed.inputValue}"
+                                                      label="#{bindings.maxItemsAllowed.hints.label}"
+                                                      required="#{bindings.maxItemsAllowed.hints.mandatory}"
+                                                      columns="#{bindings.maxItemsAllowed.hints.displayWidth}"
+                                                      maximumLength="#{bindings.maxItemsAllowed.hints.precision}"
+                                                      shortDesc="#{bindings.maxItemsAllowed.hints.tooltip}"
+                                                      id="it7"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.maxItemsAllowed.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.maxItemsAllowed.format}"/>
+                                        </af:inputText>
+                                        <af:inputDate value="#{bindings.birthDate.inputValue}"
+                                                      label="#{bindings.birthDate.hints.label}"
+                                                      required="#{bindings.birthDate.hints.mandatory}"
+                                                      columns="#{bindings.birthDate.hints.displayWidth}"
+                                                      shortDesc="#{bindings.birthDate.hints.tooltip}"
+                                                      id="id4"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.birthDate.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.birthDate.format}"/>
+                                        </af:inputDate>
+                                        <af:inputText value="#{bindings.firstName.inputValue}"
+                                                      label="#{bindings.firstName.hints.label}"
+                                                      required="#{bindings.firstName.hints.mandatory}"
+                                                      columns="#{bindings.firstName.hints.displayWidth}"
+                                                      maximumLength="#{bindings.firstName.hints.precision}"
+                                                      shortDesc="#{bindings.firstName.hints.tooltip}"
+                                                      id="it8"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.firstName.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.lastName.inputValue}"
+                                                      label="#{bindings.lastName.hints.label}"
+                                                      required="#{bindings.lastName.hints.mandatory}"
+                                                      columns="#{bindings.lastName.hints.displayWidth}"
+                                                      maximumLength="#{bindings.lastName.hints.precision}"
+                                                      shortDesc="#{bindings.lastName.hints.tooltip}"
+                                                      id="it9"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.lastName.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.userBillingId.inputValue}"
+                                                      label="#{bindings.userBillingId.hints.label}"
+                                                      required="#{bindings.userBillingId.hints.mandatory}"
+                                                      columns="#{bindings.userBillingId.hints.displayWidth}"
+                                                      maximumLength="#{bindings.userBillingId.hints.precision}"
+                                                      shortDesc="#{bindings.userBillingId.hints.tooltip}"
+                                                      id="it10"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.userBillingId.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.userBillingId.format}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.userId.inputValue}"
+                                                      label="#{bindings.userId.hints.label}"
+                                                      required="#{bindings.userId.hints.mandatory}"
+                                                      columns="#{bindings.userId.hints.displayWidth}"
+                                                      maximumLength="#{bindings.userId.hints.precision}"
+                                                      shortDesc="#{bindings.userId.hints.tooltip}"
+                                                      id="it11"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.userId.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.userType.inputValue}"
+                                                      label="#{bindings.userType.hints.label}"
+                                                      required="#{bindings.userType.hints.mandatory}"
+                                                      columns="#{bindings.userType.hints.displayWidth}"
+                                                      maximumLength="#{bindings.userType.hints.precision}"
+                                                      shortDesc="#{bindings.userType.hints.tooltip}"
+                                                      id="it12"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.userType.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.orderId.inputValue}"
+                                                      label="#{bindings.orderId.hints.label}"
+                                                      required="#{bindings.orderId.hints.mandatory}"
+                                                      columns="#{bindings.orderId.hints.displayWidth}"
+                                                      maximumLength="#{bindings.orderId.hints.precision}"
+                                                      shortDesc="#{bindings.orderId.hints.tooltip}"
+                                                      id="it13"
+                                                      readOnly="#{!securityContext.userInRole['SELLER, ADMINISTRATOR']}">
+                                            <f:validator binding="#{bindings.orderId.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.orderId.format}"/>
+                                        </af:inputText>
+                                        <f:facet name="footer">
+                                            <af:panelGroupLayout layout="vertical"
+                                                                 id="pgl1">
+                                                <af:panelGroupLayout layout="horizontal"
+                                                                     id="pgl2"
+                                                                     halign="center">
+                                                    <f:facet name="separator"/>
+                                                    <af:commandButton text="#{userinterfaceBundle.Back}"
+                                                                      id="cb2"
+                                                                      action="done"/>
+                                                    <af:resetButton text="#{userinterfaceBundle.reset}"
+                                                                    id="rb1"/>
+                                                    <af:commandButton actionListener="#{bindings.mergeItem.execute}"
+                                                                      text="#{userinterfaceBundle.mergeObject}"
+                                                                      id="cb3"
+                                                                      rendered="#{securityContext.userInRole['ADMINISTRATOR']}"/>
+                                                </af:panelGroupLayout>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                    </af:panelFormLayout>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="start"/>
+                            <f:facet name="end"/>
+                            <f:facet name="top">
+                                <af:panelGroupLayout layout="scroll" id="pgl3"
+                                                     rendered="true">
+                                    <af:panelFormLayout id="pfl1"
+                                                        rendered="false">
+                                        <af:inputText value="#{bindings.itemId.inputValue}"
+                                                      label="#{bindings.itemId.hints.label}"
+                                                      required="#{bindings.itemId.hints.mandatory}"
+                                                      columns="#{bindings.itemId.hints.displayWidth}"
+                                                      maximumLength="#{bindings.itemId.hints.precision}"
+                                                      shortDesc="#{bindings.itemId.hints.tooltip}"
+                                                      id="it1">
+                                            <f:validator binding="#{bindings.itemId.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.itemId.format}"/>
+                                        </af:inputText>
+                                        <af:commandButton actionListener="#{bindings.getItemGetItemById.execute}"
+                                                          text="getItemGetItemById"
+                                                          disabled="#{!bindings.getItemGetItemById.enabled}"
+                                                          id="cb1"/>
+                                    </af:panelFormLayout>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

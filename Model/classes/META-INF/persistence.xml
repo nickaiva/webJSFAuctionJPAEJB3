@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
+  <persistence-unit name="Model">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>java:/app/jdbc/ActionBazaarEJB3inActionDS</jta-data-source>
+    <!--jta-data-source>java:/app/jdbc/jdbc/ActionBazaarEJB3inActionDS</jta-data-source-->
+    <class>actionbazaar.persistence.Category</class>
+    <class>actionbazaar.persistence.BillingInfo</class>
+    <class>actionbazaar.persistence.Order</class>
+    <class>actionbazaar.persistence.User</class>
+    <class>actionbazaar.persistence.Bid</class>
+    <class>actionbazaar.persistence.Bidder</class>
+    <class>actionbazaar.persistence.Seller</class>
+    <class>actionbazaar.persistence.Item</class>
+    <class>actionbazaar.persistence.ContactInfo</class>
+    <class>actionbazaar.persistence.ShippingInfo</class>
+    <class>actionbazaar.persistence.Address</class>
+    <class>actionbazaar.persistence.CategoriesItems</class>
+    <class>actionbazaar.persistence.Image</class>
+    <properties>
+      <property name="eclipselink.target-server" value="WebLogic"/>
+      <property name="javax.persistence.jtaDataSource"
+                value="java:/app/jdbc/ActionBazaarEJB3inActionDS"/>
+      <!--property name="javax.persistence.jtaDataSource"   value="java:/app/jdbc/jdbc/ActionBazaarEJB3inActionDS"/-->
+      <property name="eclipselink.target-database" value="Oracle11"/>
+      <!-- Glassfish 3.1 deployment won't work if Oracle11 is used  above instead of Oracle-->
+      <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="jseClient" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>actionbazaar.persistence.ContactInfo</class>
+    <class>actionbazaar.persistence.Seller</class>
+    <class>actionbazaar.persistence.BillingInfo</class>
+    <class>actionbazaar.persistence.Bidder</class>
+    <class>actionbazaar.persistence.Order</class>
+    <class>actionbazaar.persistence.Category</class>
+    <class>actionbazaar.persistence.Item</class>
+    <class>actionbazaar.persistence.ShippingInfo</class>
+    <class>actionbazaar.persistence.User</class>
+    <class>actionbazaar.persistence.Bid</class>
+    <properties>
+      <property name="javax.persistence.jdbc.driver"
+                value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.url"
+                value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+      <property name="javax.persistence.jdbc.user" value="ab"/>
+      <property name="javax.persistence.jdbc.password"
+                value="29E8BD11B89A62E3862F19C4F84B7DB0"/>
+      <property name="eclipselink.target-server" value="WebLogic_10"/>
+      <property name="eclipselink.target-database" value="Oracle11"/>
+      <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+    </properties>
+  </persistence-unit>
+</persistence>

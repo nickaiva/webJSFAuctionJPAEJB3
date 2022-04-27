@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.2.61.83"
+                id="editItem_flow_editItem_flow_queryByItemIDPageDef"
+                Package="actionbazaar.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="getItemGetItemById" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getItemGetItemById"
+                  IsViewObjectMethod="false" DataControl="PlaceItemLocal"
+                  InstanceName="data.PlaceItemLocal.dataProvider"
+                  ReturnName="data.PlaceItemLocal.methodResults.getItemGetItemById_PlaceItemLocal_dataProvider_getItemGetItemById_result">
+      <NamedData NDName="itemId"
+                 NDValue="#{data.actionbazaar_queryItemsPageDef.itemID}"
+                 NDType="java.lang.Long"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

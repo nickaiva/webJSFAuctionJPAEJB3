@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adf-settings xmlns="http://xmlns.oracle.com/adf/settings">
+  <adf-config xmlns="http://xmlns.oracle.com/adf/config">
+    <adfc-controller-config xmlns="http://xmlns.oracle.com/adf/controller/config">
+      <lifecycle>
+           <phase-listener>
+          <listener-id>CustomPagePhaseListener</listener-id>
+          <class>actionbazaar.view.CustomPagePhaseListener</class>
+          <!--before-id-set>
+            <listener-id>AdfInteractiveAppListener1</listener-id>
+          </before-id-set>
+          <after-id-set>
+            <listener-id></listener-id>
+          </after-id-set-->
+        </phase-listener>
+      </lifecycle>
+    </adfc-controller-config>
+  </adf-config>
+</adf-settings>

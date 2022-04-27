@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="Category" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.Category" isJavaBased="true">
+  <Attribute Name="categoryId" PrimaryKey="true" Type="java.lang.Long"/>
+  <Attribute Name="categoryName" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="createdBy" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="createDate" Type="java.sql.Date">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Category.createDate_FMT_FORMATTER"/>
+        <FMT_FORMAT ResId="actionbazaar.persistence.Category.createDate_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="parentId" Type="java.lang.Long"/>
+  <ConstructorMethod IsCollection="true"
+                     Type="actionbazaar.persistence.Category"
+                     BeanClass="actionbazaar.persistence.Category"
+                     id="Category">
+    <ParameterInfo id="categoryId" Type="java.lang.Long" isStructured="false"/>
+    <ParameterInfo id="categoryName" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="createDate" Type="java.sql.Date" isStructured="false"/>
+    <ParameterInfo id="createdBy" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="parentId" Type="java.lang.Long" isStructured="false"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true"
+                     Type="actionbazaar.persistence.Category"
+                     BeanClass="actionbazaar.persistence.Category"
+                     id="Category"/>
+  <ResourceBundle>
+    <PropertiesBundle xmlns="http://xmlns.oracle.com/adfm/resourcebundle"
+                      PropertiesFile="actionbazaar.ModelBundle"/>
+  </ResourceBundle>
+</JavaBean>

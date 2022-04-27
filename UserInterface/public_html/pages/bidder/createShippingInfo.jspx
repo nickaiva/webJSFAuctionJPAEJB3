@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         id="pt1">
+          <f:facet name="content">
+            <af:panelFormLayout id="pfl1" rows="3">
+              <af:inputText value="#{bindings.streetName1.inputValue}"
+                            label="#{bindings.streetName1.hints.label}"
+                            required="#{bindings.streetName1.hints.mandatory}"
+                            columns="#{bindings.streetName1.hints.displayWidth}"
+                            maximumLength="#{bindings.streetName1.hints.precision}"
+                            shortDesc="#{bindings.streetName1.hints.tooltip}"
+                            id="it5">
+                <f:validator binding="#{bindings.streetName1.validator}"/>
+              </af:inputText>
+              <af:inputText value="#{bindings.streetName2.inputValue}"
+                            label="#{bindings.streetName2.hints.label}"
+                            required="#{bindings.streetName2.hints.mandatory}"
+                            columns="#{bindings.streetName2.hints.displayWidth}"
+                            maximumLength="#{bindings.streetName2.hints.precision}"
+                            shortDesc="#{bindings.streetName2.hints.tooltip}"
+                            id="it3">
+                <f:validator binding="#{bindings.streetName2.validator}"/>
+              </af:inputText>
+              <af:inputText value="#{bindings.zipCode.inputValue}"
+                            label="#{bindings.zipCode.hints.label}"
+                            required="#{bindings.zipCode.hints.mandatory}"
+                            columns="#{bindings.zipCode.hints.displayWidth}"
+                            maximumLength="#{bindings.zipCode.hints.precision}"
+                            shortDesc="#{bindings.zipCode.hints.tooltip}"
+                            id="it4">
+                <f:validator binding="#{bindings.zipCode.validator}"/>
+              </af:inputText>
+              <af:inputText value="#{bindings.city.inputValue}"
+                            label="#{bindings.city.hints.label}"
+                            required="#{bindings.city.hints.mandatory}"
+                            columns="#{bindings.city.hints.displayWidth}"
+                            maximumLength="#{bindings.city.hints.precision}"
+                            shortDesc="#{bindings.city.hints.tooltip}" id="it2">
+                <f:validator binding="#{bindings.city.validator}"/>
+              </af:inputText>
+              <af:inputText value="#{bindings.stateCode.inputValue}"
+                            label="#{bindings.stateCode.hints.label}"
+                            required="#{bindings.stateCode.hints.mandatory}"
+                            columns="#{bindings.stateCode.hints.displayWidth}"
+                            maximumLength="#{bindings.stateCode.hints.precision}"
+                            shortDesc="#{bindings.stateCode.hints.tooltip}"
+                            id="it1">
+                <f:validator binding="#{bindings.stateCode.validator}"/>
+              </af:inputText>
+              <af:inputText value="#{bindings.country.inputValue}"
+                            label="#{bindings.country.hints.label}"
+                            required="#{bindings.country.hints.mandatory}"
+                            columns="#{bindings.country.hints.displayWidth}"
+                            maximumLength="#{bindings.country.hints.precision}"
+                            shortDesc="#{bindings.country.hints.tooltip}"
+                            id="it6">
+                <f:validator binding="#{bindings.country.validator}"/>
+              </af:inputText>
+              <f:facet name="footer">
+                <af:group id="g2">
+                  <af:panelBorderLayout binding="#{backingBeanScope.backing_createOrder.pbl1}"
+                                        id="pbl1"
+                                        inlineStyle="text-align:center;">
+                    <f:facet name="start"/>
+                    <f:facet name="bottom"/>
+                    <f:facet name="end"/>
+                    <f:facet name="top"/>
+                    <af:resetButton text="#{userinterfaceBundle.reset}"
+                                    binding="#{backingBeanScope.backing_createOrder.rb1}"
+                                    id="rb1"/>
+                    <af:commandButton actionListener="#{bindings.addShippingInfo.execute}"
+                                      text="#{userinterfaceBundle.addObject}"
+                                      disabled="#{!bindings.addShippingInfo.enabled}"
+                                      id="cb1"/>
+                  </af:panelBorderLayout>
+                </af:group>
+              </f:facet>
+            </af:panelFormLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

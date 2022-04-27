@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="Bidder" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.Bidder" isJavaBased="true">
+  <Attribute Name="creditRating" Type="java.lang.Long"/>
+  <Attribute Name="birthDate" Type="java.sql.Timestamp">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Bidder.birthDate_FMT_FORMATTER"/>
+        <FMT_FORMAT ResId="actionbazaar.persistence.Bidder.birthDate_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="firstName" Type="java.lang.String" Precision="30"/>
+  <Attribute Name="lastName" Type="java.lang.String" Precision="30"/>
+  <Attribute Name="userBillingId" Type="java.lang.Long"/>
+  <Attribute Name="userId" PrimaryKey="true" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="actionbazaar.persistence.Bidder.userId_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="userType" Type="java.lang.String"/>
+  <AccessorAttribute id="bidderStatus" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.BidderStatus"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="bids" IsCollection="true"
+                     BeanClass="actionbazaar.persistence.Bid"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Bidder"
+                     BeanClass="actionbazaar.persistence.Bidder" id="Bidder"/>
+  <ResourceBundle>
+    <PropertiesBundle xmlns="http://xmlns.oracle.com/adfm/resourcebundle"
+                      PropertiesFile="actionbazaar.ModelBundle"/>
+  </ResourceBundle>
+</JavaBean>

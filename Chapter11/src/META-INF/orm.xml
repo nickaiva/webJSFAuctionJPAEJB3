@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                 version="1.0">
+  <persistence-unit-metadata>
+    <persistence-unit-defaults>
+      <schema>AB</schema>
+      <access>PROPERTY</access>
+    </persistence-unit-defaults>
+  </persistence-unit-metadata>
+  <table-generator name="Categories" table="CATEGORIES" schema="AB"
+                   pk-column-name="CATEGORY_ID"/>
+  <named-query name="findCategoryByDate">
+    <query>select c  from categories c   where c.createDate &gt;= :createDate</query>
+  </named-query>
+  <entity class="actionbazaar.persistence.Item"/>
+  <entity class="actionbazaar.persistence.Category"/>
+  <entity class="actionbazaar.persistence.ContactInfo"/>
+  <entity class="actionbazaar.persistence.Bid"/>
+  <entity class="actionbazaar.persistence.User"/>
+  <entity class="actionbazaar.persistence.Bidder"/>
+  <entity class="actionbazaar.persistence.BillingInfo"/>
+  <entity class="actionbazaar.persistence.Seller"/>
+  <embeddable class="actionbazaar.persistence.Address"/>
+</entity-mappings>

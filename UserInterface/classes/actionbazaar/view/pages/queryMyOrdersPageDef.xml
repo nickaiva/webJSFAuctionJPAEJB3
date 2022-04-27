@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="queryMyOrdersPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="getOrderFindByBidder_bidderId"
+                IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getOrderFindByBidder.result"
+                    DataControl="PlaceOrderLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.Order"
+                    id="getOrderFindByBidderIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getOrderFindByBidder" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getOrderFindByBidder"
+                  IsViewObjectMethod="false" DataControl="PlaceOrderLocal"
+                  InstanceName="PlaceOrderLocal.dataProvider"
+                  ReturnName="data.PlaceOrderLocal.methodResults.getOrderFindByBidder_PlaceOrderLocal_dataProvider_getOrderFindByBidder_result">
+      <NamedData NDName="bidderId" NDType="java.lang.String"
+                 NDValue="${bindings.getOrderFindByBidder_bidderId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="bidderId">
+      <AttrNames>
+        <Item Value="getOrderFindByBidder_bidderId"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="mergeOrder" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeOrder"
+                  IsViewObjectMethod="false" DataControl="PlaceOrderLocal"
+                  InstanceName="PlaceOrderLocal.dataProvider"
+                  ReturnName="data.PlaceOrderLocal.methodResults.mergeOrder_PlaceOrderLocal_dataProvider_mergeOrder_result">
+      <NamedData NDName="order"
+                 NDValue="#{bindings.getOrderFindByBidderIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.Order"/>
+    </methodAction>
+    <tree IterBinding="getOrderFindByBidderIterator" id="Order">
+      <nodeDefinition DefName="actionbazaar.persistence.Order" Name="Order0">
+        <AttrNames>
+          <Item Value="orderId"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="billingInfo"/>
+          <Item Value="shippingInfo"/>
+          <Item Value="bidder"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.BillingInfo"
+                      Name="Order1">
+        <AttrNames>
+          <Item Value="accountNo"/>
+          <Item Value="billingId"/>
+          <Item Value="cardType"/>
+          <Item Value="expiryDate"/>
+          <Item Value="secretCode"/>
+          <Item Value="optLock"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.ShippingInfo"
+                      Name="Order2">
+        <AttrNames>
+          <Item Value="shippingId"/>
+        </AttrNames>
+      </nodeDefinition>
+      <nodeDefinition DefName="actionbazaar.persistence.Bidder" Name="Order3">
+        <AttrNames>
+          <Item Value="creditRating"/>
+          <Item Value="birthDate"/>
+          <Item Value="firstName"/>
+          <Item Value="lastName"/>
+          <Item Value="userBillingId"/>
+          <Item Value="userId"/>
+          <Item Value="userType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="deleteOrder" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="deleteOrder"
+                  IsViewObjectMethod="false" DataControl="PlaceOrderLocal"
+                  InstanceName="data.PlaceOrderLocal.dataProvider">
+      <NamedData NDName="orderId" NDValue="#{row.orderId}"
+                 NDType="java.lang.Long"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

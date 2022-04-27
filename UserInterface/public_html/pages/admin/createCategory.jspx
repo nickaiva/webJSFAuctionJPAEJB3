@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         value="#{bindings.pageTemplateBinding}" id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout id="psl1">
+              <f:facet name="center">
+                <af:panelFormLayout id="pfl1">
+                  <af:inputText value="#{bindings.categoryName.inputValue}"
+                                label="#{bindings.categoryName.hints.label}"
+                                required="#{bindings.categoryName.hints.mandatory}"
+                                columns="#{bindings.categoryName.hints.displayWidth}"
+                                maximumLength="#{bindings.categoryName.hints.precision}"
+                                shortDesc="#{bindings.categoryName.hints.tooltip}"
+                                id="it1">
+                    <f:validator binding="#{bindings.categoryName.validator}"/>
+                  </af:inputText>
+                  <af:inputDate value="#{bindings.createDate.inputValue}"
+                                label="#{bindings.createDate.hints.label}"
+                                required="#{bindings.createDate.hints.mandatory}"
+                                shortDesc="#{bindings.createDate.hints.tooltip}"
+                                id="id1" disabled="false" rendered="true">
+                    <f:validator binding="#{bindings.createDate.validator}"/>
+                      <f:convertDateTime type="date" dateStyle="medium"
+                                         pattern="dd/MM/yyyy"/>
+                    <!--af:convertDateTime pattern="#{bindings.createDate.format}"/-->
+                  </af:inputDate>
+                  <af:inputText
+                                label="#{bindings.createdBy.hints.label}"
+                                required="#{bindings.createdBy.hints.mandatory}"
+                                columns="#{bindings.createdBy.hints.displayWidth}"
+                                maximumLength="#{bindings.createdBy.hints.precision}"
+                                shortDesc="#{bindings.createdBy.hints.tooltip}"
+                                id="it3" value="#{securityContext.userName}"
+                                disabled="true">
+                    <f:validator binding="#{bindings.createdBy.validator}"/>
+                  </af:inputText><!-- value="#{bindings.createdBy.inputValue}" -->
+                  <af:selectOneChoice value="#{bindings.parentId.inputValue}"
+                                      label="#{bindings.parentId.label}"
+                                      required="#{bindings.parentId.hints.mandatory}"
+                                      shortDesc="#{bindings.parentId.hints.tooltip}"
+                                      id="soc1">
+                    <f:selectItems value="#{bindings.parentId.items}" id="si1"/>
+                  </af:selectOneChoice>
+                  <af:panelBorderLayout id="pbl1">
+                    <f:facet name="start"/>
+                    <f:facet name="bottom"/>
+                    <f:facet name="end"/>
+                    <f:facet name="top"/>
+                    <af:resetButton text="#{userinterfaceBundle.reset}" id="rb1"/>
+                    <af:commandButton actionListener="#{bindings.addCategory.execute}"
+                                      text="#{userinterfaceBundle.addObject}"
+                                      disabled="#{!bindings.addCategory.enabled}"
+                                      id="cb1"/>
+                  </af:panelBorderLayout>
+                </af:panelFormLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

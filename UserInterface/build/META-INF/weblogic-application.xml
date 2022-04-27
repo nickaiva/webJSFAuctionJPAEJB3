@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<weblogic-application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://www.bea.com/ns/weblogic/weblogic-application http://www.bea.com/ns/weblogic/weblogic-application/1.0/weblogic-application.xsd"
+                      xmlns="http://www.bea.com/ns/weblogic/weblogic-application">
+ <xml>
+        <parser-factory>
+            <saxparser-factory>oracle.xml.jaxp.JXSAXParserFactory</saxparser-factory>
+            <document-builder-factory>oracle.xml.jaxp.JXDocumentBuilderFactory</document-builder-factory>
+            <transformer-factory>oracle.xml.jaxp.JXSAXTransformerFactory</transformer-factory>
+        </parser-factory>
+    </xml>
+  <security>
+    <security-role-assignment>
+      <role-name>ADMINISTRATOR</role-name>
+      <principal-name>CS_AB_ADMIN</principal-name>
+    </security-role-assignment>
+    <security-role-assignment>
+      <role-name>BIDDER</role-name>
+      <principal-name>CS_AB_BIDDER</principal-name>
+    </security-role-assignment>
+    <security-role-assignment>
+      <role-name>SELLER</role-name>
+      <principal-name>CS_AB_SELLER</principal-name>
+    </security-role-assignment>
+  </security>
+    <application-param>
+        <param-name>jps.credstore.migration</param-name>
+        <param-value>MERGE</param-value>
+    </application-param>
+    <application-param>
+        <param-name>jps.policystore.migration</param-name>
+        <param-value>MERGE</param-value>
+    </application-param>
+  <listener>
+    <listener-class>oracle.adf.share.weblogic.listeners.ADFApplicationLifecycleListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>oracle.mds.lcm.weblogic.WLLifecycleListener</listener-class>
+  </listener>
+<listener><!-- to avoid: Error 401 Unauthorized-->
+<listener-class>oracle.security.jps.wls.listeners.JpsApplicationLifecycleListener</listener-class>
+</listener>
+  <!--module>
+    <name>ActionBazaarEJB3inAction</name>
+    <type>JDBC</type>
+    <path>META-INF/ActionBazaarEJB3inAction-jdbc.xml</path>
+  </module-->
+  <library-ref>
+    <library-name>adf.oracle.domain</library-name>
+    <implementation-version>11.1.1.1.0</implementation-version>
+  </library-ref>
+  <prefer-application-packages>
+   <package-name>oracle.adf.model.*</package-name>
+   <package-name>oracle.jbo.client.*</package-name>
+   <package-name>oracle.xml.xsql.*</package-name>
+</prefer-application-packages>
+</weblogic-application>

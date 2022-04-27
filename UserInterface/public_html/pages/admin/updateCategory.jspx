@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout id="psl1" inlineStyle="width:1300px;"
+                                   topHeight="142px">
+              <f:facet name="center">
+                <af:panelFormLayout id="pfl2" maxColumns="1" rows="2"
+                                    rendered="#{bindings.getCategoryFindByCategoryNameIterator.estimatedRowCount > 0}">
+                  <af:inputText value="#{bindings.categoryId.inputValue}"
+                                label="#{bindings.categoryId.hints.label}"
+                                required="#{bindings.categoryId.hints.mandatory}"
+                                columns="#{bindings.categoryId.hints.displayWidth}"
+                                maximumLength="#{bindings.categoryId.hints.precision}"
+                                shortDesc="#{bindings.categoryId.hints.tooltip}"
+                                id="it4" disabled="true">
+                    <f:validator binding="#{bindings.categoryId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.categoryId.format}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.categoryName1.inputValue}"
+                                label="#{bindings.categoryName1.hints.label}"
+                                required="#{bindings.categoryName1.hints.mandatory}"
+                                columns="#{bindings.categoryName1.hints.displayWidth}"
+                                maximumLength="#{bindings.categoryName1.hints.precision}"
+                                shortDesc="#{bindings.categoryName1.hints.tooltip}"
+                                id="it5">
+                    <f:validator binding="#{bindings.categoryName1.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.createdBy.inputValue}"
+                                label="#{bindings.createdBy.hints.label}"
+                                required="#{bindings.createdBy.hints.mandatory}"
+                                columns="#{bindings.createdBy.hints.displayWidth}"
+                                maximumLength="#{bindings.createdBy.hints.precision}"
+                                shortDesc="#{bindings.createdBy.hints.tooltip}"
+                                id="it3">
+                    <f:validator binding="#{bindings.createdBy.validator}"/>
+                  </af:inputText>
+                  <af:inputDate value="#{bindings.createDate.inputValue}"
+                                label="#{bindings.createDate.hints.label}"
+                                required="#{bindings.createDate.hints.mandatory}"
+                                shortDesc="#{bindings.createDate.hints.tooltip}"
+                                id="id1" disabled="true">
+                    <f:validator binding="#{bindings.createDate.validator}"/>
+                    <!--af:convertDateTime pattern="#{bindings.createDate.format}"/-->
+                    <f:convertDateTime type="date" dateStyle="medium"
+                                         pattern="dd/MM/yyyy"/>
+                  </af:inputDate>
+                  <af:inputText value="#{bindings.parentId.inputValue}"
+                                label="#{bindings.parentId.hints.label}"
+                                required="#{bindings.parentId.hints.mandatory}"
+                                columns="#{bindings.parentId.hints.displayWidth}"
+                                maximumLength="#{bindings.parentId.hints.precision}"
+                                shortDesc="#{bindings.parentId.hints.tooltip}"
+                                id="it2">
+                    <f:validator binding="#{bindings.parentId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.parentId.format}"/>
+                  </af:inputText>
+                  <f:facet name="footer">
+                    <af:group id="g1">
+                      <af:panelBorderLayout id="pgl1"
+                                            inlineStyle="text-align:center;">
+                        <af:resetButton text="#{userinterfaceBundle.reset}" id="rb1"/>
+                        <af:commandButton actionListener="#{bindings.mergeCategory.execute}"
+                                          text="#{userinterfaceBundle.mergeObject}"
+                                          disabled="#{!bindings.mergeCategory.enabled}"
+                                          id="cb2"/>
+                      </af:panelBorderLayout>
+                    </af:group>
+                  </f:facet>
+                </af:panelFormLayout>
+              </f:facet>
+              <f:facet name="top">
+                <af:panelGroupLayout layout="vertical"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     id="pgl2" halign="center">
+                  <af:outputFormatted value="#{userinterfaceBundle.queryCriterionInUppercase}"
+                                      id="of1"/>
+                  <af:spacer width="10" height="10" id="s1"/>
+                  <af:panelFormLayout id="pfl1">
+                    <af:inputText value="#{bindings.categoryName.inputValue}"
+                                  label="#{bindings.categoryName.hints.label}"
+                                  required="#{bindings.categoryName.hints.mandatory}"
+                                  columns="#{bindings.categoryName.hints.displayWidth}"
+                                  maximumLength="#{bindings.categoryName.hints.precision}"
+                                  shortDesc="#{bindings.categoryName.hints.tooltip}"
+                                  id="it1">
+                      <f:validator binding="#{bindings.categoryName.validator}"/>
+                    </af:inputText>
+                    <af:panelBorderLayout id="pbl1"
+                                          inlineStyle="text-align:center;">
+                      <f:facet name="bottom"/>
+                      <f:facet name="top"/>
+                      <af:resetButton text="#{userinterfaceBundle.reset}" id="rb2"/>
+                      <af:commandButton actionListener="#{bindings.getCategoryFindByCategoryName.execute}"
+                                        text="#{userinterfaceBundle.performQuery}"
+                                        disabled="#{!bindings.getCategoryFindByCategoryName.enabled}"
+                                        id="cb1"/>
+                    </af:panelBorderLayout>
+                  </af:panelFormLayout>
+                  <af:separator id="s2"/>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

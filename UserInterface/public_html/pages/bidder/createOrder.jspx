@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="userinterfaceBundle"
+         value="#{adfBundle['actionbazaar.view.UserInterfaceBundleEL_GR']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="Create new order"
+                 binding="#{backingBeanScope.backing_createOrder.d1}">
+      <af:messages id="m1"
+                   binding="#{backingBeanScope.backing_createOrder.m1}"/>
+      <af:form id="f1" binding="#{backingBeanScope.backing_createOrder.f1}">
+        <af:pageTemplate viewId="/WEB-INF/templates/templateABDef.jspx"
+                         id="pt1">
+          <f:facet name="content">
+            <af:panelStretchLayout id="psl1"
+                                   binding="#{backingBeanScope.backing_createOrder.psl1}"
+                                   inlineStyle="width:1065px;">
+              <f:facet name="center">
+                <af:panelFormLayout id="pfl1"
+                                    binding="#{backingBeanScope.backing_createOrder.pfl1}">
+                  <af:selectManyChoice label="Select one or more items"
+                                       binding="#{backingBeanScope.backing_createOrder.smc1}"
+                                       id="smc1">
+                    <f:selectItems value="#{backingBeanScope.backing_createOrder.allItems}"
+                                   binding="#{backingBeanScope.backing_createOrder.si1}"
+                                   id="si1"/>
+                  </af:selectManyChoice>
+                  <af:selectOneChoice label="Billing Info"
+                                      binding="#{backingBeanScope.backing_createOrder.soc1}"
+                                      id="soc1">
+                    <f:selectItems value="#{backingBeanScope.backing_createOrder.allBillingInfos}"
+                                   binding="#{backingBeanScope.backing_createOrder.si2}"
+                                   id="si2"/>
+                  </af:selectOneChoice>
+                  <af:inputText value="#{securityContext.userName}"
+                                label="#{bindings.bidderId.hints.label}"
+                                required="#{bindings.bidderId.hints.mandatory}"
+                                columns="#{bindings.bidderId.hints.displayWidth}"
+                                maximumLength="#{bindings.bidderId.hints.precision}"
+                                shortDesc="#{bindings.bidderId.hints.tooltip}"
+                                id="it3"
+                                binding="#{backingBeanScope.backing_createOrder.it3}"
+                                rendered="true"
+                                disabled="#{!securityContext.userInRole['ADMINISTRATOR']}">
+                    <f:validator binding="#{bindings.bidderId.validator}"/>
+                  </af:inputText>
+                  <af:selectOneChoice label="Shipping info"
+                                      binding="#{backingBeanScope.backing_createOrder.soc2}"
+                                      id="soc2">
+                    <f:selectItems value="#{backingBeanScope.backing_createOrder.allShippingInfos}"
+                                   binding="#{backingBeanScope.backing_createOrder.si3}"
+                                   id="si3"/>
+                  </af:selectOneChoice>
+                  <af:panelBorderLayout binding="#{backingBeanScope.backing_createOrder.pbl1}"
+                                        id="pbl1">
+                    <f:facet name="start"/>
+                    <f:facet name="bottom"/>
+                    <f:facet name="end"/>
+                    <f:facet name="top"/>
+                    <af:resetButton text="#{userinterfaceBundle.reset}"
+                                    binding="#{backingBeanScope.backing_createOrder.rb1}"
+                                    id="rb1"/>
+                    <af:commandButton text="#{userinterfaceBundle.addObject}"
+                                      binding="#{backingBeanScope.backing_createOrder.cb1}"
+                                      id="cb1"
+                                      action="#{backingBeanScope.backing_createOrder.createNewOrder}"/>
+                  </af:panelBorderLayout>
+                </af:panelFormLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_createOrder-->
+</jsp:root>

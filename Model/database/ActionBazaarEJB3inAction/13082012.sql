@@ -1,0 +1,476 @@
+--------------------------------------------------------
+--  File created - Monday-August-13-2012   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence BID_SEQUENCE
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "AB"."BID_SEQUENCE"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 400 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence BILLING_SEQUENCE
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "AB"."BILLING_SEQUENCE"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 160 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence CATEGORY_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "AB"."CATEGORY_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 9051 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence ITEM_SEQUENCE
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "AB"."ITEM_SEQUENCE"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 13091 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence ORDER_SEQUENCE
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "AB"."ORDER_SEQUENCE"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 540 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SHIPPING_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "AB"."SHIPPING_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1021 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Table BIDS
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."BIDS" 
+   (	"BID_ID" NUMBER(19,0), 
+	"BID_PRICE" NUMBER(19,4), 
+	"BID_STATUS" VARCHAR2(10), 
+	"OPT_LOCK" NUMBER(19,0), 
+	"BID_DATE" DATE, 
+	"BID_BIDDER" VARCHAR2(40), 
+	"BID_ITEM_ID" NUMBER(19,0)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table BILLING_DETAILS
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."BILLING_DETAILS" 
+   (	"BILLING_ID" NUMBER(19,0), 
+	"EXPIRY_DATE" VARCHAR2(4), 
+	"ACCOUNT_NO" VARCHAR2(20), 
+	"CARD_TYPE" VARCHAR2(10), 
+	"SECRET_CODE" VARCHAR2(5), 
+	"ZIP_CD" VARCHAR2(255), 
+	"STATE_CD" VARCHAR2(255), 
+	"STREETNAME1" VARCHAR2(255), 
+	"STREETNAME2" VARCHAR2(255), 
+	"CITY" VARCHAR2(255), 
+	"COUNTRY" VARCHAR2(255)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table CATEGORIES
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."CATEGORIES" 
+   (	"CATEGORY_ID" NUMBER(19,0), 
+	"CATEGORY_NAME" VARCHAR2(255), 
+	"PARENT_ID" NUMBER(19,0), 
+	"CREATED_BY" VARCHAR2(255), 
+	"CREATE_DATE" DATE DEFAULT sysdate
+   ) ;
+--------------------------------------------------------
+--  DDL for Table CATEGORIES_ITEMS
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."CATEGORIES_ITEMS" 
+   (	"CI_CATEGORY_ID" NUMBER(19,0), 
+	"CI_ITEM_ID" NUMBER(19,0)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table CONTACT_DETAILS
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."CONTACT_DETAILS" 
+   (	"CONTACT_USER_ID" VARCHAR2(40), 
+	"PHONE" VARCHAR2(14), 
+	"EMAIL" VARCHAR2(255), 
+	"ZIP_CODE" VARCHAR2(255), 
+	"STATE_CODE" VARCHAR2(255), 
+	"STREETNAME1" VARCHAR2(255), 
+	"STREETNAME2" VARCHAR2(255), 
+	"CITY" VARCHAR2(255), 
+	"COUNTRY" VARCHAR2(255)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table ITEMS
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."ITEMS" 
+   (	"ITEM_ID" NUMBER(19,0), 
+	"ITEM_NAME" VARCHAR2(255), 
+	"INITIAL_PRICE" NUMBER(19,4), 
+	"BID_END_DATE" TIMESTAMP (6), 
+	"CREATED_DATE" TIMESTAMP (6), 
+	"BID_START_DATE" TIMESTAMP (6), 
+	"ORDER_ID" NUMBER(19,0), 
+	"SELLER_ID" VARCHAR2(40)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table ORDERS
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."ORDERS" 
+   (	"ORDER_ID" NUMBER(19,0), 
+	"ORDER_STATUS" VARCHAR2(10), 
+	"ORDER_BIDDER_ID" VARCHAR2(40), 
+	"ORDER_BILLING_ID" NUMBER(19,0), 
+	"ORDER_SHIPPING_ID" NUMBER(19,0)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table SHIPPING_INFO
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."SHIPPING_INFO" 
+   (	"SHIPPING_ID" NUMBER(19,0), 
+	"ZIP_CODE" VARCHAR2(255), 
+	"STATE_CODE" VARCHAR2(255), 
+	"STREETNAME1" VARCHAR2(255), 
+	"STREETNAME2" VARCHAR2(255), 
+	"CITY" VARCHAR2(255), 
+	"COUNTRY" VARCHAR2(255)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table USERS
+--------------------------------------------------------
+
+  CREATE TABLE "AB"."USERS" 
+   (	"USER_ID" VARCHAR2(40), 
+	"USER_TYPE" VARCHAR2(1), 
+	"LAST_NAME" VARCHAR2(255), 
+	"USER_BILLING_ID" NUMBER(19,0), 
+	"BIRTH_DATE" TIMESTAMP (6), 
+	"FIRST_NAME" VARCHAR2(255), 
+	"COMM_RATE" NUMBER(19,4), 
+	"MAX_ITEMS" NUMBER(19,0), 
+	"CREDIT_RATING" NUMBER(19,0), 
+	"BIDDER_STATUS" VARCHAR2(255)
+   ) ;
+ 
+
+   COMMENT ON COLUMN "AB"."USERS"."COMM_RATE" IS 'Applies only to sellers.';
+ 
+   COMMENT ON COLUMN "AB"."USERS"."MAX_ITEMS" IS 'Applies only to sellers.';
+ 
+   COMMENT ON COLUMN "AB"."USERS"."CREDIT_RATING" IS 'Bottom creditRate is 0. Applies only to bidders.';
+
+---------------------------------------------------
+--   DATA FOR TABLE CATEGORIES_ITEMS
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.CATEGORIES_ITEMS
+Insert into AB.CATEGORIES_ITEMS (CI_CATEGORY_ID,CI_ITEM_ID) values (1,101);
+Insert into AB.CATEGORIES_ITEMS (CI_CATEGORY_ID,CI_ITEM_ID) values (2051,51);
+Insert into AB.CATEGORIES_ITEMS (CI_CATEGORY_ID,CI_ITEM_ID) values (2051,2002);
+
+---------------------------------------------------
+--   END DATA FOR TABLE CATEGORIES_ITEMS
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE SHIPPING_INFO
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.SHIPPING_INFO
+Insert into AB.SHIPPING_INFO (SHIPPING_ID,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values (952,'159E63W','BAYERN','MAX PLANCK INSTITUT',' 2 STR.','MUNCHEN','DEUTSCHLAND');
+Insert into AB.SHIPPING_INFO (SHIPPING_ID,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values (1,'12345','ΑΤΤΙΚΗ','ΑΓ. ΜΑΡΊΝΗΣ 2','ΚΕΑΣ ΠΕΡΙΣΤΕΡΙ','ΑΘΉΝΑΙ','ΕΛΛΆΣ');
+
+---------------------------------------------------
+--   END DATA FOR TABLE SHIPPING_INFO
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE ITEMS
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.ITEMS
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (4001,'CORVETTE 1999 MODEL',1000,to_timestamp('19-JUL-12 10.36.38.338000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('09-JUL-12 09.13.45.120000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('09-JUL-12 09.13.45.120000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'NickAivaSeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (2002,'18 KARAT GOLD RING',150,to_timestamp('14-JUL-12 11.42.48.872000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('29-JUN-12 11.42.48.872000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('29-JUN-12 11.42.48.872000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'KatieUttleySeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (9001,'OPTICAL MOUSE',10,to_timestamp('23-JUL-12 10.51.32.662000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('18-JUL-12 10.51.32.662000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('18-JUL-12 10.51.32.662000000 AM','DD-MON-RR HH.MI.SS.FF AM'),471,'DonaldSmithSeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (13022,'SEWING MACHINE',100,to_timestamp('16-AUG-12 12.06.49.378000000 PM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('11-AUG-12 12.06.49.378000000 PM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('11-AUG-12 12.06.49.378000000 PM','DD-MON-RR HH.MI.SS.FF AM'),null,'MrInactiveSeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (51,'A DOSEN SILVER CUPS',12,to_timestamp('18-JUL-12 12.16.56.766000000 PM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('28-JUN-12 11.41.41.073000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('28-JUN-12 11.41.41.073000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'KatieUttleySeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (101,'US HISTORY BOOK',10,to_timestamp('19-JUL-12 11.41.27.409000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('28-JUN-12 12.06.19.019000000 PM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('28-JUN-12 12.06.19.019000000 PM','DD-MON-RR HH.MI.SS.FF AM'),101,'KatieUttleySeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (4052,'VW GOLF 1996 MODEL',1000,to_timestamp('15-JUL-12 11.21.48.363000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('09-JUL-12 11.25.04.300000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('09-JUL-12 11.25.04.300000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'NickAivaSeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (4051,'LOTUS ESPRIT 1999 MODEL',10000,to_timestamp('19-JUL-12 11.12.37.008000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('09-JUL-12 11.07.30.263000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('09-JUL-12 11.07.30.263000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'KatieUttleySeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (4101,'HP PAVILION LAPTOP',300,to_timestamp('10-JUL-12 11.22.20.842000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('09-JUL-12 11.40.54.530000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('09-JUL-12 11.40.54.530000000 AM','DD-MON-RR HH.MI.SS.FF AM'),481,'DonaldSmithSeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (6001,'HOVER 5 SERIES WASHING MACHINE',500,to_timestamp('11-JUL-12 09.54.13.272000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('10-JUL-12 11.09.52.835000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('10-JUL-12 11.09.52.835000000 AM','DD-MON-RR HH.MI.SS.FF AM'),481,'KatieUttleySeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (6002,'HOVER 5 SERIES VACUUM CLEANER',500,to_timestamp('12-JUL-12 10.21.33.511000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('10-JUL-12 11.10.14.035000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('10-JUL-12 11.10.14.035000000 AM','DD-MON-RR HH.MI.SS.FF AM'),481,'KatieUttleySeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (6003,'MIELE 5 SERIES VACUUM CLEANER',500,to_timestamp('13-JUL-12 09.59.17.837000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('10-JUL-12 11.10.31.507000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('10-JUL-12 11.10.31.507000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'KatieUttleySeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (13002,'WOMEN HEALTH BOOK',8,to_timestamp('11-AUG-12 12.04.40.895000000 PM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('06-AUG-12 12.04.40.895000000 PM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('06-AUG-12 12.04.40.895000000 PM','DD-MON-RR HH.MI.SS.FF AM'),null,'DonaldSmithSeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (1,'TOSHIBA SATELITE LAPTOP',1300,to_timestamp('28-JUL-12 11.00.56.965000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('28-JUN-12 10.56.18.332000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('28-JUN-12 10.56.18.332000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'NickAivaSeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (12001,'GERMAN DICTIONARY',10,to_timestamp('06-AUG-12 10.29.50.224000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('01-AUG-12 10.29.50.224000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('01-AUG-12 10.29.50.224000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'DonaldSmithSeller');
+Insert into AB.ITEMS (ITEM_ID,ITEM_NAME,INITIAL_PRICE,BID_END_DATE,CREATED_DATE,BID_START_DATE,ORDER_ID,SELLER_ID) values (8001,'PAIR OF SCISORS',10,to_timestamp('19-JUL-12 10.46.36.448000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('14-JUL-12 10.46.36.448000000 AM','DD-MON-RR HH.MI.SS.FF AM'),to_timestamp('14-JUL-12 10.46.36.448000000 AM','DD-MON-RR HH.MI.SS.FF AM'),null,'NickAivaSeller');
+
+---------------------------------------------------
+--   END DATA FOR TABLE ITEMS
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE BIDS
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.BIDS
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (7051,500.11,'NEW',1,to_timestamp('11-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',6002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (332,15,'NEW',1,to_timestamp('11-AUG-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'MrInactiveBidder',13002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (333,105,'NEW',1,to_timestamp('11-AUG-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'MrInactiveBidder',13002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (4052,1000.1,'NEW',1,to_timestamp('09-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'KatieUttleyasBidder',4052);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (7003,500.1,'NEW',1,to_timestamp('11-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',6001);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (151,10.1,'NEW',1,to_timestamp('22-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',9001);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (7004,500.1,'NEW',1,to_timestamp('11-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',6003);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (7002,500.1,'NEW',1,to_timestamp('11-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',6002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (4108,400.1,'NEW',1,to_timestamp('09-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',4101);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (6004,1001,'WINNER',2,to_timestamp('10-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',6001);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (6005,1001,'WINNER',2,to_timestamp('10-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',6002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (191,11,'NEW',1,to_timestamp('01-AUG-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',12001);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (5003,1500,'NEW',1,to_timestamp('10-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',4101);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (8001,500.11,'NEW',1,to_timestamp('12-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',6002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (5004,1600,'WINNER',2,to_timestamp('10-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',4101);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (251,11,'NEW',1,to_timestamp('08-AUG-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',13002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (253,13,'NEW',1,to_timestamp('08-AUG-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DonaldSmithBidder',13002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (252,12,'NEW',1,to_timestamp('08-AUG-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',13002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (295,14,'NEW',1,to_timestamp('10-AUG-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',13002);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (93,504,'NEW',1,to_timestamp('13-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',51);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (95,506,'NEW',1,to_timestamp('13-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',51);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (94,505,'NEW',1,to_timestamp('13-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',51);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (96,507,'NEW',1,to_timestamp('13-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',51);
+Insert into AB.BIDS (BID_ID,BID_PRICE,BID_STATUS,OPT_LOCK,BID_DATE,BID_BIDDER,BID_ITEM_ID) values (97,508,'NEW',1,to_timestamp('13-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NickAivaBidder',51);
+
+---------------------------------------------------
+--   END DATA FOR TABLE BIDS
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE ORDERS
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.ORDERS
+Insert into AB.ORDERS (ORDER_ID,ORDER_STATUS,ORDER_BIDDER_ID,ORDER_BILLING_ID,ORDER_SHIPPING_ID) values (101,'NEW','NickAivaBidder',100,1);
+Insert into AB.ORDERS (ORDER_ID,ORDER_STATUS,ORDER_BIDDER_ID,ORDER_BILLING_ID,ORDER_SHIPPING_ID) values (471,'NEW','NickAivaBidder',100,952);
+Insert into AB.ORDERS (ORDER_ID,ORDER_STATUS,ORDER_BIDDER_ID,ORDER_BILLING_ID,ORDER_SHIPPING_ID) values (481,'NEW','DonaldSmithBidder',120,1);
+
+---------------------------------------------------
+--   END DATA FOR TABLE ORDERS
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE BILLING_DETAILS
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.BILLING_DETAILS
+Insert into AB.BILLING_DETAILS (BILLING_ID,EXPIRY_DATE,ACCOUNT_NO,CARD_TYPE,SECRET_CODE,ZIP_CD,STATE_CD,STREETNAME1,STREETNAME2,CITY,COUNTRY) values (140,'1219','159888963','VISA','SECRE','587E23','ATTICA','MRINACTIVEBIDDER 1','MRINACTIVEBIDDER 23','ATHENS','HELLAS');
+Insert into AB.BILLING_DETAILS (BILLING_ID,EXPIRY_DATE,ACCOUNT_NO,CARD_TYPE,SECRET_CODE,ZIP_CD,STATE_CD,STREETNAME1,STREETNAME2,CITY,COUNTRY) values (100,'1114','158962','MAESTRO','SECRE','12234','ATTICA','1 PEACE ST','WATER LANE','ATHENS','GREECE');
+Insert into AB.BILLING_DETAILS (BILLING_ID,EXPIRY_DATE,ACCOUNT_NO,CARD_TYPE,SECRET_CODE,ZIP_CD,STATE_CD,STREETNAME1,STREETNAME2,CITY,COUNTRY) values (101,'1245','12234','VISA','SECRE','12E09W','YORKSHIRE','1 EVIAS','WATER LANE','LEEDS','ENGLAND UK');
+Insert into AB.BILLING_DETAILS (BILLING_ID,EXPIRY_DATE,ACCOUNT_NO,CARD_TYPE,SECRET_CODE,ZIP_CD,STATE_CD,STREETNAME1,STREETNAME2,CITY,COUNTRY) values (120,'1214','111111111','VISA','SECRE','12E09W','LANCASHIRE','1 PEACE ST','WATER LANE','MANCHESTER','ENGLAND UK');
+
+---------------------------------------------------
+--   END DATA FOR TABLE BILLING_DETAILS
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE USERS
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.USERS
+Insert into AB.USERS (USER_ID,USER_TYPE,LAST_NAME,USER_BILLING_ID,BIRTH_DATE,FIRST_NAME,COMM_RATE,MAX_ITEMS,CREDIT_RATING,BIDDER_STATUS) values ('MrInactiveBidder','B','MRINACTIVEBIDDER',140,to_timestamp('11-AUG-40 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'MRINACTIVEBIDDER',null,null,4,'INACTIVE');
+Insert into AB.USERS (USER_ID,USER_TYPE,LAST_NAME,USER_BILLING_ID,BIRTH_DATE,FIRST_NAME,COMM_RATE,MAX_ITEMS,CREDIT_RATING,BIDDER_STATUS) values ('MrInactiveSeller','S','MRINACTIVEBIDDER',null,to_timestamp('11-AUG-40 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'MRINACTIVEBIDDER',0.1,1,null,null);
+Insert into AB.USERS (USER_ID,USER_TYPE,LAST_NAME,USER_BILLING_ID,BIRTH_DATE,FIRST_NAME,COMM_RATE,MAX_ITEMS,CREDIT_RATING,BIDDER_STATUS) values ('NickAivaBidder','B','AIVA',100,to_timestamp('26-JAN-71 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NICK',null,null,1,'ACTIVE');
+Insert into AB.USERS (USER_ID,USER_TYPE,LAST_NAME,USER_BILLING_ID,BIRTH_DATE,FIRST_NAME,COMM_RATE,MAX_ITEMS,CREDIT_RATING,BIDDER_STATUS) values ('NickAivaSeller','S','AIVA',null,to_timestamp('26-JAN-71 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'NICK',0.15,1,null,null);
+Insert into AB.USERS (USER_ID,USER_TYPE,LAST_NAME,USER_BILLING_ID,BIRTH_DATE,FIRST_NAME,COMM_RATE,MAX_ITEMS,CREDIT_RATING,BIDDER_STATUS) values ('KatieUttleyasBidder','B','UTTLEY',24,to_timestamp('26-JAN-71 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'KATIE',null,null,2,'SILVER');
+Insert into AB.USERS (USER_ID,USER_TYPE,LAST_NAME,USER_BILLING_ID,BIRTH_DATE,FIRST_NAME,COMM_RATE,MAX_ITEMS,CREDIT_RATING,BIDDER_STATUS) values ('KatieUttleySeller','S','UTTLEY',null,to_timestamp('28-JUN-72 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'KATIE',0.15,1,null,null);
+Insert into AB.USERS (USER_ID,USER_TYPE,LAST_NAME,USER_BILLING_ID,BIRTH_DATE,FIRST_NAME,COMM_RATE,MAX_ITEMS,CREDIT_RATING,BIDDER_STATUS) values ('DonaldSmithSeller','S','SMITH',null,to_timestamp('18-JUL-72 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DONALD',0.15,1,null,null);
+Insert into AB.USERS (USER_ID,USER_TYPE,LAST_NAME,USER_BILLING_ID,BIRTH_DATE,FIRST_NAME,COMM_RATE,MAX_ITEMS,CREDIT_RATING,BIDDER_STATUS) values ('DonaldSmithBidder','B','SMITH',120,to_timestamp('30-JUN-82 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'),'DONALD',null,null,3,'GOLD');
+
+---------------------------------------------------
+--   END DATA FOR TABLE USERS
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE CATEGORIES
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.CATEGORIES
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (8101,'SECOND HAND TOOLS',null,'NickAivaAdmin',to_timestamp('05-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (2051,'JEWELLERY',null,'NickAivaAdmin',to_timestamp('29-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (7001,'SECOND HAND TOOLS',null,'NickAivaAdmin',to_timestamp('05-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (8051,'SECOND HAND TOOLS',null,'NickAivaAdmin',to_timestamp('05-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (1,'SECOND HAND PRODUCTS',null,'NickAivaAdmin',to_timestamp('28-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (8001,'SECOND HAND TOOLS',null,'NickAivaAdmin',to_timestamp('05-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (3,'SECOND HAND PC''S',null,'NickAivaAdmin',to_timestamp('28-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (4,'CAR SPARE PARTS',null,'NickAivaAdmin',to_timestamp('28-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (5,'SPARE TIRES',4,'NickAivaAdmin',to_timestamp('28-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (8151,'SECOND HAND TOOLS',null,'NickAivaAdmin',to_timestamp('05-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (4052,'WASHING MACHINE',1,'NickAivaAdmin',to_timestamp('10-JUL-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (8201,'SECOND HAND TOOLS',null,'NickAivaAdmin',to_timestamp('05-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (8251,'SECOND HAND TOOLS',null,'NickAivaAdmin',to_timestamp('05-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+Insert into AB.CATEGORIES (CATEGORY_ID,CATEGORY_NAME,PARENT_ID,CREATED_BY,CREATE_DATE) values (9001,'SECOND HAND TOOLS',null,'NickAivaAdmin',to_timestamp('05-JUN-12 12.00.00.000000000 AM','DD-MON-RR HH.MI.SS.FF AM'));
+
+---------------------------------------------------
+--   END DATA FOR TABLE CATEGORIES
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE CONTACT_DETAILS
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AB.CONTACT_DETAILS
+Insert into AB.CONTACT_DETAILS (CONTACT_USER_ID,PHONE,EMAIL,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values ('MrInactiveBidder','0302102345678','MRINACTIVE@AB.COM','587E23','ATTICA','MRINACTIVEBIDDER 1','MRINACTIVEBIDDER 23','ATHENS','HELLAS');
+Insert into AB.CONTACT_DETAILS (CONTACT_USER_ID,PHONE,EMAIL,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values ('NickAivaBidder','2112111003','NICKAIVA@YAHOO.CO.UK','11125','ATTICA','DAVAKI 1','CYPRUS 15','KALITHEA','GREECE');
+Insert into AB.CONTACT_DETAILS (CONTACT_USER_ID,PHONE,EMAIL,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values ('KatieUttleyasBidder','440251180','KATIE@UTTLEY.COM','25895','EN','2 NEVILE ST','YORKSHIRE','LEEDS','UK');
+Insert into AB.CONTACT_DETAILS (CONTACT_USER_ID,PHONE,EMAIL,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values ('NickAivaSeller','440251180','NICK@AIVA.COM','25896','EN','2 NEVILE ST','YORKSHIRE','LEEDS','UK');
+Insert into AB.CONTACT_DETAILS (CONTACT_USER_ID,PHONE,EMAIL,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values ('KatieUttleySeller','0044589632','KATE@AB.COM','12E09W','YORKSHIRE','1 NEVIL ST.','101 WATER LANE','LEEDS','ENGLAND UK');
+Insert into AB.CONTACT_DETAILS (CONTACT_USER_ID,PHONE,EMAIL,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values ('DonaldSmithBidder','0044589632','DONSMITH@AB.COM','12E09W','LANCASHIRE','1 PEACE ST','WATER LANE','MANCHESTER','ENGLAND UK');
+Insert into AB.CONTACT_DETAILS (CONTACT_USER_ID,PHONE,EMAIL,ZIP_CODE,STATE_CODE,STREETNAME1,STREETNAME2,CITY,COUNTRY) values ('DonaldSmithSeller','0044775963','DONSMITH@AB.COM','12E89','LANCASHIRE','1 PEACE ST','PICADILY','MANCHESTER','UK');
+
+---------------------------------------------------
+--   END DATA FOR TABLE CONTACT_DETAILS
+---------------------------------------------------
+--------------------------------------------------------
+--  Constraints for Table BIDS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."BIDS" MODIFY ("BID_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."BIDS" ADD PRIMARY KEY ("BID_ID") ENABLE;
+--------------------------------------------------------
+--  Constraints for Table BILLING_DETAILS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."BILLING_DETAILS" MODIFY ("BILLING_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."BILLING_DETAILS" MODIFY ("STREETNAME1" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."BILLING_DETAILS" MODIFY ("STREETNAME2" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."BILLING_DETAILS" MODIFY ("COUNTRY" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."BILLING_DETAILS" ADD PRIMARY KEY ("BILLING_ID") ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CATEGORIES
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."CATEGORIES" MODIFY ("CATEGORY_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."CATEGORIES" ADD PRIMARY KEY ("CATEGORY_ID") ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CATEGORIES_ITEMS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."CATEGORIES_ITEMS" MODIFY ("CI_CATEGORY_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."CATEGORIES_ITEMS" MODIFY ("CI_ITEM_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."CATEGORIES_ITEMS" ADD PRIMARY KEY ("CI_CATEGORY_ID", "CI_ITEM_ID") ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CONTACT_DETAILS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."CONTACT_DETAILS" MODIFY ("CONTACT_USER_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."CONTACT_DETAILS" MODIFY ("STREETNAME1" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."CONTACT_DETAILS" MODIFY ("STREETNAME2" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."CONTACT_DETAILS" MODIFY ("COUNTRY" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."CONTACT_DETAILS" ADD PRIMARY KEY ("CONTACT_USER_ID") ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ITEMS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."ITEMS" MODIFY ("ITEM_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."ITEMS" ADD PRIMARY KEY ("ITEM_ID") ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ORDERS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."ORDERS" MODIFY ("ORDER_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."ORDERS" ADD PRIMARY KEY ("ORDER_ID") ENABLE;
+--------------------------------------------------------
+--  Constraints for Table SHIPPING_INFO
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."SHIPPING_INFO" MODIFY ("SHIPPING_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."SHIPPING_INFO" MODIFY ("STREETNAME1" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."SHIPPING_INFO" MODIFY ("STREETNAME2" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."SHIPPING_INFO" MODIFY ("COUNTRY" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."SHIPPING_INFO" ADD PRIMARY KEY ("SHIPPING_ID") ENABLE;
+--------------------------------------------------------
+--  Constraints for Table USERS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."USERS" MODIFY ("USER_ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."USERS" MODIFY ("LAST_NAME" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."USERS" MODIFY ("FIRST_NAME" NOT NULL ENABLE);
+ 
+  ALTER TABLE "AB"."USERS" ADD PRIMARY KEY ("USER_ID") ENABLE;
+--------------------------------------------------------
+--  DDL for Index ORDERS_IDX$$_087D0002
+--------------------------------------------------------
+
+  CREATE INDEX "AB"."ORDERS_IDX$$_087D0002" ON "AB"."ORDERS" ("ORDER_BIDDER_ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index SHIPPING_INFO_IDX$$_087D0001
+--------------------------------------------------------
+
+  CREATE INDEX "AB"."SHIPPING_INFO_IDX$$_087D0001" ON "AB"."SHIPPING_INFO" (SUBSTRB("COUNTRY",1,32), SYS_OP_OPNSIZE("COUNTRY"), "COUNTRY", SUBSTRB("CITY",1,32), SYS_OP_OPNSIZE("CITY"), "CITY", SUBSTRB("STREETNAME2",1,32), SYS_OP_OPNSIZE("STREETNAME2"), "STREETNAME2", SUBSTRB("STREETNAME1",1,32), SYS_OP_OPNSIZE("STREETNAME1"), "STREETNAME1", SUBSTRB("STATE_CODE",1,32), SYS_OP_OPNSIZE("STATE_CODE"), "STATE_CODE", SUBSTRB("ZIP_CODE",1,32), SYS_OP_OPNSIZE("ZIP_CODE"), "ZIP_CODE", "SHIPPING_ID", SYS_OP_OPNSIZE("SHIPPING_ID")) 
+  ;
+--------------------------------------------------------
+--  DDL for Index USERS_IDX$$_087D0000
+--------------------------------------------------------
+
+  CREATE INDEX "AB"."USERS_IDX$$_087D0000" ON "AB"."USERS" ("USER_TYPE", "USER_ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index USERS_IDX$$_087D0003
+--------------------------------------------------------
+
+  CREATE INDEX "AB"."USERS_IDX$$_087D0003" ON "AB"."USERS" ("USER_BILLING_ID") 
+  ;
+--------------------------------------------------------
+--  Ref Constraints for Table BIDS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."BIDS" ADD CONSTRAINT "FK_BIDS_BID_BIDDER" FOREIGN KEY ("BID_BIDDER")
+	  REFERENCES "AB"."USERS" ("USER_ID") ENABLE;
+ 
+  ALTER TABLE "AB"."BIDS" ADD CONSTRAINT "FK_BIDS_BID_ITEM_ID" FOREIGN KEY ("BID_ITEM_ID")
+	  REFERENCES "AB"."ITEMS" ("ITEM_ID") ENABLE;
+
+
+
+
+--------------------------------------------------------
+--  Ref Constraints for Table ITEMS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."ITEMS" ADD CONSTRAINT "FK_ITEMS_ORDER_ID" FOREIGN KEY ("ORDER_ID")
+	  REFERENCES "AB"."ORDERS" ("ORDER_ID") ENABLE;
+ 
+  ALTER TABLE "AB"."ITEMS" ADD CONSTRAINT "FK_ITEMS_SELLER_ID" FOREIGN KEY ("SELLER_ID")
+	  REFERENCES "AB"."USERS" ("USER_ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ORDERS
+--------------------------------------------------------
+
+  ALTER TABLE "AB"."ORDERS" ADD CONSTRAINT "FK_ORDERS_ORDER_BIDDER_ID" FOREIGN KEY ("ORDER_BIDDER_ID")
+	  REFERENCES "AB"."USERS" ("USER_ID") ENABLE;
+ 
+  ALTER TABLE "AB"."ORDERS" ADD CONSTRAINT "FK_ORDERS_ORDER_BILLING_ID" FOREIGN KEY ("ORDER_BILLING_ID")
+	  REFERENCES "AB"."BILLING_DETAILS" ("BILLING_ID") ENABLE;
+ 
+  ALTER TABLE "AB"."ORDERS" ADD CONSTRAINT "FK_ORDERS_ORDER_SHIPPING_ID" FOREIGN KEY ("ORDER_SHIPPING_ID")
+	  REFERENCES "AB"."SHIPPING_INFO" ("SHIPPING_ID") ENABLE;
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="queryUsersPageDef"
+                Package="actionbazaar.view.pages.admin">
+  <parameters>
+    <parameter id="currentUserID" value="#{row.userId}"/>
+  </parameters>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <methodIterator Binds="getUserFindByUserId.result"
+                    DataControl="AddUserLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.User"
+                    id="getUserFindByUserIdIterator"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="getUserFindByUserId_userId"
+                IsQueriable="false"/>
+    </variableIterator>
+    <searchRegion Binds="getUserFindByUserIdIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="UserQuery"/>
+  </executables>
+  <bindings>
+    <methodAction id="getUserFindByUserId" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getUserFindByUserId"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider"
+                  ReturnName="data.AddUserLocal.methodResults.getUserFindByUserId_AddUserLocal_dataProvider_getUserFindByUserId_result">
+      <NamedData NDName="userId" NDType="java.lang.String"
+                 NDValue="${bindings.getUserFindByUserId_userId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="userId">
+      <AttrNames>
+        <Item Value="getUserFindByUserId_userId"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="getUserFindByUserIdIterator" id="User">
+      <nodeDefinition DefName="actionbazaar.persistence.User" Name="User0">
+        <AttrNames>
+          <Item Value="birthDate"/>
+          <Item Value="firstName"/>
+          <Item Value="lastName"/>
+          <Item Value="userBillingId"/>
+          <Item Value="userId"/>
+          <Item Value="userType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.2.62.76" id="updateShippingInfoPageDef"
+                Package="pages.bidder">
+  <parameters/>
+  <executables>
+    <methodIterator Binds="getShippingInfofindByShippingAddressStreetName1.result"
+                    DataControl="PlaceShippingInfoLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.ShippingInfo"
+                    id="getShippingInfofindByShippingAddressStreetName1Iterator"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String"
+                Name="getShippingInfofindByShippingAddressStreetName1_streetName1"
+                IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="mergeShippingInfo.result"
+                    DataControl="PlaceShippingInfoLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.ShippingInfo"
+                    id="mergeShippingInfoIterator"/>
+    <accessorIterator MasterBinding="mergeShippingInfoIterator" Binds="address"
+                      RangeSize="25" DataControl="PlaceShippingInfoLocal"
+                      BeanClass="actionbazaar.persistence.Address"
+                      id="addressIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getShippingInfofindByShippingAddressStreetName1"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getShippingInfofindByShippingAddressStreetName1"
+                  IsViewObjectMethod="false"
+                  DataControl="PlaceShippingInfoLocal"
+                  InstanceName="data.PlaceShippingInfoLocal.dataProvider"
+                  ReturnName="data.PlaceShippingInfoLocal.methodResults.getShippingInfofindByShippingAddressStreetName1_PlaceShippingInfoLocal_dataProvider_getShippingInfofindByShippingAddressStreetName1_result">
+      <NamedData NDName="streetName1" NDType="java.lang.String"
+                 NDValue="${bindings.getShippingInfofindByShippingAddressStreetName1_streetName1}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="streetName1">
+      <AttrNames>
+        <Item Value="getShippingInfofindByShippingAddressStreetName1_streetName1"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="mergeShippingInfo" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeShippingInfo"
+                  IsViewObjectMethod="false"
+                  DataControl="PlaceShippingInfoLocal"
+                  InstanceName="data.PlaceShippingInfoLocal.dataProvider"
+                  ReturnName="data.PlaceShippingInfoLocal.methodResults.mergeShippingInfo_PlaceShippingInfoLocal_dataProvider_mergeShippingInfo_result">
+      <NamedData NDName="shippingInfo"
+                 NDValue="#{bindings.getShippingInfofindByShippingAddressStreetName1Iterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.ShippingInfo"/>
+    </methodAction>
+    <attributeValues IterBinding="mergeShippingInfoIterator" id="shippingId">
+      <AttrNames>
+        <Item Value="shippingId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="streetName11">
+      <AttrNames>
+        <Item Value="streetName1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="streetName2">
+      <AttrNames>
+        <Item Value="streetName2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="zipCode">
+      <AttrNames>
+        <Item Value="zipCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="city">
+      <AttrNames>
+        <Item Value="city"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="state">
+      <AttrNames>
+        <Item Value="state"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="addressIterator" id="country">
+      <AttrNames>
+        <Item Value="country"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createBidderPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="addBidder_userId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBidder_firstName"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBidder_lastName"
+                IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addBidder_userType"
+                IsQueriable="false"/>
+      <variable Type="long" Name="addBidder_creditRating" IsQueriable="false"/>
+      <variable Type="java.sql.Timestamp" Name="addBidder_birthDate"
+                IsQueriable="false"/>
+      <variable Type="long" Name="addBidder_userBillingId" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="addBidder" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addBidder"
+                  IsViewObjectMethod="false" DataControl="AddUserLocal"
+                  InstanceName="AddUserLocal.dataProvider">
+      <NamedData NDName="userId" NDType="java.lang.String"
+                 NDValue="${bindings.addBidder_userId}"/>
+      <NamedData NDName="firstName" NDType="java.lang.String"
+                 NDValue="${bindings.addBidder_firstName}"/>
+      <NamedData NDName="lastName" NDType="java.lang.String"
+                 NDValue="${bindings.addBidder_lastName}"/>
+      <NamedData NDName="userType" NDType="java.lang.String"
+                 NDValue="${bindings.addBidder_userType}"/>
+      <NamedData NDName="creditRating" NDType="long"
+                 NDValue="${bindings.addBidder_creditRating}"/>
+      <NamedData NDName="birthDate" NDType="java.sql.Timestamp"
+                 NDValue="${bindings.addBidder_birthDate}"/>
+      <NamedData NDName="userBillingId" NDType="long"
+                 NDValue="${bindings.addBidder_userBillingId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="userId">
+      <AttrNames>
+        <Item Value="addBidder_userId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="firstName">
+      <AttrNames>
+        <Item Value="addBidder_firstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="lastName">
+      <AttrNames>
+        <Item Value="addBidder_lastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="userType">
+      <AttrNames>
+        <Item Value="addBidder_userType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="creditRating">
+      <AttrNames>
+        <Item Value="addBidder_creditRating"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="birthDate">
+      <AttrNames>
+        <Item Value="addBidder_birthDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="userBillingId">
+      <AttrNames>
+        <Item Value="addBidder_userBillingId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

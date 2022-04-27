@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="updateCategoryPageDef"
+                Package="pages.admin">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String"
+                Name="getCategoryFindByCategoryName_categoryName"
+                IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getCategoryFindByCategoryName.result"
+                    DataControl="PlaceCategoryLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.Category"
+                    id="getCategoryFindByCategoryNameIterator"
+                    ChangeEventPolicy="ppr"/>
+  </executables>
+  <bindings>
+    <methodAction id="getCategoryFindByCategoryName" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="getCategoryFindByCategoryName"
+                  IsViewObjectMethod="false" DataControl="PlaceCategoryLocal"
+                  InstanceName="PlaceCategoryLocal.dataProvider"
+                  ReturnName="data.PlaceCategoryLocal.methodResults.getCategoryFindByCategoryName_PlaceCategoryLocal_dataProvider_getCategoryFindByCategoryName_result">
+      <NamedData NDName="categoryName" NDType="java.lang.String"
+                 NDValue="${bindings.getCategoryFindByCategoryName_categoryName}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="categoryName">
+      <AttrNames>
+        <Item Value="getCategoryFindByCategoryName_categoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getCategoryFindByCategoryNameIterator"
+                     id="categoryId">
+      <AttrNames>
+        <Item Value="categoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getCategoryFindByCategoryNameIterator"
+                     id="categoryName1">
+      <AttrNames>
+        <Item Value="categoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getCategoryFindByCategoryNameIterator"
+                     id="createdBy">
+      <AttrNames>
+        <Item Value="createdBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getCategoryFindByCategoryNameIterator"
+                     id="createDate">
+      <AttrNames>
+        <Item Value="createDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getCategoryFindByCategoryNameIterator"
+                     id="parentId">
+      <AttrNames>
+        <Item Value="parentId"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="mergeCategory" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="mergeCategory"
+                  IsViewObjectMethod="false" DataControl="PlaceCategoryLocal"
+                  InstanceName="PlaceCategoryLocal.dataProvider"
+                  ReturnName="data.PlaceCategoryLocal.methodResults.mergeCategory_PlaceCategoryLocal_dataProvider_mergeCategory_result">
+      <NamedData NDName="category"
+                 NDValue="#{bindings.getCategoryFindByCategoryNameIterator.currentRow.dataProvider}"
+                 NDType="actionbazaar.persistence.Category"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

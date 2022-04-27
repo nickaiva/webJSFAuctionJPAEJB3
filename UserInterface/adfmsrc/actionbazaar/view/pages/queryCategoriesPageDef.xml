@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="queryCategoriesPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <page path="templates.templateABDefPageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <methodIterator Binds="getCategoryFindByCategoryName.result"
+                    DataControl="PlaceCategoryLocal" RangeSize="25"
+                    BeanClass="actionbazaar.persistence.Category"
+                    id="getCategoryFindByCategoryNameIterator"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String"
+                Name="getCategoryFindByCategoryName_categoryName"
+                IsQueriable="false"/>
+    </variableIterator>
+    <searchRegion Binds="getCategoryFindByCategoryNameIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="CategoryQuery"/>
+  </executables>
+  <bindings>
+    <methodAction id="getCategoryFindByCategoryName" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="getCategoryFindByCategoryName"
+                  IsViewObjectMethod="false" DataControl="PlaceCategoryLocal"
+                  InstanceName="PlaceCategoryLocal.dataProvider"
+                  ReturnName="data.PlaceCategoryLocal.methodResults.getCategoryFindByCategoryName_PlaceCategoryLocal_dataProvider_getCategoryFindByCategoryName_result">
+      <NamedData NDName="categoryName" NDType="java.lang.String"
+                 NDValue="${bindings.getCategoryFindByCategoryName_categoryName}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="categoryName">
+      <AttrNames>
+        <Item Value="getCategoryFindByCategoryName_categoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="getCategoryFindByCategoryNameIterator" id="Category">
+      <nodeDefinition DefName="actionbazaar.persistence.Category"
+                      Name="Category0">
+        <AttrNames>
+          <Item Value="categoryId"/>
+          <Item Value="categoryName"/>
+          <Item Value="createdBy"/>
+          <Item Value="createDate"/>
+          <Item Value="parentId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="deleteCategory" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="deleteCategory"
+                  IsViewObjectMethod="false" DataControl="PlaceCategoryLocal"
+                  InstanceName="data.PlaceCategoryLocal.dataProvider">
+      <NamedData NDName="categoryId"
+                 NDValue="#{row.categoryId}"
+                 NDType="java.lang.Long"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

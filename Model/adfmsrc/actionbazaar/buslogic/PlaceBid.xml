@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="PlaceBid" Package="actionbazaar.buslogic"
+          BeanClass="actionbazaar.buslogic.PlaceBid" isJavaBased="true">
+  <AccessorAttribute id="bidFindAll" IsCollection="true"
+                     BeanClass="actionbazaar.persistence.Bid"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="addBid"
+                  ReturnNodeName="Bid">
+    <ParameterInfo id="bidderId" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="itemId" Type="java.lang.Long" isStructured="false"/>
+    <ParameterInfo id="bidPrice" Type="java.lang.Double" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="mergeBid"
+                  ReturnNodeName="Bid">
+    <ParameterInfo id="bid" Type="actionbazaar.persistence.Bid"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="BidsByDate"
+                  ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidDate" Type="java.sql.Date" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="getBidderFindBidsByBidder" ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="userId" Type="java.lang.String" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="cancelBid"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="bidId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="withdrawlBid"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="bidId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="determineWinnerBidforItem" ReturnNodeName="Bid">
+    <ParameterInfo id="itemId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="persistBid"
+                  ReturnNodeName="Bid">
+    <ParameterInfo id="bid" Type="actionbazaar.persistence.Bid"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeBid"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="bid" Type="actionbazaar.persistence.Bid"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="getBidGetBidsByDate" ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidDate" Type="java.sql.Date" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="getBidGetBidsById" ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidId" Type="java.lang.Long" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="getBidGetBidsByStatus" ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidStatus" Type="actionbazaar.persistence.BidStatus"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="getBidGetBidsItemByDate" ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidDate" Type="java.sql.Date" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="getBidGetWinnerBidByItemId" ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="itemId" Type="java.lang.Object" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="getBidGetBidsBidderByDate" ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="bidDate" Type="java.sql.Date" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid"
+                  id="getBidsByBidderId" ReturnNodeName="Bid"
+                  CollectionBeanClass="UpdateableCollection">
+    <ParameterInfo id="userId" Type="java.lang.String" isStructured="false"/>
+  </MethodAccessor>
+</JavaBean>

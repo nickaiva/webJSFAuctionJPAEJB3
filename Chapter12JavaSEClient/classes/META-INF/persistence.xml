@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
+  <persistence-unit name="actionBazaar" transaction-type="RESOURCE_LOCAL">
+  
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>actionbazaar.persistence.Bid</class>
+        <class>actionbazaar.persistence.Item</class>
+        <class>actionbazaar.persistence.User</class>
+        <class>actionbazaar.persistence.Bidder</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="eclipselink.target-database" value="Oracle11"/>
+      <property name="javax.persistence.jdbc.driver"
+                value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.password"
+                value="29E8BD11B89A62E3862F19C4F84B7DB0"/>
+      <property name="javax.persistence.jdbc.user" value="ab"/>
+      <property name="eclipselink.logging.level" value="ALL"/>
+      <property name="eclipselink.orm.validate.schema" value="true"/>
+      <property name="javax.persistence.jdbc.url"
+                value="jdbc:oracle:thin:@hera:1521:orcl"/>
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<jdbc-data-source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.bea.com/ns/weblogic/jdbc-data-source http://www.bea.com/ns/weblogic/jdbc-data-source/1.0/jdbc-data-source.xsd"
+                  xmlns="http://www.bea.com/ns/weblogic/jdbc-data-source">
+    <name>ActionBazaarEJB3inAction</name>
+    <jdbc-driver-params>
+        <url>jdbc:oracle:thin:@hera:1521:orcl</url>
+        <driver-name>oracle.jdbc.OracleDriver</driver-name>
+        <properties>
+            <property>
+                <name>user</name>
+                <value>ab</value>
+            </property>
+        </properties>
+        <password-encrypted>B2693B38F26A6E05C7CD36E67657BE8A</password-encrypted>
+    </jdbc-driver-params>
+    <jdbc-connection-pool-params>
+        <initial-capacity>1</initial-capacity>
+        <max-capacity>32</max-capacity>
+        <test-connections-on-reserve>true</test-connections-on-reserve>
+        <test-table-name>SQL SELECT 1 FROM DUAL</test-table-name>
+    </jdbc-connection-pool-params>
+    <jdbc-data-source-params>
+        <jndi-name>jdbc/ActionBazaarEJB3inActionDS</jndi-name>
+        <scope>Application</scope>
+        <global-transactions-protocol>TwoPhaseCommit</global-transactions-protocol>
+    </jdbc-data-source-params>
+</jdbc-data-source>

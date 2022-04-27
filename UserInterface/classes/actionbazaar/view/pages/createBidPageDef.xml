@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.59.23" id="createBidPageDef"
+                Package="actionbazaar.view.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="addBid_bidderId"
+                IsQueriable="false"/>
+      <variable Type="java.lang.Long" Name="addBid_itemId" IsQueriable="false"/>
+      <variable Type="java.lang.Double" Name="addBid_bidPrice"
+                IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="root" RangeSize="25" DataControl="PlaceItemLocal"
+              id="PlaceItemLocalIterator"/>
+    <accessorIterator MasterBinding="PlaceItemLocalIterator"
+                      Binds="itemFindAvailableItems" RangeSize="-1"
+                      DataControl="PlaceItemLocal"
+                      BeanClass="actionbazaar.persistence.Item"
+                      id="itemFindAvailableItemsIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="addBid" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addBid" IsViewObjectMethod="false"
+                  DataControl="PlaceBidLocal"
+                  InstanceName="PlaceBidLocal.dataProvider"
+                  ReturnName="data.PlaceBidLocal.methodResults.addBid_PlaceBidLocal_dataProvider_addBid_result">
+      <NamedData NDName="bidderId" NDType="java.lang.String"
+                 NDValue="#{securityContext.userName}"/><!-- ${bindings.addBid_bidderId}  -->
+      <NamedData NDName="itemId" NDType="java.lang.Long"
+                 NDValue="${bindings.addBid_itemId}"/>
+      <NamedData NDName="bidPrice" NDType="java.lang.Double"
+                 NDValue="${bindings.addBid_bidPrice}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="bidderId">
+      <AttrNames>
+        <Item Value="addBid_bidderId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="bidPrice">
+      <AttrNames>
+        <Item Value="addBid_bidPrice"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="variables" id="itemId"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="itemFindAvailableItemsIterator">
+      <AttrNames>
+        <Item Value="addBid_itemId"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="itemId"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="itemName"/>
+      </ListDisplayAttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project type="relational">
+   <name>actionBazaar</name>
+   <product-version>11.1.1.3.37.56.60</product-version>
+   <schema-version>8.0</schema-version>
+   <defaults-policy type="relational">
+      <use-method-accessing>true</use-method-accessing>
+      <caching-policy>
+         <cache-expiry/>
+      </caching-policy>
+      <cache-all-statements>false</cache-all-statements>
+      <bind-all-parameters>true</bind-all-parameters>
+   </defaults-policy>
+   <ejb-policy>
+      <ejb-persistence-type>No EJB</ejb-persistence-type>
+   </ejb-policy>
+   <deployment-xml-path>META-INF/</deployment-xml-path>
+   <database>
+      <platform-name>Oracle11</platform-name>
+      <deployment-login>
+         <driver-class>oracle.jdbc.OracleDriver</driver-class>
+         <url>jdbc:oracle:thin:@hera:1521:orcl</url>
+         <user-name>ab</user-name>
+         <password>29E8BD11B89A62E3862F19C4F84B7DB0</password>
+         <save-password>true</save-password>
+      </deployment-login>
+      <development-login>ActionBazaarEJB3inAction</development-login>
+   </database>
+   <sequencing>
+      <preallocation-size>50</preallocation-size>
+   </sequencing>
+   <table-generation>
+      <default-primary-key-name>ID</default-primary-key-name>
+      <primary-key-search-pattern>*ID</primary-key-search-pattern>
+   </table-generation>
+</project>

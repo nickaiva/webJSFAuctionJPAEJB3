@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+     name="PlaceBidService"
+     targetNamespace="http://buslogic.actionbazaar/"
+     xmlns:tns="http://buslogic.actionbazaar/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+     xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    >
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://buslogic.actionbazaar/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://buslogic.actionbazaar/">
+            <xsd:complexType name="addBid">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="xsd:string"/>
+                    <xsd:element name="arg1" type="xsd:long"/>
+                    <xsd:element name="arg2" type="xsd:double"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="addBid" type="tns:addBid"/>
+            <xsd:complexType name="addBidResponse">
+                <xsd:sequence>
+                    <xsd:element name="bidNumber" type="xsd:long"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="addBidResponse" type="tns:addBidResponse"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="addBidInput">
+        <wsdl:part name="parameters" element="tns:addBid"/>
+    </wsdl:message>
+    <wsdl:message name="addBidOutput">
+        <wsdl:part name="parameters" element="tns:addBidResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="PlaceBidService">
+        <wsdl:operation name="addBid">
+            <wsdl:input message="tns:addBidInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:addBidOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PlaceBidServiceSoapHttp" type="tns:PlaceBidService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="addBid">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PlaceBidService">
+        <wsdl:port name="PlaceBidServicePort" binding="tns:PlaceBidServiceSoapHttp">
+            <soap:address location="REPLACE_WITH_ACTUAL_URL"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

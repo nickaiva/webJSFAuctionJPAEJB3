@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.59.23"
+          id="PlaceShippingInfoLocal" Package="actionbazaar.buslogic"
+          BeanClass="actionbazaar.buslogic.PlaceShippingInfoLocal"
+          isJavaBased="true">
+  <AccessorAttribute id="shippingInfoFindAll" IsCollection="true"
+                     BeanClass="actionbazaar.persistence.ShippingInfo"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <MethodAccessor IsCollection="false"
+                  Type="actionbazaar.persistence.ShippingInfo"
+                  BeanClass="actionbazaar.persistence.ShippingInfo"
+                  id="persistShippingInfo" ReturnNodeName="ShippingInfo">
+    <ParameterInfo id="shippingInfo"
+                   Type="actionbazaar.persistence.ShippingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false"
+                  Type="actionbazaar.persistence.ShippingInfo"
+                  BeanClass="actionbazaar.persistence.ShippingInfo"
+                  id="mergeShippingInfo" ReturnNodeName="ShippingInfo">
+    <ParameterInfo id="shippingInfo"
+                   Type="actionbazaar.persistence.ShippingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="void" id="removeShippingInfo"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="shippingInfo"
+                   Type="actionbazaar.persistence.ShippingInfo"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="java.lang.Long"
+                  id="addShippingInfo" ReturnNodeName="Return">
+    <ParameterInfo id="streetName1" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="streetName2" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="zipCode" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="city" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="stateCode" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="country" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="orderSet" Type="java.util.Set" isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="java.lang.Object" id="queryByRange"
+                  ReturnNodeName="Return">
+    <ParameterInfo id="jpqlStmt" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="firstResult" Type="int" isStructured="false"/>
+    <ParameterInfo id="maxResults" Type="int" isStructured="false"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="true"
+                  Type="actionbazaar.persistence.ShippingInfo"
+                  BeanClass="actionbazaar.persistence.ShippingInfo"
+                  id="getShippingInfofindByShippingAddressStreetName1"
+                  ReturnNodeName="ShippingInfo">
+    <ParameterInfo id="streetName1" Type="java.lang.String"
+                   isStructured="false"/>
+  </MethodAccessor>
+</JavaBean>

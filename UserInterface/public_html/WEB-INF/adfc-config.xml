@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="home">
+    <page>/pages/home.jspx</page>
+  </view>
+  <view id="createBid">
+    <page>/pages/bidder/createBid.jspx</page>
+  </view>
+  <view id="queryBids">
+    <page>/pages/bidder/queryBids.jspx</page>
+  </view>
+  <view id="createOrder">
+    <page>/pages/bidder/createOrder.jspx</page>
+  </view>
+  <view id="createItem">
+    <page>/pages/seller/createItem.jspx</page>
+  </view>
+  <view id="createCategory">
+    <page>/pages/admin/createCategory.jspx</page>
+  </view>
+  <task-flow-call id="createUser">
+    <task-flow-reference>
+      <document>/WEB-INF/createUser.xml</document>
+      <id>createUser</id>
+    </task-flow-reference>
+  </task-flow-call>
+  <view id="queryOrders">
+    <page>/pages/bidder/queryOrders.jspx</page>
+  </view>
+  <view id="queryItems">
+    <page>/pages/queryItems.jspx</page>
+  </view>
+  <view id="queryCategories">
+    <page>/pages/queryCategories.jspx</page>
+  </view>
+  <view id="queryUsers">
+    <page>/pages/admin/queryUsers.jspx</page>
+  </view>
+  <view id="withdrawBid">
+    <page>/pages/bidder/withdrawBid.jspx</page>
+  </view>
+  <view id="reseLog4j">
+    <page>/pages/admin/reseLog4j.jspx</page>
+  </view>
+  <view id="updateItem">
+    <page>/pages/seller/updateItem.jspx</page>
+  </view>
+  <view id="updateCategory">
+    <page>/pages/admin/updateCategory.jspx</page>
+  </view>
+  <view id="placeItemInCategory">
+    <page>/pages/seller/placeItemInCategory.jspx</page>
+  </view>
+  <view id="createShippingInfo">
+    <page>/pages/bidder/createShippingInfo.jspx</page>
+  </view>
+  <view id="changeBidderStatus">
+    <page id="__66">/pages/admin/changeBidderStatus.jspx</page>
+  </view>
+  <view id="changeLocale">
+    <page>/pages/changeLocale.jspx</page>
+  </view>
+  <task-flow-call id="editUser-flow">
+    <task-flow-reference>
+      <document>/WEB-INF/editUser-flow.xml</document>
+      <id>editUser-flow</id>
+    </task-flow-reference>
+    <input-parameter id="__83">
+      <name>userID</name>
+      <value>#{data.actionbazaar_queryUsersPageDef.currentUserID}</value>
+      <!--  -->
+    </input-parameter>
+  </task-flow-call>
+  <task-flow-call id="editItem-flow">
+    <task-flow-reference>
+      <document>/WEB-INF/editItem-flow.xml</document>
+      <id>editItem-flow</id>
+    </task-flow-reference>
+    <input-parameter id="__84">
+      <name>itemID</name>
+      <value>#{data.actionbazaar_queryItemsPageDef.itemID}</value>
+    </input-parameter>
+  </task-flow-call>
+  <view id="updateShippingInfo">
+    <page>/pages/bidder/updateShippingInfo.jspx</page>
+  </view>
+  <view id="addNewItemImages">
+    <page>/pages/seller/placeAdditionalImages.jspx</page>
+  </view>
+  <view id="viewImages">
+    <page>/pages/viewImages.jspx</page>
+  </view>
+  <view id="browseItems">
+    <page>/pages/bidder/browseItems.jspx</page>
+  </view>
+  <control-flow-rule id="__2">
+    <from-activity-id id="__1">*</from-activity-id>
+    <control-flow-case id="__3">
+      <from-outcome id="__5">home</from-outcome>
+      <to-activity-id id="__4">home</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__7">
+      <from-outcome id="__8">addOrder</from-outcome>
+      <to-activity-id id="__6">createOrder</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__10">
+      <from-outcome id="__11">queryBids</from-outcome>
+      <to-activity-id id="__9">queryBids</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__12">
+      <from-outcome id="__14">addBid</from-outcome>
+      <to-activity-id id="__13">createBid</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__16">
+      <from-outcome id="__17">addItem</from-outcome>
+      <to-activity-id id="__15">createItem</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__22">
+      <from-outcome id="__23">addCategory</from-outcome>
+      <to-activity-id id="__21">createCategory</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__25">
+      <from-outcome id="__26">createUser</from-outcome>
+      <to-activity-id id="__24">createUser</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__28">
+      <from-outcome id="__29">queryOrders</from-outcome>
+      <to-activity-id id="__27">queryOrders</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__34">
+      <from-outcome id="__35">queryItems</from-outcome>
+      <to-activity-id id="__33">queryItems</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__32">
+      <from-outcome id="__36">queryCategories</from-outcome>
+      <to-activity-id id="__31">queryCategories</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__18">
+      <from-outcome id="__20">queryUsers</from-outcome>
+      <to-activity-id id="__19">queryUsers</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__41">
+      <from-outcome id="__42">withdraw</from-outcome>
+      <to-activity-id id="__40">withdrawBid</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__43">
+      <from-outcome id="__45">resetLog4j</from-outcome>
+      <to-activity-id id="__44">reseLog4j</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__51">
+      <from-outcome id="__52">updateItem</from-outcome>
+      <to-activity-id id="__50">updateItem</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__54">
+      <from-outcome id="__55">updateCategory</from-outcome>
+      <to-activity-id id="__53">updateCategory</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__57">
+      <from-outcome id="__58">placeItemInCategory</from-outcome>
+      <to-activity-id id="__56">placeItemInCategory</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__59">
+      <from-outcome id="__61">createShippingInfo</from-outcome>
+      <to-activity-id id="__60">createShippingInfo</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__69">
+      <from-outcome id="__71">changeBidderStatus</from-outcome>
+      <to-activity-id id="__70">changeBidderStatus</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__75">
+      <from-outcome id="__76">changeLocale</from-outcome>
+      <to-activity-id id="__74">changeLocale</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__85">
+      <from-outcome>updateShippingInfo</from-outcome>
+      <to-activity-id>updateShippingInfo</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__87">
+      <from-outcome>addImages</from-outcome>
+      <to-activity-id>addNewItemImages</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__89">
+      <from-outcome>viewImages</from-outcome>
+      <to-activity-id>viewImages</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__92">
+      <from-outcome>browseItems</from-outcome>
+      <to-activity-id>browseItems</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__81">
+    <from-activity-id>queryUsers</from-activity-id>
+    <control-flow-case id="__82">
+      <from-outcome>editUser</from-outcome>
+      <to-activity-id>editUser-flow</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__79">
+    <from-activity-id>queryItems</from-activity-id>
+    <control-flow-case id="__80">
+      <from-outcome>editItemByID</from-outcome>
+      <to-activity-id>editItem-flow</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__37">
+    <managed-bean-name id="__38">login</managed-bean-name>
+    <managed-bean-class id="__39">actionbazaar.view.controller.LoginHandler</managed-bean-class>
+    <managed-bean-scope id="__30">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__48">
+    <managed-bean-name id="__49">backing_createOrder</managed-bean-name>
+    <managed-bean-class id="__46">actionbazaar.view.backing.CreateOrder</managed-bean-class>
+    <managed-bean-scope id="__47">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__65">
+    <managed-bean-name id="__64">backing_changeBidderStatus</managed-bean-name>
+    <managed-bean-class id="__63">actionbazaar.view.backing.ChangeBidderStatus</managed-bean-class>
+    <managed-bean-scope id="__62">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__73">
+    <managed-bean-name id="__72">backing_changeLocale</managed-bean-name>
+    <managed-bean-class id="__67">actionbazaar.view.backing.ChangeLocale</managed-bean-class>
+    <managed-bean-scope id="__68">backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1pages/changeLocale.jspx-->
+  </managed-bean>
+  <managed-bean id="__77">
+    <managed-bean-name>backing_createItem</managed-bean-name>
+    <managed-bean-class>actionbazaar.view.backing.CreateItem</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__78">
+    <managed-bean-name>backing_updateItem</managed-bean-name>
+    <managed-bean-class>actionbazaar.view.backing.UpdateItem</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__86">
+    <managed-bean-name>backing_placeAdditionalImage</managed-bean-name>
+    <managed-bean-class>actionbazaar.view.backing.PlaceAdditionalImage</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__88">
+    <managed-bean-name>backing_viewImages</managed-bean-name>
+    <managed-bean-class>actionbazaar.view.backing.ViewImages</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1pages/viewImages.jspx-->
+  </managed-bean>
+</adfc-config>

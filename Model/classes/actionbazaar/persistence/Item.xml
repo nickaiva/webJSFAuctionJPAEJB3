@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.56.60"
+          id="Item" Package="actionbazaar.persistence"
+          BeanClass="actionbazaar.persistence.Item" isJavaBased="true">
+  <Attribute Name="bidEndDate" Type="java.sql.Timestamp">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Item.bidEndDate_FMT_FORMATTER"/>
+        <FMT_FORMAT ResId="actionbazaar.persistence.Item.bidEndDate_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="bidStartDate" Type="java.sql.Timestamp" PrecisionRule="false"
+             Precision="0" Scale="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Item.bidStartDate_FMT_FORMATTER"/>
+        <FMT_FORMAT ResId="actionbazaar.persistence.Item.bidStartDate_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="createdDate" Type="java.sql.Timestamp">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Item.createdDate_FMT_FORMATTER"/>
+        <FMT_FORMAT ResId="actionbazaar.persistence.Item.createdDate_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="initialPrice" Type="java.lang.Double">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER ResId="actionbazaar.persistence.Item.initialPrice_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="itemId" PrimaryKey="true" Type="java.lang.Long">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL ResId="actionbazaar.persistence.Item.itemId_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="itemName" Type="java.lang.String" Precision="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="description" Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute id="bidSet" IsCollection="true" RemoveMethod="removeBid"
+                     AddMethod="addBid" BeanClass="actionbazaar.persistence.Bid"
+                     CollectionBeanClass="UpdateableCollection">
+    <Properties>
+      <Property Name="RemoveMethod" Value="removeBid"/>
+      <Property Name="AddMethod" Value="addBid"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="seller" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.Seller"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="order" IsCollection="false"
+                     BeanClass="actionbazaar.persistence.Order"
+                     CollectionBeanClass="UpdateableSingleValue"/>
+  <AccessorAttribute id="image" IsCollection="true" Type="byte[]">
+    <Attribute Name="element" Type="byte"/>
+  </AccessorAttribute>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="addBid"
+                  ReturnNodeName="Bid">
+    <ParameterInfo id="bid" Type="actionbazaar.persistence.Bid"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <MethodAccessor IsCollection="false" Type="actionbazaar.persistence.Bid"
+                  BeanClass="actionbazaar.persistence.Bid" id="removeBid"
+                  ReturnNodeName="Bid">
+    <ParameterInfo id="bid" Type="actionbazaar.persistence.Bid"
+                   isStructured="true"/>
+  </MethodAccessor>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Item"
+                     BeanClass="actionbazaar.persistence.Item" id="Item">
+    <ParameterInfo id="itemName" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="initialPrice" Type="java.lang.Double"
+                   isStructured="false"/>
+    <ParameterInfo id="description" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="content" Type="byte[]" isStructured="false"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Item"
+                     BeanClass="actionbazaar.persistence.Item" id="Item">
+    <ParameterInfo id="itemName" Type="java.lang.String" isStructured="false"/>
+    <ParameterInfo id="content" Type="byte[]" isStructured="false"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Item"
+                     BeanClass="actionbazaar.persistence.Item" id="Item">
+    <ParameterInfo id="bidEndDate" Type="java.sql.Timestamp"
+                   isStructured="false"/>
+    <ParameterInfo id="bidStartDate" Type="java.sql.Timestamp"
+                   isStructured="false"/>
+    <ParameterInfo id="createdDate" Type="java.sql.Timestamp"
+                   isStructured="false"/>
+    <ParameterInfo id="initialPrice" Type="java.lang.Double"
+                   isStructured="false"/>
+    <ParameterInfo id="itemId" Type="java.lang.Long" isStructured="false"/>
+    <ParameterInfo id="itemName" Type="java.lang.String" isStructured="false"/>
+  </ConstructorMethod>
+  <ConstructorMethod IsCollection="true" Type="actionbazaar.persistence.Item"
+                     BeanClass="actionbazaar.persistence.Item" id="Item"/>
+  <ResourceBundle>
+    <PropertiesBundle xmlns="http://xmlns.oracle.com/adfm/resourcebundle"
+                      PropertiesFile="actionbazaar.ModelBundle"/>
+  </ResourceBundle>
+</JavaBean>
